@@ -6,15 +6,17 @@
 
 | Sintaxe  | Contexto | Descrição |
 | :---    | :----    | :---    |
-| kubectl cluster-info | Gerenciamento | Fornece informações sobre os serviços principais que estão sendo executados no cluster |
-| kubectl get all | Gerenciamento | Lista todos os recursos principais (como Pods, Services, Deployments, ReplicaSets, etc.) no namespace atual do cluster Kubernetes. |
+| terraform init | Gerenciamento | -- |
+
+---
 
 ### 2. Plan
 
 | Sintaxe  | Contexto | Descrição |
 | :---    | :----    | :---    |
-| kubectl cluster-info | Gerenciamento | Fornece informações sobre os serviços principais que estão sendo executados no cluster |
+| terraform plan | Gerenciamento | -- |
 
+---
 
 ### 3. Apply
 
