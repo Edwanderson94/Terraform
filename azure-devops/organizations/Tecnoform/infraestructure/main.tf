@@ -22,10 +22,10 @@ resource "azuredevops_project" "project_infra" {
 resource "azuredevops_project_features" "project_infra_feature" {
   project_id = azuredevops_project.project_infra.id
   features = {
-    "testplans"       = "disabled"
-    "artifacts"       = "disabled"
-    "boards"          = "disabled"
-    "repositories"    = "enabled"
-    "pipelines"       = "enabled"
+    "testplans"    = "disabled"
+    "artifacts"    = "disabled"
+    "boards"       = "disabled"
+    "repositories" = "enabled"
+    "pipelines"    = "enabled"
   }
 }
