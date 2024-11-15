@@ -28,3 +28,13 @@ resource "azuredevops_project_features" "project_infra_feature" {
     "pipelines"    = "enabled"
   }
 }
+
+# ======================================================
+# Módulo de Criação de repositório
+# ======================================================
+module "azuredevops_repository" {
+  source          = "../../../../../modules/azure-devops/azuredevops_repository"
+  project_id      = var.project_id
+  repository_name = "example-repo-module"
+  default_branch  = "main"
+}

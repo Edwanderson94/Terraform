@@ -7,7 +7,8 @@ terraform {
   }
 }
 
+
 provider "azuredevops" {
-  org_service_url       = "https://dev.azure.com/Tecnoform"
-  personal_access_token = "yd7oeczyfwhms7epd5eu6uoir4clxqensvbuiuqat3zupldtopvq"
+  org_service_url       = var.org_service_url
+  personal_access_token = var.personal_access_token
 }
