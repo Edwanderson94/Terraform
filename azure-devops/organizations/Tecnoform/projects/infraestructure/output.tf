@@ -4,17 +4,18 @@
 # Project: Azure DevOps com Terraform
 # =================================================================
 
-
 # ======================================================
-# Output do Repositório Infraestrutcture
+# Output do repositório criado pelo módulo
 # ======================================================
-output "project_infra" {
-  value = {
-    project_name       = azuredevops_project.project_infra.name
-    project_id         = azuredevops_project.project_infra.id
-    visibility         = azuredevops_project.project_infra.visibility
-    version_control    = azuredevops_project.project_infra.version_control
-    work_item_template = azuredevops_project.project_infra.work_item_template
-  }
+output "module_repository_name" {
+  description = "The name of the Azure DevOps repository from the module"
+  value       = module.azuredevops_repository.repository_name
 }
 
+# ======================================================
+# Output da branch criado pelo módulo
+# ======================================================
+output "module_repository_default_branch" {
+  description = "The default branch of the Azure DevOps repository from the module"
+  value       = module.azuredevops_repository.repository_default_branch
+}

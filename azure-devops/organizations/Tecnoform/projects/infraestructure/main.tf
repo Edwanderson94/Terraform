@@ -5,36 +5,13 @@
 # =======================================================
 
 # ======================================================
-# Criação do Projeto Azure DevOps
-# ======================================================
-resource "azuredevops_project" "project_infra" {
-  name               = "Infrastructure"
-  visibility         = "private"
-  version_control    = "Git"
-  work_item_template = "Tecnoform Agile"
-  description        = "Projeto destinado a automação de infraestruturas - Managed by Terraform"
-}
-
-# ======================================================
-# Criação das Features do Projeto Azure DevOps
-# ======================================================
-resource "azuredevops_project_features" "project_infra_feature" {
-  project_id = azuredevops_project.project_infra.id
-  features = {
-    "testplans"    = "disabled"
-    "artifacts"    = "disabled"
-    "boards"       = "disabled"
-    "repositories" = "enabled"
-    "pipelines"    = "enabled"
-  }
-}
-
-# ======================================================
 # Módulo de Criação de repositório
 # ======================================================
 module "azuredevops_repository" {
-  source          = "../../../../../modules/azure-devops/azuredevops_repository"
-  project_id      = var.project_id
-  repository_name = "example-repo-module"
-  default_branch  = "main"
+  source                  = "../../../../../modules/azure-devops/azuredevops_repository"
+  project_id              = data.azuredevops_project.project_infra.id
+  repository_name         = var.repository_name
+  default_branch          = var.default_branch
+  org_service_url         = var.org_service_url
+  personal_access_token   = var.personal_access_token
 }

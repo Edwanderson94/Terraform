@@ -21,5 +21,5 @@ variable "repository_name" {
 
 variable "default_branch" {
   type    = string
-  default = "main"
+  default = "master"
 }
