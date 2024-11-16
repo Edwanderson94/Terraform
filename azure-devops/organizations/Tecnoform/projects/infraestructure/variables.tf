@@ -10,17 +10,35 @@ variable "org_service_url" {
 variable "personal_access_token" {
   type      = string
   sensitive = true
-  default   = ""
+  default   = "yd7oeczyfwhms7epd5eu6uoir4clxqensvbuiuqat3zupldtopvq"
 }
 
-variable "repository_name" {
-  description = "Nome do repositório no Azure DevOps"
-  type        = string
-  default     = "example-repo-module"
-}
-
-variable "default_branch" {
-  description = "Nome do branch padrão do repositório"
-  type        = string
-  default     = "master"
+variable "repositories" {
+  description = "Lista de repositórios com suas configurações"
+  type = list(object({
+    name           = string
+    default_branch = string
+  }))
+  default = [
+    {
+      name           = "repo-01"
+      default_branch = "main"
+    },
+    {
+      name           = "repo-02"
+      default_branch = "develop"
+    },
+    {
+      name           = "repo-03"
+      default_branch = "develop"
+    },
+    {
+      name           = "repo-04"
+      default_branch = "develop"
+    },
+    {
+      name           = "repo-05"
+      default_branch = "develop"
+    }
+  ]
 }

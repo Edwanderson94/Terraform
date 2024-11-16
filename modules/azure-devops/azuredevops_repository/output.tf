@@ -2,12 +2,17 @@
 # Output
 # ================================================================
 
-output "repository_name" {
-  description = "The name of the Azure DevOps repository"
-  value       = azuredevops_git_repository.repository_01.name
+output "repository_ids" {
+  description = "IDs dos repositórios criados"
+  value = [for repo in azuredevops_git_repository.repositories : repo.id]
+}
+
+output "repository_names" {
+  description = "Nomes dos repositórios criados"
+  value = [for repo in azuredevops_git_repository.repositories : repo.name]
 }
 
 output "repository_default_branch" {
-  description = "The default branch of the Azure DevOps repository"
-  value       = azuredevops_git_repository.repository_01.default_branch
+  description = "O branch padrão dos repositórios criados"
+  value = { for repo_name, repo in azuredevops_git_repository.repositories : repo_name => repo.default_branch }
 }
