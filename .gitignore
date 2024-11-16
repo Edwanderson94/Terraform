@@ -4,7 +4,9 @@
 *.tfvars
 *.backup
 .terraform/
+.terraform*
 .terraform.lock.hcl
+
 
 # VSCode
 .vscode/
