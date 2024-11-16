@@ -3,8 +3,14 @@
 # ================================================================
 
 output "repository_ids" {
-  description = "IDs dos repositórios criados"
-  value = [for repo in azuredevops_git_repository.repositories : repo.id]
+  description = "IDs dos repositórios criados, associados ao índice e ao nome do repositório"
+  value = {
+    for repo_name, repo in azuredevops_git_repository.repositories :
+    repo_name => {
+      id   = repo.id
+      name = repo.name
+    }
+  }
 }
 
 output "repository_names" {
