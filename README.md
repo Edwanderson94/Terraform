@@ -1,54 +1,62 @@
 <!-- BEGIN_TF_DOCS -->
-# Documentação do Módulo Terraform
+# Repositório Terraform
 
-Bem-vindo à documentação do módulo Terraform. Este módulo é utilizado para provisionar e configurar recursos em [especificar o provedor, ex: AWS, Azure, GCP]. A seguir, você encontrará informações sobre as variáveis, recursos e saídas configuradas para este módulo.
+Bem-vindo à documentação deste repositório Terraform! Este espaço foi criado para compartilhar as implementações realizadas ao longo da minha jornada como DevOps e SRE, explorando o uso dessa poderosa ferramenta de infraestrutura como código.
 
 ## Objetivo
-Este módulo tem como objetivo simplificar o processo de provisionamento de infraestrutura e tornar o código reutilizável em diferentes ambientes e projetos.
 
-## Tabela de Conteúdos
-- Variáveis de Entrada
-- Variáveis de Saída
-- Provedores
-- Recursos
+Este repositório tem como propósito centralizar módulos, documentações e exemplos práticos relacionados ao uso do Terraform. Aqui você encontrará:
 
-## Requirements
+- **Módulos reutilizáveis** para provisionamento de recursos.
+- **Guia de comandos** para facilitar o uso do Terraform.
+- **Estruturas de implementação** aplicadas em plataformas como:
+  - **Azure DevOps**
+  - **AWS**
 
-No requirements.
-
-## Providers
-
-No providers.
-
-## Modules
-
-No modules.
-
-## Resources
-
-No resources.
-
-## Inputs
-
-No inputs.
-
-## Outputs
-
-No outputs.
-
-# Considerações Finais
-
-Este módulo foi desenvolvido com o intuito de proporcionar uma infraestrutura robusta e escalável de forma simples e eficiente. Para mais detalhes, consulte a documentação oficial do Terraform e do provedor utilizado.
-
-## Licença
-Este módulo está sob a licença [tipo de licença, ex: MIT]. Consulte o arquivo LICENSE para mais informações.
-
-## Contribuição
-Se você deseja contribuir para o projeto, fique à vontade para enviar pull requests. Se você encontrar algum erro ou tiver sugestões, por favor, crie uma issue no repositório.
-
-Agradecemos pela colaboração!
+Explore, aprenda e contribua para expandir este repositório com ideias e melhorias!
 
 ---
 
-**Desenvolvido por** [Seu Nome ou Organização]
+### Azure DevOps
+
+#### Organização: Tecnoform
+
+Neste repositório, você encontrará a pasta **Azure DevOps**, que contém recursos e configurações relacionadas à minha organização **Tecnoform**. Aqui, realizo os meus desenvolvimentos e criações dentro da estrutura do Azure DevOps.
+
+### Módulos
+
+Dentro da pasta **modules**, você encontrará os módulos específicos para o Azure DevOps, com funcionalidades diversas. A seguir, destaco o módulo disponível:
+
+#### 1. **azuredevops_repository**
+
+Este módulo permite a criação de repositórios no Azure DevOps de maneira automatizada. Com ele, é possível realizar várias ações de uma única vez, como:
+
+- Criar novos repositórios no Azure DevOps.
+- Definir a branch **default** do repositório, ajustando conforme suas necessidades.
+
+Este módulo facilita a configuração e o provisionamento de repositórios em sua organização, garantindo uma gestão eficiente e padronizada.
+
+---
+
+# Considerações Finais
+
+Este repositório foi desenvolvido com o objetivo de oferecer uma infraestrutura mais robusta e escalável, utilizando Terraform de maneira simples e eficiente no universo dos providers. Aqui estão armazenadas estruturas, desenvolvimentos e documentações baseadas em minha experiência prática.
+
+## Licença
+
+Este módulo está licenciado sob MIT. Para mais informações, consulte o arquivo [LICENSE](./LICENSE).
+
+## Contribuição
+
+Contribuições são muito bem-vindas! Se você deseja colaborar, siga as instruções abaixo:
+
+1. Envie pull requests com suas alterações ou melhorias.
+2. Caso encontre algum erro ou tenha sugestões, crie uma *issue* no repositório.
+
+Agradecemos pela sua colaboração e interesse!
+
+---
+
+**Desenvolvido por**
+Edwanderson Luiz Pereira
 <!-- END_TF_DOCS -->
