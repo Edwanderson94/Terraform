@@ -15,11 +15,21 @@ variable "project_id" {
   type = string
 }
 
-variable "repository_name" {
-  type = string
+variable "create_multiple_repositories" {
+  description = "Flag para determinar se múltiplos repositórios devem ser criados"
+  type        = bool
+  default     = false
 }
 
-variable "default_branch" {
-  type    = string
-  default = "master"
+variable "repositories" {
+  description = "Lista de repositórios para criar"
+  type = list(object({
+    name           = string
+    default_branch = string
+  }))
+
+  validation {
+    condition     = length(var.repositories) >= 1 && length(var.repositories) <= 5
+    error_message = "O número de repositórios deve estar entre 1 e 5."
+  }
 }
