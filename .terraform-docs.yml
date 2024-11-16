@@ -13,8 +13,9 @@ output:
     - modules
     - dependencies
 
-header-from: README.md       # Arquivo de cabeçalho para incluir no início da documentação
-footer-from: README.md       # Arquivo de rodapé para incluir no final da documentação
+# Alterado para que header-from e footer-from sejam arquivos diferentes
+header-from: ./docs/HEADER.md       # Arquivo de cabeçalho para incluir no início da documentação
+footer-from: ./docs/FOOTER.md       # Arquivo de rodapé para incluir no final da documentação
 
 sort:
   # Ordena os recursos do Terraform (por exemplo, variáveis, outputs) de forma alfabética
