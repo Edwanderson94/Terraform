@@ -3,11 +3,13 @@
 # ======================================================
 
 variable "org_service_url" {
-  type    = string
-  default = "https://dev.azure.com/Tecnoform"
+  description   = "URL da sua organization no Azure DevOps"
+  type          = string
+  default       = "https://dev.azure.com/Tecnoform"
 }
 
 variable "personal_access_token" {
+  description   = "PAT de acesso a sua organization no Azure DevOps"
   type      = string
   sensitive = true
   default   = "yd7oeczyfwhms7epd5eu6uoir4clxqensvbuiuqat3zupldtopvq"

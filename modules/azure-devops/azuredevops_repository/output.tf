@@ -22,3 +22,8 @@ output "repository_default_branch" {
   description = "O branch padrão dos repositórios criados"
   value = { for repo_name, repo in azuredevops_git_repository.repositories : repo_name => repo.default_branch }
 }
+
+output "module_version" {
+  description = "Versão do módulo"
+  value       = local.module_version
+}
