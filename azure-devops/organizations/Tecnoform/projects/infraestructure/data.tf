@@ -1,6 +1,6 @@
 # ======================================================
 # Owner: Edwanderson
-# Description: Provisionando Projeto e Configurações 
+# Description: Provisionando Projeto e Configurações
 # Project: Azure DevOps com Terraform
 # =======================================================
 

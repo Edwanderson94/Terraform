@@ -10,7 +10,7 @@ variable "org_service_url" {
 variable "personal_access_token" {
   type      = string
   sensitive = true
-  default   = "yd7oeczyfwhms7epd5eu6uoir4clxqensvbuiuqat3zupldtopvq"
+  default   = ""
 }
 
 variable "repository_name" {

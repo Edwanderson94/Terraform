@@ -1,0 +1,24 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.backup
+.terraform/
+.terraform.lock.hcl
+
+# VSCode
+.vscode/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE & Editor settings
+.idea/
+*.swp
+
+# Pre-commit
+# Ignore the pre-commit cache directory
+.pre-commit-config.yaml
+.pre-commit-config.yaml.lock
+.pre-commit/
