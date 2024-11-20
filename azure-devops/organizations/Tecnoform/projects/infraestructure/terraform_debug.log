@@ -1,0 +1,1115 @@
+2024-11-19T23:12:14.387-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:12:14.405-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:12:14.405-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:12:14.405-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:12:14.405-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:12:14.405-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:12:14.405-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "init", "-upgrade"}
+2024-11-19T23:12:14.410-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:12:14.410-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:12:14.411-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:12:14.411-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:12:14.413-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:12:14.414-0300 [INFO]  CLI command args: []string{"init", "-upgrade"}
+2024-11-19T23:12:14.497-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:12:14.497-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:12:14.499-0300 [DEBUG] Module installer: begin azuredevops_repository
+2024-11-19T23:12:18.350-0300 [DEBUG] Module installer: azuredevops_repository installed at .terraform\modules\azuredevops_repository\terraform-azdo-modules\azuredevops_repository
+2024-11-19T23:12:18.355-0300 [DEBUG] Service discovery for registry.terraform.io at https://registry.terraform.io/.well-known/terraform.json
+2024-11-19T23:12:18.454-0300 [DEBUG] GET https://registry.terraform.io/v1/providers/microsoft/azuredevops/versions
+2024-11-19T23:12:22.267-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:12:22.286-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:12:22.286-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:12:22.286-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:12:22.286-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:12:22.287-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:12:22.287-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:12:22.292-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:12:22.292-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:12:22.293-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:12:22.293-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:12:22.294-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:12:22.294-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:12:22.369-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:12:22.370-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:12:22.371-0300 [INFO]  backend/local: starting Plan operation
+2024-11-19T23:12:22.382-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:12:22.382-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:12:22.395-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:12:22.404-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=1484
+2024-11-19T23:12:22.404-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:12:22.450-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:12:22.429-0300
+2024-11-19T23:12:22.466-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:12:22.465-0300
+2024-11-19T23:12:22.466-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:12:22.496-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:12:22.500-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=1484
+2024-11-19T23:12:22.500-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:12:22.500-0300 [DEBUG] Building and walking validate graph
+2024-11-19T23:12:22.501-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:12:22.501-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:12:22.501-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:12:22.501-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_names (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:12:22.501-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:12:22.501-0300 [DEBUG] ReferenceTransformer: "var.repositories" references: []
+2024-11-19T23:12:22.501-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra" references: []
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: []
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.create_multiple_repositories (expand)" references: []
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_default_branch (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.personal_access_token var.org_service_url]
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra]
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_to_create (expand)" references: [module.azuredevops_repository.var.create_multiple_repositories (expand) module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation) module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_ids (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" references: [module.azuredevops_repository.local.repositories_to_create (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:12:22.502-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:12:22.503-0300 [DEBUG] Starting graph walk: walkValidate
+2024-11-19T23:12:22.504-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:12:22.504-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:12:22.504-0300 [ERROR] prepareFinalInputVariableValue: module.azuredevops_repository.var.repositories has unsuitable type
+  got:  {{{} map[repo-01:{{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}} repo-02:{{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}}] map[]}}
+  want: {{{} {{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}}}}
+2024-11-19T23:12:22.505-0300 [ERROR] vertex "module.azuredevops_repository.var.repositories" error: Invalid value for input variable
+2024-11-19T23:12:22.505-0300 [ERROR] vertex "module.azuredevops_repository.var.repositories (expand)" error: Invalid value for input variable
+2024-11-19T23:12:22.509-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:12:22.516-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=16592
+2024-11-19T23:12:22.516-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:12:22.558-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:12:22.538-0300
+2024-11-19T23:12:22.573-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:12:22.573-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:12:22.572-0300
+2024-11-19T23:12:22.597-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:12:22.601-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=16592
+2024-11-19T23:12:22.601-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:12:24.690-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:12:24.708-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:12:24.708-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:12:24.708-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:12:24.708-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:12:24.708-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:12:24.708-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:12:24.713-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:12:24.713-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:12:24.714-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:12:24.715-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:12:24.716-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:12:24.717-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:12:24.790-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:12:24.790-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:12:24.791-0300 [INFO]  backend/local: starting Plan operation
+2024-11-19T23:12:24.804-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:12:24.804-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:12:24.818-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:12:24.827-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=15560
+2024-11-19T23:12:24.827-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:12:24.870-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:12:24.850-0300
+2024-11-19T23:12:24.885-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:12:24.885-0300
+2024-11-19T23:12:24.886-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:12:24.920-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:12:24.924-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=15560
+2024-11-19T23:12:24.924-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:12:24.924-0300 [DEBUG] Building and walking validate graph
+2024-11-19T23:12:24.925-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:12:24.925-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:12:24.925-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "var.repositories" references: []
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra" references: []
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.create_multiple_repositories (expand)" references: []
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.personal_access_token var.org_service_url]
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_to_create (expand)" references: [module.azuredevops_repository.var.create_multiple_repositories (expand) module.azuredevops_repository.var.repositories (validation) module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation) module.azuredevops_repository.var.repositories (expand)]
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_ids (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_default_branch (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra]
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: []
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" references: [module.azuredevops_repository.local.repositories_to_create (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:12:24.925-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:12:24.926-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_names (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:12:24.926-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:12:24.930-0300 [DEBUG] Starting graph walk: walkValidate
+2024-11-19T23:12:24.930-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:12:24.930-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:12:24.930-0300 [ERROR] prepareFinalInputVariableValue: module.azuredevops_repository.var.repositories has unsuitable type
+  got:  {{{} map[repo-01:{{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}} repo-02:{{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}}] map[]}}
+  want: {{{} {{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}}}}
+2024-11-19T23:12:24.930-0300 [ERROR] vertex "module.azuredevops_repository.var.repositories" error: Invalid value for input variable
+2024-11-19T23:12:24.930-0300 [ERROR] vertex "module.azuredevops_repository.var.repositories (expand)" error: Invalid value for input variable
+2024-11-19T23:12:24.935-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:12:24.943-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=10456
+2024-11-19T23:12:24.943-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:12:24.986-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:12:24.966-0300
+2024-11-19T23:12:25.001-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:12:25.001-0300
+2024-11-19T23:12:25.002-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:12:25.024-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:12:25.028-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=10456
+2024-11-19T23:12:25.028-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:14:02.003-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:14:02.021-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:14:02.021-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:14:02.021-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:14:02.021-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:14:02.021-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:14:02.021-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "init", "-upgrade"}
+2024-11-19T23:14:02.028-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:14:02.029-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:14:02.029-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:14:02.029-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:14:02.031-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:14:02.031-0300 [INFO]  CLI command args: []string{"init", "-upgrade"}
+2024-11-19T23:14:02.117-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:14:02.117-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:14:02.120-0300 [DEBUG] Module installer: begin azuredevops_repository
+2024-11-19T23:14:05.775-0300 [DEBUG] Module installer: azuredevops_repository installed at .terraform\modules\azuredevops_repository\terraform-azdo-modules\azuredevops_repository
+2024-11-19T23:14:05.779-0300 [DEBUG] Service discovery for registry.terraform.io at https://registry.terraform.io/.well-known/terraform.json
+2024-11-19T23:14:05.865-0300 [DEBUG] GET https://registry.terraform.io/v1/providers/microsoft/azuredevops/versions
+2024-11-19T23:14:08.882-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:14:08.901-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:14:08.901-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:14:08.901-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:14:08.901-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:14:08.901-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:14:08.901-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:14:08.906-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:14:08.906-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:14:08.906-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:14:08.906-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:14:08.907-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:14:08.908-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:14:08.982-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:14:08.982-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:14:08.985-0300 [INFO]  backend/local: starting Plan operation
+2024-11-19T23:14:09.065-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:14:09.065-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:14:09.079-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:14:09.088-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=7080
+2024-11-19T23:14:09.088-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:14:09.128-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:14:09.108-0300
+2024-11-19T23:14:09.145-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:14:09.145-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: network=tcp address=127.0.0.1:10001 timestamp=2024-11-19T23:14:09.144-0300
+2024-11-19T23:14:09.169-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:14:09.173-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=7080
+2024-11-19T23:14:09.173-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:14:09.174-0300 [DEBUG] Building and walking validate graph
+2024-11-19T23:14:09.175-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:14:09.175-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:14:09.175-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.org_service_url var.personal_access_token]
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra]
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_to_create (expand)" references: [module.azuredevops_repository.var.create_multiple_repositories (expand) module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation) module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_default_branch (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_names (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "var.repositories" references: []
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_ids (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra" references: []
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.create_multiple_repositories (expand)" references: []
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: []
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:14:09.175-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:14:09.176-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" references: [module.azuredevops_repository.local.repositories_to_create (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:14:09.176-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:14:09.176-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:14:09.176-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:14:09.176-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:14:09.178-0300 [DEBUG] Starting graph walk: walkValidate
+2024-11-19T23:14:09.179-0300 [ERROR] prepareFinalInputVariableValue: module.azuredevops_repository.var.repositories has unsuitable type
+  got:  {{{} map[repo-01:{{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}} repo-02:{{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}}] map[]}}
+  want: {{{} {{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}}}}
+2024-11-19T23:14:09.179-0300 [ERROR] vertex "module.azuredevops_repository.var.repositories" error: Invalid value for input variable
+2024-11-19T23:14:09.179-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:14:09.179-0300 [ERROR] vertex "module.azuredevops_repository.var.repositories (expand)" error: Invalid value for input variable
+2024-11-19T23:14:09.179-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:14:09.184-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:14:09.192-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=15208
+2024-11-19T23:14:09.192-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:14:09.234-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:14:09.214-0300
+2024-11-19T23:14:09.249-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:14:09.249-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:14:09.248-0300
+2024-11-19T23:14:09.270-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:14:09.274-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=15208
+2024-11-19T23:14:09.274-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:14:32.975-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:14:32.994-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:14:32.994-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:14:32.994-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:14:32.994-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:14:32.994-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:14:32.994-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:14:32.999-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:14:32.999-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:14:32.999-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:14:32.999-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:14:33.000-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:14:33.001-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:14:33.077-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:14:33.077-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:14:33.078-0300 [INFO]  backend/local: starting Plan operation
+2024-11-19T23:14:33.089-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:14:33.090-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:14:33.103-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:14:33.112-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=4928
+2024-11-19T23:14:33.112-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:14:33.155-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:14:33.134-0300
+2024-11-19T23:14:33.171-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: network=tcp address=127.0.0.1:10001 timestamp=2024-11-19T23:14:33.171-0300
+2024-11-19T23:14:33.171-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:14:33.202-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:14:33.206-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=4928
+2024-11-19T23:14:33.206-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:14:33.206-0300 [DEBUG] Building and walking validate graph
+2024-11-19T23:14:33.207-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:14:33.207-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:14:33.207-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_ids (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.personal_access_token var.org_service_url]
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra" references: []
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra]
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: []
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_to_create (expand)" references: [module.azuredevops_repository.var.create_multiple_repositories (expand) module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation) module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_names (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" references: [module.azuredevops_repository.local.repositories_to_create (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.create_multiple_repositories (expand)" references: []
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_default_branch (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:14:33.207-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:14:33.211-0300 [DEBUG] Starting graph walk: walkValidate
+2024-11-19T23:14:33.211-0300 [ERROR] prepareFinalInputVariableValue: module.azuredevops_repository.var.repositories has unsuitable type
+  got:  {{{} map[repo-01:{{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}} repo-02:{{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}}] map[]}}
+  want: {{{} {{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}}}}
+2024-11-19T23:14:33.211-0300 [ERROR] vertex "module.azuredevops_repository.var.repositories" error: Invalid value for input variable
+2024-11-19T23:14:33.211-0300 [ERROR] vertex "module.azuredevops_repository.var.repositories (expand)" error: Invalid value for input variable
+2024-11-19T23:14:33.211-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:14:33.212-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:14:33.217-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:14:33.225-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=8420
+2024-11-19T23:14:33.225-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:14:33.268-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:14:33.247-0300
+2024-11-19T23:14:33.283-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:14:33.283-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:14:33.283-0300
+2024-11-19T23:14:33.306-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:14:33.312-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=8420
+2024-11-19T23:14:33.312-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:14:35.677-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:14:35.695-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:14:35.695-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:14:35.695-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:14:35.695-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:14:35.695-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:14:35.695-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "init", "-upgrade"}
+2024-11-19T23:14:35.700-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:14:35.700-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:14:35.700-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:14:35.701-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:14:35.701-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:14:35.702-0300 [INFO]  CLI command args: []string{"init", "-upgrade"}
+2024-11-19T23:14:35.785-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:14:35.785-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:14:35.787-0300 [DEBUG] Module installer: begin azuredevops_repository
+2024-11-19T23:14:39.441-0300 [DEBUG] Module installer: azuredevops_repository installed at .terraform\modules\azuredevops_repository\terraform-azdo-modules\azuredevops_repository
+2024-11-19T23:14:39.445-0300 [DEBUG] Service discovery for registry.terraform.io at https://registry.terraform.io/.well-known/terraform.json
+2024-11-19T23:14:39.510-0300 [DEBUG] GET https://registry.terraform.io/v1/providers/microsoft/azuredevops/versions
+2024-11-19T23:14:44.161-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:14:44.178-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:14:44.178-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:14:44.178-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:14:44.178-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:14:44.178-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:14:44.178-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:14:44.183-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:14:44.183-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:14:44.184-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:14:44.184-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:14:44.185-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:14:44.185-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:14:44.260-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:14:44.260-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:14:44.261-0300 [INFO]  backend/local: starting Plan operation
+2024-11-19T23:14:44.275-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:14:44.275-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:14:44.289-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:14:44.297-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=16300
+2024-11-19T23:14:44.297-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:14:44.340-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:14:44.319-0300
+2024-11-19T23:14:44.355-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:14:44.356-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:14:44.355-0300
+2024-11-19T23:14:44.384-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:14:44.388-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=16300
+2024-11-19T23:14:44.388-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:14:44.389-0300 [DEBUG] Building and walking validate graph
+2024-11-19T23:14:44.391-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:14:44.391-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:14:44.391-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra]
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_ids (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" references: [module.azuredevops_repository.local.repositories_to_create (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.create_multiple_repositories (expand)" references: []
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_to_create (expand)" references: [module.azuredevops_repository.var.create_multiple_repositories (expand) module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation) module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: []
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_names (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_default_branch (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:14:44.393-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.org_service_url var.personal_access_token]
+2024-11-19T23:14:44.394-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra" references: []
+2024-11-19T23:14:44.394-0300 [DEBUG] Starting graph walk: walkValidate
+2024-11-19T23:14:44.395-0300 [ERROR] prepareFinalInputVariableValue: module.azuredevops_repository.var.repositories has unsuitable type
+  got:  {{{} map[repo-01:{{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}} repo-02:{{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}}] map[]}}
+  want: {{{} {{{} map[default_branch:{{{} %!s(cty.primitiveTypeKind=83)}} name:{{{} %!s(cty.primitiveTypeKind=83)}}] map[]}}}}
+2024-11-19T23:14:44.395-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:14:44.395-0300 [ERROR] vertex "module.azuredevops_repository.var.repositories" error: Invalid value for input variable
+2024-11-19T23:14:44.395-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:14:44.395-0300 [ERROR] vertex "module.azuredevops_repository.var.repositories (expand)" error: Invalid value for input variable
+2024-11-19T23:14:44.400-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:14:44.408-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=7068
+2024-11-19T23:14:44.408-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:14:44.451-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:14:44.431-0300
+2024-11-19T23:14:44.467-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:14:44.467-0300
+2024-11-19T23:14:44.467-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:14:44.488-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:14:44.492-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=7068
+2024-11-19T23:14:44.493-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:15:42.581-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:15:42.598-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:15:42.598-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:15:42.598-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:15:42.598-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:15:42.598-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:15:42.598-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:15:42.604-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:15:42.605-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:15:42.605-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:15:42.605-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:15:42.607-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:15:42.607-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:17:34.531-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:17:34.549-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:17:34.549-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:17:34.549-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:17:34.549-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:17:34.549-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:17:34.549-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:17:34.554-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:17:34.554-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:17:34.555-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:17:34.555-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:17:34.556-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:17:34.557-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:17:34.630-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:17:34.630-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:17:34.631-0300 [INFO]  backend/local: starting Plan operation
+2024-11-19T23:17:44.799-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:17:44.818-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:17:44.818-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:17:44.818-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:17:44.818-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:17:44.818-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:17:44.818-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "init", "-upgrade"}
+2024-11-19T23:17:44.823-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:17:44.823-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:17:44.824-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:17:44.824-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:17:44.825-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:17:44.825-0300 [INFO]  CLI command args: []string{"init", "-upgrade"}
+2024-11-19T23:17:44.906-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:17:44.906-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:17:44.907-0300 [DEBUG] Module installer: begin azuredevops_repository
+2024-11-19T23:17:44.938-0300 [DEBUG] Module installer: azuredevops_repository installed at ..\..\..\..\..\..\Terraform-Modules\terraform-azdo-modules\azuredevops_repository
+2024-11-19T23:17:44.945-0300 [DEBUG] Service discovery for registry.terraform.io at https://registry.terraform.io/.well-known/terraform.json
+2024-11-19T23:17:45.030-0300 [DEBUG] GET https://registry.terraform.io/v1/providers/microsoft/azuredevops/versions
+2024-11-19T23:17:47.441-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:17:47.459-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:17:47.459-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:17:47.459-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:17:47.459-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:17:47.459-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:17:47.459-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:17:47.464-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:17:47.464-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:17:47.465-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:17:47.465-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:17:47.466-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:17:47.467-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:17:47.540-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:17:47.541-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:17:47.542-0300 [INFO]  backend/local: starting Plan operation
+2024-11-19T23:17:47.554-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:17:47.554-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:17:47.566-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:17:47.576-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=10260
+2024-11-19T23:17:47.576-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:17:47.622-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:17:47.600-0300
+2024-11-19T23:17:47.636-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:17:47.636-0300
+2024-11-19T23:17:47.638-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:17:47.671-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:17:47.675-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=10260
+2024-11-19T23:17:47.675-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:17:47.675-0300 [DEBUG] Building and walking validate graph
+2024-11-19T23:17:47.677-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:17:47.677-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:17:47.678-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:17:47.678-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:17:47.678-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_map (expand)" references: [module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra]
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: []
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_urls (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.personal_access_token var.org_service_url]
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:17:47.679-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:17:47.679-0300 [DEBUG] Starting graph walk: walkValidate
+2024-11-19T23:17:47.680-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:17:47.680-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:17:47.685-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:17:47.694-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=16712
+2024-11-19T23:17:47.694-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:17:47.738-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:17:47.717-0300
+2024-11-19T23:17:47.752-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:17:47.752-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:17:47.752-0300
+2024-11-19T23:17:47.772-0300 [ERROR] vertex "module.azuredevops_repository.azuredevops_git_repository.repositories" error: Unsupported argument
+2024-11-19T23:17:47.775-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:17:47.779-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=16712
+2024-11-19T23:17:47.779-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:18:50.978-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:18:50.995-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:18:50.995-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:18:50.995-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:18:50.995-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:18:50.995-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:18:50.995-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:18:51.002-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:18:51.002-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:18:51.002-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:18:51.003-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:18:51.004-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:18:51.004-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:18:51.078-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:18:51.078-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:18:51.080-0300 [INFO]  backend/local: starting Plan operation
+2024-11-19T23:18:51.093-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:18:51.093-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:18:51.105-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:18:51.113-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=1036
+2024-11-19T23:18:51.113-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:18:51.159-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:18:51.138-0300
+2024-11-19T23:18:51.173-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:18:51.173-0300
+2024-11-19T23:18:51.174-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:18:51.207-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:18:51.213-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=1036
+2024-11-19T23:18:51.213-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:18:51.213-0300 [DEBUG] Building and walking validate graph
+2024-11-19T23:18:51.214-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:18:51.214-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_urls (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_map (expand)" references: [module.azuredevops_repository.var.repositories (validation) module.azuredevops_repository.var.repositories (expand)]
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra]
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.personal_access_token var.org_service_url]
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:18:51.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: []
+2024-11-19T23:18:51.215-0300 [DEBUG] Starting graph walk: walkValidate
+2024-11-19T23:18:51.215-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:18:51.215-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:18:51.221-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:18:51.230-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=3048
+2024-11-19T23:18:51.230-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:18:51.273-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:18:51.251-0300
+2024-11-19T23:18:51.288-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:18:51.287-0300
+2024-11-19T23:18:51.288-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:18:51.306-0300 [ERROR] vertex "module.azuredevops_repository.azuredevops_git_repository.repositories" error: Unsupported argument
+2024-11-19T23:18:51.309-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:18:51.315-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=3048
+2024-11-19T23:18:51.316-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:18:53.929-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:18:53.945-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:18:53.945-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:18:53.945-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:18:53.945-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:18:53.945-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:18:53.945-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "init", "-upgrade"}
+2024-11-19T23:18:53.954-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:18:53.954-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:18:53.955-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:18:53.955-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:18:53.957-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:18:53.957-0300 [INFO]  CLI command args: []string{"init", "-upgrade"}
+2024-11-19T23:18:54.044-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:18:54.044-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:18:54.047-0300 [DEBUG] Module installer: begin azuredevops_repository
+2024-11-19T23:18:54.050-0300 [DEBUG] Module installer: azuredevops_repository installed at ..\..\..\..\..\..\Terraform-Modules\terraform-azdo-modules\azuredevops_repository
+2024-11-19T23:18:54.058-0300 [DEBUG] Service discovery for registry.terraform.io at https://registry.terraform.io/.well-known/terraform.json
+2024-11-19T23:18:54.161-0300 [DEBUG] GET https://registry.terraform.io/v1/providers/microsoft/azuredevops/versions
+2024-11-19T23:18:56.298-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:18:56.316-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:18:56.316-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:18:56.316-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:18:56.316-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:18:56.316-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:18:56.316-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:18:56.322-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:18:56.323-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:18:56.324-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:18:56.324-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:18:56.325-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:18:56.325-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:18:56.400-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:18:56.400-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:18:56.401-0300 [INFO]  backend/local: starting Plan operation
+2024-11-19T23:18:56.414-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:18:56.414-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:18:56.428-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:18:56.438-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=14732
+2024-11-19T23:18:56.438-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:18:56.481-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:18:56.461-0300
+2024-11-19T23:18:56.495-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:18:56.495-0300
+2024-11-19T23:18:56.496-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:18:56.526-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:18:56.530-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=14732
+2024-11-19T23:18:56.530-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:18:56.531-0300 [DEBUG] Building and walking validate graph
+2024-11-19T23:18:56.531-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:18:56.531-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_urls (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: []
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra]
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.personal_access_token var.org_service_url]
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:18:56.532-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_map (expand)" references: [module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:18:56.532-0300 [DEBUG] Starting graph walk: walkValidate
+2024-11-19T23:18:56.533-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:18:56.533-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:18:56.539-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:18:56.546-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=1464
+2024-11-19T23:18:56.546-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:18:56.589-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:18:56.568-0300
+2024-11-19T23:18:56.603-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:18:56.603-0300
+2024-11-19T23:18:56.603-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:18:56.620-0300 [ERROR] vertex "module.azuredevops_repository.azuredevops_git_repository.repositories" error: Unsupported argument
+2024-11-19T23:18:56.623-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:18:56.628-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=1464
+2024-11-19T23:18:56.629-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:19:35.735-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:19:35.753-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:19:35.753-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:19:35.753-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:19:35.753-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:19:35.753-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:19:35.753-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:19:35.758-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:19:35.759-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:19:35.759-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:19:35.759-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:19:35.761-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:19:35.761-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:19:35.836-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:19:35.836-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:19:35.837-0300 [INFO]  backend/local: starting Plan operation
+2024-11-19T23:19:35.850-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:19:35.850-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:19:35.863-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:19:35.874-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=17076
+2024-11-19T23:19:35.875-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:19:35.916-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:19:35.896-0300
+2024-11-19T23:19:35.933-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: network=tcp address=127.0.0.1:10001 timestamp=2024-11-19T23:19:35.933-0300
+2024-11-19T23:19:35.934-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:19:35.961-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:19:35.965-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=17076
+2024-11-19T23:19:35.965-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:19:35.966-0300 [DEBUG] Building and walking validate graph
+2024-11-19T23:19:35.967-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:19:35.967-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: []
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_map (expand)" references: [module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_urls (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra]
+2024-11-19T23:19:35.967-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.personal_access_token var.org_service_url]
+2024-11-19T23:19:35.968-0300 [DEBUG] Starting graph walk: walkValidate
+2024-11-19T23:19:35.969-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:19:35.969-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:19:35.974-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:19:35.982-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=3580
+2024-11-19T23:19:35.982-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:19:36.025-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:19:36.006-0300
+2024-11-19T23:19:36.042-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:19:36.042-0300
+2024-11-19T23:19:36.042-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:19:36.063-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:19:36.066-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=3580
+2024-11-19T23:19:36.067-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:19:36.067-0300 [INFO]  backend/local: plan calling Plan
+2024-11-19T23:19:36.067-0300 [DEBUG] Building and walking plan graph for NormalMode
+2024-11-19T23:19:36.069-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories (expand)" (*terraform.nodeExpandPlannableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:19:36.069-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra (expand)" (*terraform.nodeExpandPlannableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_urls (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories (expand)]
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.personal_access_token var.org_service_url]
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories (expand)" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra (expand)]
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: []
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_map (expand)" references: [module.azuredevops_repository.var.repositories (validation) module.azuredevops_repository.var.repositories (expand)]
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra (orphan)" references: []
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra (expand)" references: []
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:19:36.069-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:19:36.071-0300 [DEBUG] Starting graph walk: walkPlan
+2024-11-19T23:19:36.071-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:19:36.071-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:19:36.075-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:19:36.084-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=15312
+2024-11-19T23:19:36.084-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:19:36.128-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:19:36.106-0300
+2024-11-19T23:19:36.143-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:19:36.143-0300
+2024-11-19T23:19:36.143-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:19:36.160-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: 2024/11/19 23:19:36 [DEBUG] AzureRM Client User Agent: terraform-provider-azuredevops/v1.4.0: timestamp=2024-11-19T23:19:36.160-0300
+2024-11-19T23:19:36.463-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: 2024/11/19 23:19:36 getAzdoClient(): Created core, build, operations, and serviceendpoint clients successfully!: timestamp=2024-11-19T23:19:36.463-0300
+2024-11-19T23:19:36.465-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:19:36.648-0300 [DEBUG] Resource instance state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"]
+2024-11-19T23:19:36.648-0300 [DEBUG] Resource instance state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"]
+2024-11-19T23:19:36.648-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]" references: []
+2024-11-19T23:19:36.648-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]" references: []
+2024-11-19T23:19:36.648-0300 [DEBUG] refresh: module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"]: no state, so not refreshing
+2024-11-19T23:19:36.648-0300 [DEBUG] refresh: module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"]: no state, so not refreshing
+2024-11-19T23:19:36.655-0300 [WARN]  Provider "registry.terraform.io/microsoft/azuredevops" produced an invalid plan for module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"], but we are tolerating it because it is using the legacy plugin SDK.
+    The following problems may be the cause of any confusing errors from downstream operations:
+      - .disabled: planned value cty.False for a non-computed attribute
+2024-11-19T23:19:36.656-0300 [WARN]  Provider "registry.terraform.io/microsoft/azuredevops" produced an invalid plan for module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"], but we are tolerating it because it is using the legacy plugin SDK.
+    The following problems may be the cause of any confusing errors from downstream operations:
+      - .disabled: planned value cty.False for a non-computed attribute
+2024-11-19T23:19:36.657-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:19:36.667-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=15312
+2024-11-19T23:19:36.667-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:19:36.669-0300 [DEBUG] building apply graph to check for errors
+2024-11-19T23:19:36.671-0300 [DEBUG] Resource state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"]
+2024-11-19T23:19:36.671-0300 [DEBUG] Resource state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"]
+2024-11-19T23:19:36.671-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra (expand)" (*terraform.nodeExpandApplyableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:19:36.671-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories (expand)" (*terraform.nodeExpandApplyableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:19:36.671-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]" (*terraform.NodeApplyableResourceInstance) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:19:36.672-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]" (*terraform.NodeApplyableResourceInstance) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra (expand)" references: []
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories (expand)" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: []
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_urls (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories (expand) module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"] module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"]]
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_map (expand)" references: [module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra (expand)]
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:19:36.672-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.org_service_url var.personal_access_token]
+2024-11-19T23:19:36.673-0300 [DEBUG] pruneUnusedNodes: module.azuredevops_repository.var.org_service_url (expand) is no longer needed, removing
+2024-11-19T23:19:36.673-0300 [DEBUG] pruneUnusedNodes: module.azuredevops_repository.output.repository_urls (expand) is no longer needed, removing
+2024-11-19T23:19:36.673-0300 [DEBUG] pruneUnusedNodes: module.azuredevops_repository.var.personal_access_token (expand) is no longer needed, removing
+2024-11-19T23:19:36.673-0300 [INFO]  backend/local: plan operation completed
+2024-11-19T23:23:18.979-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:23:18.996-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:23:18.996-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:23:18.996-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:23:18.996-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:23:18.996-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:23:18.996-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "init", "-upgrade"}
+2024-11-19T23:23:19.003-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:23:19.003-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:23:19.003-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:23:19.003-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:23:19.005-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:23:19.005-0300 [INFO]  CLI command args: []string{"init", "-upgrade"}
+2024-11-19T23:23:19.087-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:23:19.088-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:23:19.091-0300 [DEBUG] Module installer: begin azuredevops_repository
+2024-11-19T23:23:19.094-0300 [DEBUG] Module installer: azuredevops_repository installed at ..\..\..\..\..\..\Terraform-Modules\terraform-azdo-modules\azuredevops_repository
+2024-11-19T23:23:19.104-0300 [DEBUG] Service discovery for registry.terraform.io at https://registry.terraform.io/.well-known/terraform.json
+2024-11-19T23:23:19.206-0300 [DEBUG] GET https://registry.terraform.io/v1/providers/microsoft/azuredevops/versions
+2024-11-19T23:23:23.217-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:23:23.234-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:23:23.234-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:23:23.234-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:23:23.234-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:23:23.234-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:23:23.234-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:23:23.240-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:23:23.240-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:23:23.241-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:23:23.241-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:23:23.242-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:23:23.242-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:23:23.315-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:23:23.315-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:23:23.316-0300 [INFO]  backend/local: starting Plan operation
+2024-11-19T23:23:23.331-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:23:23.331-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:23:23.343-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:23:23.352-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=9008
+2024-11-19T23:23:23.352-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:23:23.409-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:23:23.388-0300
+2024-11-19T23:23:23.427-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: network=tcp address=127.0.0.1:10001 timestamp=2024-11-19T23:23:23.425-0300
+2024-11-19T23:23:23.427-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:23:23.452-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:23:23.457-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=9008
+2024-11-19T23:23:23.457-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:23:23.457-0300 [DEBUG] Building and walking validate graph
+2024-11-19T23:23:23.458-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:23:23.458-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:23:23.458-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: [var.repositories]
+2024-11-19T23:23:23.458-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:23:23.458-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:23:23.458-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_urls (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.personal_access_token var.org_service_url]
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "var.repositories" references: []
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_map (expand)" references: [module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra]
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:23:23.459-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:23:23.460-0300 [DEBUG] Starting graph walk: walkValidate
+2024-11-19T23:23:23.461-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:23:23.461-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:23:23.466-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:23:23.475-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=5596
+2024-11-19T23:23:23.475-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:23:23.517-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:23:23.496-0300
+2024-11-19T23:23:23.531-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:23:23.531-0300
+2024-11-19T23:23:23.532-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:23:23.553-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:23:23.557-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=5596
+2024-11-19T23:23:23.557-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:23:23.558-0300 [INFO]  backend/local: plan calling Plan
+2024-11-19T23:23:23.558-0300 [DEBUG] Building and walking plan graph for NormalMode
+2024-11-19T23:23:23.559-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra (expand)" (*terraform.nodeExpandPlannableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:23:23.559-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories (expand)" (*terraform.nodeExpandPlannableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:23:23.559-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:23:23.559-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: [var.repositories]
+2024-11-19T23:23:23.559-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra (expand)]
+2024-11-19T23:23:23.559-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:23:23.559-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_map (expand)" references: [module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:23:23.559-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_urls (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories (expand)]
+2024-11-19T23:23:23.559-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:23:23.559-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:23:23.559-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:23:23.559-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra (expand)" references: []
+2024-11-19T23:23:23.559-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:23:23.559-0300 [DEBUG] ReferenceTransformer: "var.repositories" references: []
+2024-11-19T23:23:23.560-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:23:23.560-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.org_service_url var.personal_access_token]
+2024-11-19T23:23:23.560-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories (expand)" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:23:23.560-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:23:23.560-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:23:23.560-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:23:23.560-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:23:23.560-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra (orphan)" references: []
+2024-11-19T23:23:23.562-0300 [DEBUG] Starting graph walk: walkPlan
+2024-11-19T23:23:23.563-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:23:23.563-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:23:23.568-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:23:23.577-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=13856
+2024-11-19T23:23:23.577-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:23:23.618-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:23:23.598-0300
+2024-11-19T23:23:23.633-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: network=tcp address=127.0.0.1:10001 timestamp=2024-11-19T23:23:23.633-0300
+2024-11-19T23:23:23.633-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:23:23.649-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: 2024/11/19 23:23:23 [DEBUG] AzureRM Client User Agent: terraform-provider-azuredevops/v1.4.0: timestamp=2024-11-19T23:23:23.649-0300
+2024-11-19T23:23:23.963-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: 2024/11/19 23:23:23 getAzdoClient(): Created core, build, operations, and serviceendpoint clients successfully!: timestamp=2024-11-19T23:23:23.963-0300
+2024-11-19T23:23:23.964-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:23:24.083-0300 [DEBUG] Resource instance state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"]
+2024-11-19T23:23:24.083-0300 [DEBUG] Resource instance state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"]
+2024-11-19T23:23:24.083-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]" references: []
+2024-11-19T23:23:24.083-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]" references: []
+2024-11-19T23:23:24.083-0300 [DEBUG] refresh: module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"]: no state, so not refreshing
+2024-11-19T23:23:24.083-0300 [DEBUG] refresh: module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"]: no state, so not refreshing
+2024-11-19T23:23:24.089-0300 [WARN]  Provider "registry.terraform.io/microsoft/azuredevops" produced an invalid plan for module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"], but we are tolerating it because it is using the legacy plugin SDK.
+    The following problems may be the cause of any confusing errors from downstream operations:
+      - .disabled: planned value cty.False for a non-computed attribute
+2024-11-19T23:23:24.090-0300 [WARN]  Provider "registry.terraform.io/microsoft/azuredevops" produced an invalid plan for module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"], but we are tolerating it because it is using the legacy plugin SDK.
+    The following problems may be the cause of any confusing errors from downstream operations:
+      - .disabled: planned value cty.False for a non-computed attribute
+2024-11-19T23:23:24.091-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:23:24.095-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=13856
+2024-11-19T23:23:24.096-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:23:24.096-0300 [DEBUG] building apply graph to check for errors
+2024-11-19T23:23:24.096-0300 [DEBUG] Resource state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"]
+2024-11-19T23:23:24.096-0300 [DEBUG] Resource state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"]
+2024-11-19T23:23:24.097-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories (expand)" (*terraform.nodeExpandApplyableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:23:24.097-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra (expand)" (*terraform.nodeExpandApplyableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:23:24.097-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]" (*terraform.NodeApplyableResourceInstance) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:23:24.097-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]" (*terraform.NodeApplyableResourceInstance) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "var.repositories" references: []
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: [var.repositories]
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra (expand)]
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_map (expand)" references: [module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories (expand)" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_urls (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"] module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"] module.azuredevops_repository.azuredevops_git_repository.repositories (expand)]
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra (expand)" references: []
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:23:24.097-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.personal_access_token var.org_service_url]
+2024-11-19T23:23:24.098-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:23:24.098-0300 [DEBUG] pruneUnusedNodes: module.azuredevops_repository.var.org_service_url (expand) is no longer needed, removing
+2024-11-19T23:23:24.098-0300 [DEBUG] pruneUnusedNodes: module.azuredevops_repository.var.personal_access_token (expand) is no longer needed, removing
+2024-11-19T23:23:24.098-0300 [DEBUG] pruneUnusedNodes: module.azuredevops_repository.output.repository_urls (expand) is no longer needed, removing
+2024-11-19T23:23:24.099-0300 [INFO]  backend/local: plan operation completed
+2024-11-19T23:24:07.870-0300 [INFO]  Terraform version: 1.9.8
+2024-11-19T23:24:07.888-0300 [DEBUG] using github.com/hashicorp/go-tfe v1.58.0
+2024-11-19T23:24:07.888-0300 [DEBUG] using github.com/hashicorp/hcl/v2 v2.20.0
+2024-11-19T23:24:07.888-0300 [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.1
+2024-11-19T23:24:07.888-0300 [DEBUG] using github.com/zclconf/go-cty v1.14.4
+2024-11-19T23:24:07.888-0300 [INFO]  Go runtime version: go1.22.7
+2024-11-19T23:24:07.888-0300 [INFO]  CLI args: []string{"C:\\ProgramData\\chocolatey\\lib\\terraform\\tools\\terraform.exe", "plan"}
+2024-11-19T23:24:07.895-0300 [DEBUG] Attempting to open CLI config file: C:\Users\anali\AppData\Roaming\terraform.rc
+2024-11-19T23:24:07.895-0300 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2024-11-19T23:24:07.896-0300 [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2024-11-19T23:24:07.896-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\terraform.d\plugins
+2024-11-19T23:24:07.897-0300 [DEBUG] ignoring non-existing provider search directory C:\Users\anali\AppData\Roaming\HashiCorp\Terraform\plugins
+2024-11-19T23:24:07.897-0300 [INFO]  CLI command args: []string{"plan"}
+2024-11-19T23:24:07.976-0300 [DEBUG] checking for provisioner in "."
+2024-11-19T23:24:07.976-0300 [DEBUG] checking for provisioner in "C:\\ProgramData\\chocolatey\\lib\\terraform\\tools"
+2024-11-19T23:24:07.977-0300 [INFO]  backend/local: starting Plan operation
+2024-11-19T23:24:07.989-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:24:07.989-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:24:08.003-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:24:08.012-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=13568
+2024-11-19T23:24:08.012-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:24:08.058-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:24:08.036-0300
+2024-11-19T23:24:08.073-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: network=tcp address=127.0.0.1:10001 timestamp=2024-11-19T23:24:08.073-0300
+2024-11-19T23:24:08.073-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:24:08.108-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:24:08.112-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=13568
+2024-11-19T23:24:08.112-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:24:08.112-0300 [DEBUG] Building and walking validate graph
+2024-11-19T23:24:08.113-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:24:08.113-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" (*terraform.NodeValidatableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:24:08.113-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_urls (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories]
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.org_service_url var.personal_access_token]
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "var.repositories" references: []
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra]
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: [var.repositories]
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:24:08.114-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_map (expand)" references: [module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:24:08.116-0300 [DEBUG] Starting graph walk: walkValidate
+2024-11-19T23:24:08.117-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:24:08.117-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:24:08.123-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:24:08.131-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=15452
+2024-11-19T23:24:08.131-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:24:08.173-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:24:08.152-0300
+2024-11-19T23:24:08.187-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:24:08.188-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: network=tcp address=127.0.0.1:10001 timestamp=2024-11-19T23:24:08.187-0300
+2024-11-19T23:24:08.208-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:24:08.212-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=15452
+2024-11-19T23:24:08.213-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:24:08.213-0300 [INFO]  backend/local: plan calling Plan
+2024-11-19T23:24:08.213-0300 [DEBUG] Building and walking plan graph for NormalMode
+2024-11-19T23:24:08.213-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories (expand)" (*terraform.nodeExpandPlannableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:24:08.213-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra (expand)" (*terraform.nodeExpandPlannableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.personal_access_token var.org_service_url]
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: [var.repositories]
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories (expand)" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_map (expand)" references: [module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra (expand)" references: []
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "var.repositories" references: []
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra (expand)]
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_urls (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories (expand)]
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.data.azuredevops_project.project_infra (orphan)" references: []
+2024-11-19T23:24:08.214-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:24:08.215-0300 [DEBUG] Starting graph walk: walkPlan
+2024-11-19T23:24:08.216-0300 [DEBUG] created provider logger: level=debug
+2024-11-19T23:24:08.216-0300 [INFO]  provider: configuring client automatic mTLS
+2024-11-19T23:24:08.221-0300 [DEBUG] provider: starting plugin: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 args=[".terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0"]
+2024-11-19T23:24:08.228-0300 [DEBUG] provider: plugin started: path=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 pid=6024
+2024-11-19T23:24:08.228-0300 [DEBUG] provider: waiting for RPC address: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0
+2024-11-19T23:24:08.271-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: configuring server automatic mTLS: timestamp=2024-11-19T23:24:08.251-0300
+2024-11-19T23:24:08.287-0300 [DEBUG] provider.terraform-provider-azuredevops_v1.4.0: plugin address: address=127.0.0.1:10001 network=tcp timestamp=2024-11-19T23:24:08.287-0300
+2024-11-19T23:24:08.287-0300 [DEBUG] provider: using plugin: version=5
+2024-11-19T23:24:08.307-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: 2024/11/19 23:24:08 [DEBUG] AzureRM Client User Agent: terraform-provider-azuredevops/v1.4.0: timestamp=2024-11-19T23:24:08.307-0300
+2024-11-19T23:24:08.507-0300 [INFO]  provider.terraform-provider-azuredevops_v1.4.0: 2024/11/19 23:24:08 getAzdoClient(): Created core, build, operations, and serviceendpoint clients successfully!: timestamp=2024-11-19T23:24:08.507-0300
+2024-11-19T23:24:08.508-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra" references: []
+2024-11-19T23:24:08.554-0300 [DEBUG] Resource instance state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"]
+2024-11-19T23:24:08.554-0300 [DEBUG] Resource instance state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"]
+2024-11-19T23:24:08.554-0300 [DEBUG] Resource instance state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-03\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-03"]
+2024-11-19T23:24:08.554-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]" references: []
+2024-11-19T23:24:08.554-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]" references: []
+2024-11-19T23:24:08.554-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-03\"]" references: []
+2024-11-19T23:24:08.554-0300 [DEBUG] refresh: module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"]: no state, so not refreshing
+2024-11-19T23:24:08.555-0300 [DEBUG] refresh: module.azuredevops_repository.azuredevops_git_repository.repositories["repo-03"]: no state, so not refreshing
+2024-11-19T23:24:08.555-0300 [DEBUG] refresh: module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"]: no state, so not refreshing
+2024-11-19T23:24:08.568-0300 [WARN]  Provider "registry.terraform.io/microsoft/azuredevops" produced an invalid plan for module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"], but we are tolerating it because it is using the legacy plugin SDK.
+    The following problems may be the cause of any confusing errors from downstream operations:
+      - .disabled: planned value cty.False for a non-computed attribute
+2024-11-19T23:24:08.568-0300 [WARN]  Provider "registry.terraform.io/microsoft/azuredevops" produced an invalid plan for module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"], but we are tolerating it because it is using the legacy plugin SDK.
+    The following problems may be the cause of any confusing errors from downstream operations:
+      - .disabled: planned value cty.False for a non-computed attribute
+2024-11-19T23:24:08.568-0300 [WARN]  Provider "registry.terraform.io/microsoft/azuredevops" produced an invalid plan for module.azuredevops_repository.azuredevops_git_repository.repositories["repo-03"], but we are tolerating it because it is using the legacy plugin SDK.
+    The following problems may be the cause of any confusing errors from downstream operations:
+      - .disabled: planned value cty.False for a non-computed attribute
+2024-11-19T23:24:08.569-0300 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = error reading from server: EOF"
+2024-11-19T23:24:08.579-0300 [INFO]  provider: plugin process exited: plugin=.terraform/providers/registry.terraform.io/microsoft/azuredevops/1.4.0/windows_amd64/terraform-provider-azuredevops_v1.4.0 id=6024
+2024-11-19T23:24:08.579-0300 [DEBUG] provider: plugin exited
+2024-11-19T23:24:08.580-0300 [DEBUG] building apply graph to check for errors
+2024-11-19T23:24:08.580-0300 [DEBUG] Resource state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-03\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-03"]
+2024-11-19T23:24:08.580-0300 [DEBUG] Resource state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"]
+2024-11-19T23:24:08.580-0300 [DEBUG] Resource state not found for node "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]", instance module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"]
+2024-11-19T23:24:08.581-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories (expand)" (*terraform.nodeExpandApplyableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:24:08.581-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]" (*terraform.NodeApplyableResourceInstance) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:24:08.581-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]" (*terraform.NodeApplyableResourceInstance) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:24:08.581-0300 [DEBUG] ProviderTransformer: "data.azuredevops_project.project_infra (expand)" (*terraform.nodeExpandApplyableResource) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:24:08.581-0300 [DEBUG] ProviderTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-03\"]" (*terraform.NodeApplyableResourceInstance) needs provider["registry.terraform.io/microsoft/azuredevops"]
+2024-11-19T23:24:08.582-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.org_service_url (expand)" references: [var.org_service_url]
+2024-11-19T23:24:08.582-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.module_version (expand)" references: [module.azuredevops_repository.local.module_version (expand)]
+2024-11-19T23:24:08.582-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.output.repository_urls (expand)" references: [module.azuredevops_repository.azuredevops_git_repository.repositories (expand) module.azuredevops_repository.azuredevops_git_repository.repositories["repo-01"] module.azuredevops_repository.azuredevops_git_repository.repositories["repo-02"] module.azuredevops_repository.azuredevops_git_repository.repositories["repo-03"]]
+2024-11-19T23:24:08.583-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories (expand)" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "var.org_service_url" references: []
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "var.personal_access_token" references: []
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "var.project_id" references: []
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "var.repositories" references: []
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.personal_access_token (expand)" references: [var.personal_access_token]
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (expand)" references: [var.repositories]
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.repositories (validation)" references: []
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-01\"]" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "data.azuredevops_project.project_infra (expand)" references: []
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.module_version (expand)" references: []
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.local.repositories_map (expand)" references: [module.azuredevops_repository.var.repositories (expand) module.azuredevops_repository.var.repositories (validation)]
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "output.module_version (expand)" references: [module.azuredevops_repository.output.module_version (expand)]
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-02\"]" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "provider[\"registry.terraform.io/microsoft/azuredevops\"]" references: [var.personal_access_token var.org_service_url]
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (expand)" references: []
+2024-11-19T23:24:08.584-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.var.project_id (expand)" references: [data.azuredevops_project.project_infra (expand)]
+2024-11-19T23:24:08.585-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository.azuredevops_git_repository.repositories[\"repo-03\"]" references: [module.azuredevops_repository.local.repositories_map (expand) module.azuredevops_repository.var.project_id (expand)]
+2024-11-19T23:24:08.585-0300 [DEBUG] ReferenceTransformer: "module.azuredevops_repository (close)" references: []
+2024-11-19T23:24:08.586-0300 [DEBUG] pruneUnusedNodes: module.azuredevops_repository.var.org_service_url (expand) is no longer needed, removing
+2024-11-19T23:24:08.586-0300 [DEBUG] pruneUnusedNodes: module.azuredevops_repository.output.repository_urls (expand) is no longer needed, removing
+2024-11-19T23:24:08.586-0300 [DEBUG] pruneUnusedNodes: module.azuredevops_repository.var.personal_access_token (expand) is no longer needed, removing
+2024-11-19T23:24:08.587-0300 [INFO]  backend/local: plan operation completed

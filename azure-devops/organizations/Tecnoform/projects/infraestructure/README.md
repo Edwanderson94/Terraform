@@ -11,7 +11,6 @@ Este repositório tem como propósito centralizar módulos, documentações e ex
 - **Guia de comandos** para facilitar o uso do Terraform.
 - **Estruturas de implementação** aplicadas em plataformas como:
   - **Azure DevOps**
-  - **AWS**
 
 Explore, aprenda e contribua para expandir este repositório com ideias e melhorias!
 
@@ -31,7 +30,7 @@ Explore, aprenda e contribua para expandir este repositório com ideias e melhor
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_azuredevops_repository"></a> [azuredevops\_repository](#module\_azuredevops\_repository) | ../../../../../modules/azure-devops/azuredevops_repository | 1.1.0 |
+| <a name="module_azuredevops_repository"></a> [azuredevops\_repository](#module\_azuredevops\_repository) | ../../../../../../Terraform-Modules/terraform-azdo-modules/azuredevops_repository/ | n/a |
 
 ## Resources
 
@@ -45,15 +44,14 @@ Explore, aprenda e contribua para expandir este repositório com ideias e melhor
 |------|-------------|------|---------|:--------:|
 | <a name="input_org_service_url"></a> [org\_service\_url](#input\_org\_service\_url) | URL da sua organization no Azure DevOps | `string` | `"https://dev.azure.com/Tecnoform"` | no |
 | <a name="input_personal_access_token"></a> [personal\_access\_token](#input\_personal\_access\_token) | PAT de acesso a sua organization no Azure DevOps | `string` | `"yd7oeczyfwhms7epd5eu6uoir4clxqensvbuiuqat3zupldtopvq"` | no |
-| <a name="input_repositories"></a> [repositories](#input\_repositories) | Lista de repositórios com suas configurações | <pre>list(object({<br/>    name           = string<br/>    default_branch = string<br/>  }))</pre> | <pre>[<br/>  {<br/>    "default_branch": "main",<br/>    "name": "repo-01"<br/>  },<br/>  {<br/>    "default_branch": "develop",<br/>    "name": "repo-02"<br/>  },<br/>  {<br/>    "default_branch": "develop",<br/>    "name": "repo-03"<br/>  },<br/>  {<br/>    "default_branch": "develop",<br/>    "name": "repo-04"<br/>  },<br/>  {<br/>    "default_branch": "develop",<br/>    "name": "repo-05"<br/>  }<br/>]</pre> | no |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | ID do projeto no Azure DevOps | `string` | `"Infrastructure"` | no |
+| <a name="input_repositories"></a> [repositories](#input\_repositories) | Mapa de repositórios a serem criados, com os nomes e branches padrões | <pre>map(object({<br/>    name           = string<br/>    default_branch = string<br/>  }))</pre> | <pre>{<br/>  "repo-01": {<br/>    "default_branch": "main",<br/>    "name": "repo-01"<br/>  },<br/>  "repo-02": {<br/>    "default_branch": "dev",<br/>    "name": "repo-02"<br/>  },<br/>  "repo-03": {<br/>    "default_branch": "uat",<br/>    "name": "repo-03"<br/>  }<br/>}</pre> | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_module_repository_default_branch"></a> [module\_repository\_default\_branch](#output\_module\_repository\_default\_branch) | Branch Default do repositório que foi criado a partir do módulo |
-| <a name="output_module_repository_ids"></a> [module\_repository\_ids](#output\_module\_repository\_ids) | ID do repositório que foi criado pelo módulo |
-| <a name="output_module_repository_names"></a> [module\_repository\_names](#output\_module\_repository\_names) | Nome do repositório que foi criado a partir do módulo |
+| <a name="output_module_version"></a> [module\_version](#output\_module\_version) | n/a |
 
 # Considerações Finais
 
