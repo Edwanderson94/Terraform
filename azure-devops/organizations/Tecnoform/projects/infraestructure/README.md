@@ -1,7 +1,9 @@
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
 | <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | 1.4.0 |
 
 ## Providers
@@ -14,7 +16,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_azuredevops_repository"></a> [azuredevops\_repository](#module\_azuredevops\_repository) | ../../../../../modules/azure-devops/azuredevops_repository | n/a |
+| <a name="module_azuredevops_repository"></a> [azuredevops\_repository](#module\_azuredevops\_repository) | ../../../../../../Terraform-Modules/terraform-azdo-modules/azuredevops_repository/ | n/a |
 
 ## Resources
 
@@ -26,14 +28,13 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | Nome do branch padrão do repositório | `string` | `"master"` | no |
-| <a name="input_org_service_url"></a> [org\_service\_url](#input\_org\_service\_url) | n/a | `string` | `"https://dev.azure.com/Tecnoform"` | no |
-| <a name="input_personal_access_token"></a> [personal\_access\_token](#input\_personal\_access\_token) | n/a | `string` | `"yd7oeczyfwhms7epd5eu6uoir4clxqensvbuiuqat3zupldtopvq"` | no |
-| <a name="input_repository_name"></a> [repository\_name](#input\_repository\_name) | Nome do repositório no Azure DevOps | `string` | `"example-repo-module"` | no |
+| <a name="input_org_service_url"></a> [org\_service\_url](#input\_org\_service\_url) | URL da sua organization no Azure DevOps | `string` | `"https://dev.azure.com/Tecnoform"` | no |
+| <a name="input_personal_access_token"></a> [personal\_access\_token](#input\_personal\_access\_token) | PAT de acesso a sua organization no Azure DevOps | `string` | `"yd7oeczyfwhms7epd5eu6uoir4clxqensvbuiuqat3zupldtopvq"` | no |
+| <a name="input_repositories"></a> [repositories](#input\_repositories) | Mapa de repositórios a serem criados, com os nomes e branches padrões | <pre>map(object({<br/>    name           = string<br/>    default_branch = string<br/>  }))</pre> | <pre>{<br/>  "repo-01": {<br/>    "default_branch": "main",<br/>    "name": "repo-01"<br/>  },<br/>  "repo-02": {<br/>    "default_branch": "dev",<br/>    "name": "repo-02"<br/>  },<br/>  "repo-03": {<br/>    "default_branch": "uat",<br/>    "name": "repo-03"<br/>  }<br/>}</pre> | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_module_repository_default_branch"></a> [module\_repository\_default\_branch](#output\_module\_repository\_default\_branch) | The default branch of the Azure DevOps repository from the module |
-| <a name="output_module_repository_name"></a> [module\_repository\_name](#output\_module\_repository\_name) | The name of the Azure DevOps repository from the module |
+| <a name="output_module_version"></a> [module\_version](#output\_module\_version) | n/a |
+<!-- END_TF_DOCS -->

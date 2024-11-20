@@ -1,4 +1,6 @@
 terraform {
+  required_version = ">= 1.0"
+
   required_providers {
     azuredevops = {
       source  = "microsoft/azuredevops"
@@ -6,7 +8,6 @@ terraform {
     }
   }
 }
-
 
 provider "azuredevops" {
   org_service_url       = var.org_service_url

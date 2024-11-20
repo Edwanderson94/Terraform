@@ -1,7 +1,7 @@
 # ======================================================
 # Owner: Edwanderson
-# Description: Provisionando Projeto e Configurações
-# Project: Azure DevOps com Terraform
+# Description: Módulo de Repositórios
+# Project: Exemplo de Módulo de repositórios
 # =======================================================
 
 # ============================================================
