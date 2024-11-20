@@ -12,6 +12,6 @@ module "azuredevops_repository" {
 
   project_id            = data.azuredevops_project.project_infra.id
   org_service_url       = var.org_service_url
-  repositories          =  var.repositories
+  repositories          = var.repositories
   personal_access_token = var.personal_access_token
 }
