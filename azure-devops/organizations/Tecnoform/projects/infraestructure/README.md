@@ -1,18 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
-# Repositório Terraform
+# Repositório Terraform - Documentação da Chamada do Módulo
 
-Bem-vindo à documentação deste repositório Terraform! Este espaço foi criado para compartilhar as implementações realizadas ao longo da minha jornada como DevOps e SRE, explorando o uso dessa poderosa ferramenta de infraestrutura como código.
-
-## Objetivo
-
-Este repositório tem como propósito centralizar módulos, documentações e exemplos práticos relacionados ao uso do Terraform. Aqui você encontrará:
-
-- **Módulos reutilizáveis** para provisionamento de recursos.
-- **Guia de comandos** para facilitar o uso do Terraform.
-- **Estruturas de implementação** aplicadas em plataformas como:
-  - **Azure DevOps**
-
-Explore, aprenda e contribua para expandir este repositório com ideias e melhorias!
+Esta documentação foi elaborada com o objetivo de explicar o funcionamento da chamada do módulo Terraform para os projetos do Azure DevOps na organização **Tecnoform**. Neste caso, estamos utilizando o projeto já existente denominado **Infrastructure**.
 
 ## Requirements
 
@@ -55,23 +44,19 @@ Explore, aprenda e contribua para expandir este repositório com ideias e melhor
 
 # Considerações Finais
 
-Este repositório foi desenvolvido com o objetivo de oferecer uma infraestrutura mais robusta e escalável, utilizando Terraform de maneira simples e eficiente no universo dos providers. Aqui estão armazenadas estruturas, desenvolvimentos e documentações baseadas em minha experiência prática.
-
-## Licença
-
-Este módulo está licenciado sob MIT. Para mais informações, consulte o arquivo [LICENSE](./LICENSE).
+Este repositório foi criado com o objetivo de provisionar recursos no Azure DevOps utilizando **Terraform** e **Terragrunt**, buscando proporcionar um gerenciamento mais eficiente e automatizado dos recursos dentro do ecossistema Azure DevOps.
 
 ## Contribuição
 
-Contribuições são muito bem-vindas! Se você deseja colaborar, siga as instruções abaixo:
+Contribuições são sempre bem-vindas! Se você deseja colaborar, siga as instruções abaixo:
 
-1. Envie pull requests com suas alterações ou melhorias.
-2. Caso encontre algum erro ou tenha sugestões, crie uma *issue* no repositório.
+1. Envie um *pull request* com suas alterações ou melhorias.
+2. Caso encontre algum erro ou tenha sugestões, abra uma *issue* no repositório.
 
-Agradecemos pela sua colaboração e interesse!
+Agradecemos por seu interesse e colaboração!
 
 ---
 
-**Desenvolvido por**
+**Desenvolvido por**  
 Edwanderson Luiz Pereira
 <!-- END_TF_DOCS -->

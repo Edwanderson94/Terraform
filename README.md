@@ -47,7 +47,6 @@ Abaixo está a estrutura de diretórios e arquivos do projeto:
 │   │   │   ├── projects/
 │   │   │   │   ├── infraestructure/
 │   │   │   │   ├── terragrunt.hcl     # Configuração do Terragrunt para o projeto.
-│   │   │   │   ├── config/
 │   │   │   │   ├── docs/
 ├── README.md                          # Documentação principal do repositório.
 
