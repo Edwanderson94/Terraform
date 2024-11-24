@@ -5,14 +5,17 @@
 variable "org_service_url" {
   description = "URL da sua organization no Azure DevOps"
   type        = string
-  default     = "https://dev.azure.com/Tecnoform"
 }
 
 variable "personal_access_token" {
   description = "PAT de acesso a sua organization no Azure DevOps"
   type        = string
   sensitive   = true
-  default     = "yd7oeczyfwhms7epd5eu6uoir4clxqensvbuiuqat3zupldtopvq"
+}
+
+variable "project_name" {
+  description = "Nome do projeto"
+  type        = string
 }
 
 variable "repositories" {
@@ -21,21 +24,4 @@ variable "repositories" {
     name           = string
     default_branch = string
   }))
-  default = {
-
-    "repo-01" = {
-      name           = "repo-01"
-      default_branch = "main"
-    },
-
-    "repo-02" = {
-      name           = "repo-02"
-      default_branch = "dev"
-    },
-
-    "repo-03" = {
-      name           = "repo-03"
-      default_branch = "uat"
-    }
-  }
 }

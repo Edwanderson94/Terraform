@@ -8,5 +8,5 @@
 # Captura de informações sobre Projeto
 # ============================================================
 data "azuredevops_project" "project_infra" {
-  name = "Infrastructure"
+  name = var.project_name
 }
