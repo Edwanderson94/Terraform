@@ -10,7 +10,7 @@ terraform {
 inputs = {
   project_name          = "Infrastructure"
   org_service_url       = "https://dev.azure.com/Tecnoform"
-  personal_access_token = "4gZ0nh5lzRrRzp1heC6JxnWDHyypbyPmpCY2X4rFI8LGpqzgytK7JQQJ99AKACAAAAAAAAAAAAASAZDOQC1x"
+  personal_access_token = "seu-token"
 
   repositories = {
     "repo-01" = {
