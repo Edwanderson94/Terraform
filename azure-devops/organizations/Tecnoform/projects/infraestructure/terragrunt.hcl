@@ -1,21 +1,31 @@
 include {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
+}
+
+locals {
+  repository_names = {
+    aws   = "cloud-aws-infra"
+    oci   = "cloud-oci-infra"
+    azure = "cloud-azure-infra"
+    gcp   = "cloud-gcp-infra"
+  }
+
+  repository_default_branches = {
+    aws   = "main"
+    oci   = "main"
+    azure = "main"
+    gcp   = "main"
+  }
+
+  repositories = {
+    for key, name in local.repository_names : key => {
+      name           = name
+      default_branch = local.repository_default_branches[key]
+    }
+  }
 }
 
 inputs = {
   project_name = "Infrastructure"
-  repositories = {
-    "repo-01" = {
-      name           = "repo-01"
-      default_branch = "main"
-    },
-    "repo-02" = {
-      name           = "repo-02"
-      default_branch = "dev"
-    },
-    "repo-03" = {
-      name           = "repo-03"
-      default_branch = "uat"
-    }
-  }
+  repositories = local.repositories
 }

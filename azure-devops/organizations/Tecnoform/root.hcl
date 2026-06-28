@@ -8,10 +8,10 @@ remote_state {
 
 # Configuração do Terraform para o módulo
 terraform {
-  source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//terraform-azdo-modules/azuredevops_repository?ref=develop"
+  source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/terraform-azuredevops-repositorios?ref=develop"
 }
 
 inputs = {
   org_service_url       = "https://dev.azure.com/Tecnoform"
-  personal_access_token = ""
+  personal_access_token = "AtBa9kYmm51iuf7Yc1w0cJtJEB3EJgbbiDWbKm4aVppixyLM9jHyJQQJ99CFACAAAAAAAAAAAAASAZDO1PJb"
 }

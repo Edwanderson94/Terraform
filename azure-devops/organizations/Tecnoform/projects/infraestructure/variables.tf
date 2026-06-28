@@ -19,7 +19,7 @@ variable "project_name" {
 }
 
 variable "repositories" {
-  description = "Mapa de repositórios a serem criados, com os nomes e branches padrões"
+  description = "Mapa de repositórios a serem criados. A chave do mapa deve ser um identificador lógico estável e o valor define o nome do repositório e branch padrão"
   type = map(object({
     name           = string
     default_branch = string
