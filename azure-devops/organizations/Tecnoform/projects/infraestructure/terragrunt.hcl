@@ -1,3 +1,4 @@
+# Inclui o arquivo terragrunt.hcl do diretório pai
 include {
   path = find_in_parent_folders("root.hcl")
 }
