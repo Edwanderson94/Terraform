@@ -1,9 +1,4 @@
 locals {
-  azuredevops_repositories_module_source = get_env(
-    "TG_AZURE_DEVOPS_REPOSITORIES_MODULE_SOURCE",
-    "../../../../../../Terraform-Modules/azure_devops/terraform-azuredevops-repositorios"
-  )
-
   org_service_url       = get_env("AZDO_ORG_SERVICE_URL", "https://dev.azure.com/Tecnoform")
   personal_access_token = get_env("AZDO_PERSONAL_ACCESS_TOKEN")
   terraform_state_path  = get_env("TG_TF_STATE_PATH", "${get_terragrunt_dir()}/terraform.tfstate")
@@ -17,12 +12,6 @@ remote_state {
   config = {
     path = local.terraform_state_path
   }
-}
-
-# Terraform module source.
-# Pipelines can point this env var to the Terraform-Modules checkout path.
-terraform {
-  source = local.azuredevops_repositories_module_source
 }
 
 inputs = {

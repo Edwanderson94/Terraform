@@ -1,0 +1,18 @@
+terraform {
+  required_version = ">= 1.0, < 2.0"
+
+  required_providers {
+    azuredevops = {
+      source  = "microsoft/azuredevops"
+      version = "1.4.0"
+    }
+
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.2"
+    }
+  }
+
+  # Empty backend block so Terragrunt can inject the backend configuration.
+  backend "local" {}
+}
