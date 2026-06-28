@@ -8,7 +8,7 @@ Este diretorio e a camada live Terragrunt para gerenciar repositorios do projeto
 - O modulo usado fica no repo `Terraform-Modules`.
 - O source do modulo e definido no `main.tf` deste diretorio live.
 - Por padrao, o source aponta para o repo remoto:
-  `git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/repos?ref=develop`.
+  `git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/repos?ref=v1.3.0`.
 - Este diretorio contem os `.tf` que chamam os modulos reutilizaveis.
 - O `terragrunt.hcl` e opcional e serve para injetar inputs/backend em execucoes com Terragrunt.
 
@@ -57,8 +57,8 @@ terraform init
 terraform plan
 ```
 
-Para producao, prefira trocar `ref=develop` por uma tag versionada do modulo,
-por exemplo `ref=v1.3.0`.
+Para producao, mantenha o `ref` apontando para uma tag versionada do modulo,
+como `ref=v1.3.0`, em vez de branch mutavel como `develop`.
 
 ## State
 
