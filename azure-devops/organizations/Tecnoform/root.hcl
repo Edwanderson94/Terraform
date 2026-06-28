@@ -1,17 +1,31 @@
-# Configuração do estado remoto
+locals {
+  azuredevops_repositories_module_source = get_env(
+    "TG_AZURE_DEVOPS_REPOSITORIES_MODULE_SOURCE",
+    "../../../../../../Terraform-Modules/azure_devops/terraform-azuredevops-repositorios"
+  )
+
+  org_service_url       = get_env("AZDO_ORG_SERVICE_URL", "https://dev.azure.com/Tecnoform")
+  personal_access_token = get_env("AZDO_PERSONAL_ACCESS_TOKEN")
+  terraform_state_path  = get_env("TG_TF_STATE_PATH", "${get_terragrunt_dir()}/terraform.tfstate")
+}
+
+# State configuration.
+# The current backend is local for workstation runs. In CI/CD, either persist this
+# state path between stages or replace this block with a shared remote backend.
 remote_state {
   backend = "local"
   config = {
-    path = "${get_terragrunt_dir()}/terraform.tfstate"
+    path = local.terraform_state_path
   }
 }
 
-# Configuração do Terraform para o módulo
+# Terraform module source.
+# Pipelines can point this env var to the Terraform-Modules checkout path.
 terraform {
-  source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/terraform-azuredevops-repositorios?ref=develop"
+  source = local.azuredevops_repositories_module_source
 }
 
 inputs = {
-  org_service_url       = "https://dev.azure.com/Tecnoform"
-  personal_access_token = "AtBa9kYmm51iuf7Yc1w0cJtJEB3EJgbbiDWbKm4aVppixyLM9jHyJQQJ99CFACAAAAAAAAAAAAASAZDO1PJb"
+  org_service_url       = local.org_service_url
+  personal_access_token = local.personal_access_token
 }
