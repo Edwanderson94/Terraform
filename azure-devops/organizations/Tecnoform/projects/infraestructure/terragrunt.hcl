@@ -11,22 +11,21 @@ locals {
     gcp   = "cloud-gcp-infra"
   }
 
-  repository_default_branches = {
-    aws   = "main"
-    oci   = "develop"
-    azure = "uat"
-    gcp   = "main"
-  }
+  repository_default_branch = "master"
+  repository_branches       = ["develop", "homolog", "master"]
 
   repositories = {
     for key, name in local.repository_names : key => {
       name           = name
-      default_branch = local.repository_default_branches[key]
+      default_branch = local.repository_default_branch
     }
   }
 }
 
 inputs = {
-  project_name = "Infrastructure"
-  repositories = local.repositories
+  project_name                  = "Infrastructure"
+  repositories                  = local.repositories
+  repository_branches           = local.repository_branches
+  repository_branch_renames     = {}
+  repository_branches_to_delete = {}
 }
