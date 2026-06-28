@@ -23,9 +23,13 @@ locals {
 }
 
 inputs = {
-  project_name                  = "Infrastructure"
-  repositories                  = local.repositories
-  repository_branches           = local.repository_branches
-  repository_branch_renames     = {}
-  repository_branches_to_delete = {}
+  project_name              = "Infrastructure"
+  repositories              = local.repositories
+  repository_branches       = local.repository_branches
+  repository_branch_renames = {}
+  repository_branches_to_delete = {
+    aws   = ["main"]
+    azure = ["uat"]
+    gcp   = ["main"]
+  }
 }
