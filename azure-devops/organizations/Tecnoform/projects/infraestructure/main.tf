@@ -1,16 +1,15 @@
-# ======================================================
-# Owner: Edwanderson
-# Description: Provisionando Projeto e Configurações
-# Project: Azure DevOps com Terraform
-# =======================================================
+# ================================================================
+# Azure DevOps - Infrastructure project repositories
+# ================================================================
 
-# ======================================================
-# Módulo de Criação de repositório
-# ======================================================
-module "azuredevops_repository" {
-  source                = "git::https://github.com/Edwanderson94/Terraform-Modules.git//terraform-azdo-modules/azuredevops_repository?ref=develop"
-  project_id            = data.azuredevops_project.project_infra.id
-  org_service_url       = var.org_service_url
-  repositories          = var.repositories
-  personal_access_token = var.personal_access_token
+module "azuredevops_repositories" {
+  source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/repos?ref=v1.3.0"
+
+  org_service_url               = var.org_service_url
+  personal_access_token         = var.personal_access_token
+  project_name                  = var.project_name
+  repositories                  = var.repositories
+  repository_branches           = var.repository_branches
+  repository_branch_renames     = var.repository_branch_renames
+  repository_branches_to_delete = var.repository_branches_to_delete
 }
