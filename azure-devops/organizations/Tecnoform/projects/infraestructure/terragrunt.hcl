@@ -12,8 +12,8 @@ locals {
 
   repository_default_branches = {
     aws   = "main"
-    oci   = "main"
-    azure = "main"
+    oci   = "develop"
+    azure = "uat"
     gcp   = "main"
   }
 
