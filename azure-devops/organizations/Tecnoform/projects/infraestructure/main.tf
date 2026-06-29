@@ -8,8 +8,8 @@ module "azuredevops_repositories" {
   org_service_url               = var.org_service_url
   personal_access_token         = var.personal_access_token
   project_name                  = var.project_name
-  repositories                  = var.repositories
-  repository_branches           = var.repository_branches
-  repository_branch_renames     = var.repository_branch_renames
-  repository_branches_to_delete = var.repository_branches_to_delete
+  repositories                  = local.repositories
+  repository_branches           = local.repository_branches
+  repository_branch_renames     = local.repository_branch_renames
+  repository_branches_to_delete = local.repository_branches_to_delete
 }
