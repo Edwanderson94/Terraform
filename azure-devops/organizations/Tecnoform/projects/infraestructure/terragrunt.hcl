@@ -5,10 +5,11 @@ include {
 
 locals {
   repository_names = {
-    aws   = "cloud-aws-infra"
-    oci   = "cloud-oci-infra"
-    azure = "cloud-azure-infra"
-    gcp   = "cloud-gcp-infra"
+    aws             = "cloud-aws-infra"
+    oci             = "cloud-oci-infra"
+    azure           = "cloud-azure-infra"
+    gcp             = "cloud-gcp-infra"
+    terraform_state = "terraform-state"
   }
 
   repository_default_branch = "master"
