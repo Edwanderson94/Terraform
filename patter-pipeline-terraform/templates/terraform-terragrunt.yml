@@ -69,7 +69,7 @@ stages:
               terraform fmt -check -recursive
               cd "$TG_WORKING_DIR"
               terragrunt init -backend=false -input=false
-              terragrunt validate
+              terragrunt run --no-auto-init -- validate
             displayName: Format and validate
             env:
               AZDO_ORG_SERVICE_URL: $(AZDO_ORG_SERVICE_URL)
