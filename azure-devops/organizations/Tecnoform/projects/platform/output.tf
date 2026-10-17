@@ -10,5 +10,5 @@ output "project_name" {
 
 output "project_url" {
   description = "URL do projeto Azure DevOps Platform"
-  value       = azuredevops_project.platform.url
+  value       = "${trimsuffix(var.org_service_url, "/")}/${azuredevops_project.platform.name}"
 }

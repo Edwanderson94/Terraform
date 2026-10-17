@@ -8,4 +8,9 @@ resource "azuredevops_project" "platform" {
   visibility         = "private"
   version_control    = "Git"
   work_item_template = "Agile"
+
+  features = {
+    boards    = "disabled"
+    testplans = "disabled"
+  }
 }
