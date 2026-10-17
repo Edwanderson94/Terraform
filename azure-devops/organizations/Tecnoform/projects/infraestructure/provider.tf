@@ -13,6 +13,4 @@ terraform {
     }
   }
 
-  # Empty backend block so Terragrunt can inject the backend configuration.
-  backend "local" {}
 }

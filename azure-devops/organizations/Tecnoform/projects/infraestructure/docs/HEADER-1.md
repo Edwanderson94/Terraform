@@ -1,3 +1,9 @@
-# Repositório Terraform - Documentação da Chamada do Módulo
+# Terraform — chamada do módulo Azure DevOps
 
-Esta documentação foi elaborada com o objetivo de explicar o funcionamento da chamada do módulo Terraform para os projetos do Azure DevOps na organização **Tecnoform**. Neste caso, estamos utilizando o projeto já existente denominado **Infrastructure**.
+Esta camada administra repositórios do projeto Azure DevOps já existente
+**Infrastructure**, na organização **Tecnoform**. Ela usa Terragrunt para
+configuração compartilhada e o módulo remoto `azure_devops/repos`, fixado na
+versão `v1.3.2`.
+
+As credenciais são fornecidas por `AZDO_PERSONAL_ACCESS_TOKEN`; elas nunca
+devem ser incluídas em arquivos Terraform ou documentação versionada.

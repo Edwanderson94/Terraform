@@ -1,67 +1,55 @@
-# Azure DevOps - Tecnoform / Infrastructure
+# Azure DevOps — Tecnoform / Infrastructure
 
-Este diretorio e a camada live Terragrunt para gerenciar repositorios do projeto
-`Infrastructure` na organizacao Azure DevOps `Tecnoform`.
+Esta é a camada *live* Terragrunt que administra os repositórios do projeto
+Azure DevOps existente `Infrastructure`, dentro da organização `Tecnoform`.
 
-## Contrato com o repo de modulos
+## Como a camada funciona
 
-- O modulo usado fica no repo `Terraform-Modules`.
-- O source do modulo e definido no `main.tf` deste diretorio live.
-- Por padrao, o source aponta para o repo remoto:
-  `git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/repos?ref=v1.3.0`.
-- Este diretorio contem os `.tf` que chamam os modulos reutilizaveis.
-- O `terragrunt.hcl` e opcional e serve para injetar inputs/backend em execucoes com Terragrunt.
+- `terragrunt.hcl` inclui `../../root.hcl` e define `project_name = "Infrastructure"`.
+- `root.hcl` recebe a URL da organização e o PAT por variáveis de ambiente, além
+  de configurar o backend local atual.
+- `main.tf` chama o módulo reutilizável `azure_devops/repos` do repositório
+  `Terraform-Modules`, fixado na tag `v1.3.2`.
+- `locals.tf` declara os repositórios e o padrão de branches.
+- `moved.tf` preserva endereços de recursos no state após a extração para o módulo.
 
-## Repositorios gerenciados
+## Repositórios e branches
 
-| Chave logica | Nome do repositorio | Branch padrao |
+| Chave lógica | Repositório | Branch padrão |
 | --- | --- | --- |
 | `aws` | `cloud-aws-infra` | `master` |
 | `oci` | `cloud-oci-infra` | `master` |
 | `azure` | `cloud-azure-infra` | `master` |
 | `gcp` | `cloud-gcp-infra` | `master` |
+| `terraform_state` | `terraform-state` | `master` |
 
-Para renomear um repositorio, mantenha a chave logica e altere apenas o valor em
-`repository_names`. Assim o nome muda sem trocar o endereco do recurso no state.
+O padrão de branches é `develop`, `homolog` e `master`. Alterações de nomes,
+branches ou exclusões devem ser feitas em `locals.tf` e revisadas no plano antes
+do apply.
 
-## Variaveis de ambiente
+## Pré-requisitos
 
-| Variavel | Obrigatoria | Uso |
-| --- | --- | --- |
-| `AZDO_PERSONAL_ACCESS_TOKEN` | Sim | PAT usado pelo provider Azure DevOps. |
-| `AZDO_ORG_SERVICE_URL` | Nao | URL da organizacao. Padrao: `https://dev.azure.com/Tecnoform`. |
-| `TG_TF_STATE_PATH` | Nao | Caminho do state local. Padrao: `terraform.tfstate` no diretorio live. |
+- Terraform `>= 1.0, < 2.0`
+- Terragrunt
+- PAT do Azure DevOps com permissões compatíveis com a administração de
+  repositórios e branches no projeto
 
-## Execucao local
+Configure a sessão sem salvar o token em arquivos versionados:
 
 ```bash
-export AZDO_PERSONAL_ACCESS_TOKEN="<pat>"
-export AZDO_ORG_SERVICE_URL="https://dev.azure.com/Tecnoform"
+export AZDO_PERSONAL_ACCESS_TOKEN='<seu-pat>'
+export AZDO_ORG_SERVICE_URL='https://dev.azure.com/Tecnoform'
+```
+
+## Execução
+
+No diretório atual:
+
+```bash
+terragrunt init
 terragrunt plan
 terragrunt apply
 ```
 
-## Execucao em pipeline
-
-Em pipelines, o Terraform baixa o modulo diretamente do GitHub pelo `source`
-definido no `main.tf`.
-
-Exemplo conceitual:
-
-```bash
-export AZDO_PERSONAL_ACCESS_TOKEN="$AZDO_PERSONAL_ACCESS_TOKEN"
-export AZDO_ORG_SERVICE_URL="https://dev.azure.com/Tecnoform"
-
-cd "$PIPELINE_WORKSPACE/Terraform/azure-devops/organizations/Tecnoform/projects/infraestructure"
-terraform init
-terraform plan
-```
-
-Para producao, mantenha o `ref` apontando para uma tag versionada do modulo,
-como `ref=v1.3.0`, em vez de branch mutavel como `develop`.
-
-## State
-
-O backend atual e `local`. Para `apply` recorrente via pipeline, o state precisa
-ser persistido entre execucoes ou migrado para um backend remoto compartilhado.
-Sem isso, um runner novo nao tera historico dos recursos ja gerenciados.
+O backend atual é local. Não use `apply` em um runner efêmero de pipeline sem
+persistir o state ou migrá-lo antes para um backend remoto compartilhado.

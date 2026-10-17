@@ -1,85 +1,114 @@
-<!-- BEGIN_TF_DOCS -->
-# Repositório Terraform - Documentação Principal.
+# Terraform — Azure DevOps
 
-Bem-vindo à documentação deste repositório Terraform! Este espaço foi criado para compartilhar os conhecimentos que adquiri ao longo da minha jornada como **DevOps** e **SRE**, explorando o uso dessa poderosa ferramenta de **infraestrutura como código**.
+Camada *live* de infraestrutura como código para administrar recursos do Azure
+DevOps com Terraform e Terragrunt. O repositório contém a configuração real da
+organização; módulos reutilizáveis ficam no repositório
+[`Terraform-Modules`](https://github.com/Edwanderson94/Terraform-Modules).
 
-## Objetivo
+## Escopo atual
 
-Este repositório tem como objetivo centralizar documentações, projetos pessoais, desenvolvimentos e exemplos práticos relacionados ao uso do **Terraform**. Aqui você encontrará:
+O estado atual gerencia os repositórios Git do projeto existente `Infrastructure`
+na organização Azure DevOps `Tecnoform`. A organização e o projeto não são
+criados por esta stack.
 
-- **Projetos Pessoais**: Provisionamento de recursos, desenvolvimentos, estudos e testes.
-- **Guia de Comandos**: Facilitando o uso do Terraform.
-- **Estruturas de Implementação**: Aplicadas em plataformas como:
-  - **Azure DevOps**
+Recursos administrados:
 
----
+- `cloud-aws-infra`
+- `cloud-oci-infra`
+- `cloud-azure-infra`
+- `cloud-gcp-infra`
+- `terraform-state`
 
-### Azure DevOps
+As branches padronizadas são `develop`, `homolog` e `master`, sendo `master` a
+branch padrão. A lista de branches criadas, removidas ou renomeadas fica em
+`locals.tf` da camada do projeto.
 
-O **Azure DevOps** é um conjunto de ferramentas e serviços da Microsoft voltado para o gerenciamento completo do ciclo de vida do desenvolvimento de software, com foco em integração contínua (CI), entrega contínua (CD) e colaboração entre equipes de desenvolvimento. Ele oferece uma plataforma baseada em nuvem usada para planejar, construir, testar e implantar aplicações, automatizando e agilizando os fluxos de trabalho das equipes.
+## Estrutura atual
 
-#### Organização
-
-No **Azure DevOps**, uma **Organization** (Organização) é a unidade de gerenciamento principal, agrupando todos os recursos, equipes e projetos dentro da plataforma. Ela organiza e gerencia o acesso a diversos projetos e recursos, como repositórios de código, pipelines de CI/CD, boards de tarefas, testes, entre outros. 
-
-Atualmente, a minha organização no Azure DevOps é chamada **Tecnoform**.
-
-#### Project
-
-No **Azure DevOps**, um **Project** (Projeto) é uma estrutura dentro de uma organização que contém todos os artefatos e recursos necessários para gerenciar o desenvolvimento de software de uma equipe ou produto específico. Ele serve como um contêiner para organizar, controlar e permitir o acesso a funcionalidades dentro do Azure DevOps, como repositórios de código, pipelines de CI/CD, boards de tarefas, test suites, entre outros.
-
-#### Azure Repos
-
-**Azure Repos** é um serviço do **Azure DevOps** que oferece repositórios de código-fonte Git (ou **Team Foundation Version Control - TFVC**) para armazenar e versionar o código de uma aplicação. Ele é fundamental para o ecossistema do Azure DevOps, fornecendo um local centralizado onde as equipes podem armazenar, gerenciar e colaborar no desenvolvimento de software de forma eficiente. O **Azure Repos** é uma das principais ferramentas dentro de uma **Organization** no Azure DevOps e interage de forma integrada com outros serviços da plataforma.
-
----
-
-# Estrutura de Pastas  
-
-Abaixo está a estrutura de diretórios e arquivos do projeto:  
-
-```plaintext
+```text
 .
 ├── azure-devops/
-│   ├── organizations/
-│   │   ├── tecnoform/
-│   │   │   ├── terragrunt.hcl         # Configuração global do Terragrunt.
-│   │   │   ├── projects/
-│   │   │   │   ├── infraestructure/
-│   │   │   │   ├── terragrunt.hcl     # Configuração do Terragrunt para o projeto.
-│   │   │   │   ├── docs/
-├── README.md                          # Documentação principal do repositório.
-
+│   └── organizations/
+│       └── Tecnoform/
+│           ├── root.hcl
+│           └── projects/
+│               └── infraestructure/
+│                   ├── terragrunt.hcl
+│                   ├── main.tf
+│                   ├── locals.tf
+│                   ├── variables.tf
+│                   ├── provider.tf
+│                   ├── moved.tf
+│                   └── README.md
+├── azure-pipelines.yml
+├── docs/
+│   └── oci-azure-devops-pipeline.md
+├── .gitignore
+└── README.md
 ```
 
----
+> O nome do diretório `infraestructure` é mantido por compatibilidade com o
+> estado e os caminhos existentes.
 
-# Considerações Finais
+## Autenticação e configuração
 
-Neste projeto, tive a oportunidade de aprofundar meus conhecimentos em **Terraform** e **Terragrunt**, além de evoluir nos processos e fluxos de trabalho dessas ferramentas. O próximo passo é expandir ainda mais o uso dessas tecnologias, com a integração de novos módulos, visando a automação dos recursos no **Azure DevOps**.
+As credenciais não devem ser versionadas. O Terragrunt lê as variáveis abaixo:
 
-## Licença
+| Variável | Obrigatória | Descrição |
+| --- | --- | --- |
+| `AZDO_PERSONAL_ACCESS_TOKEN` | Sim | PAT do Azure DevOps com as permissões necessárias. |
+| `AZDO_ORG_SERVICE_URL` | Não | URL da organização. Padrão: `https://dev.azure.com/Tecnoform`. |
+| `OCI_TF_STATE_BUCKET` | Sim | Bucket privado da OCI que armazena o state. |
+| `OCI_OBJECT_STORAGE_NAMESPACE` | Sim | Namespace do Object Storage da tenancy OCI. |
+| `OCI_TENANCY_OCID` | Para acesso à OCI | OCID da tenancy. |
+| `OCI_USER_OCID` | Para acesso à OCI | OCID do usuário técnico da pipeline. |
+| `OCI_FINGERPRINT` | Para acesso à OCI | Fingerprint da API signing key. |
+| `OCI_PRIVATE_KEY_PATH` | Para acesso à OCI | Caminho local da API signing key PEM. |
+| `OCI_REGION` | Para acesso à OCI | Região da OCI. |
 
-Este módulo está licenciado sob a licença **MIT**. Para mais informações, consulte o arquivo [LICENSE](./LICENSE).
+Exemplo para a sessão atual:
+
+```bash
+export AZDO_PERSONAL_ACCESS_TOKEN='<seu-pat>'
+export AZDO_ORG_SERVICE_URL='https://dev.azure.com/Tecnoform'
+export OCI_TF_STATE_BUCKET='<bucket-de-state>'
+export OCI_OBJECT_STORAGE_NAMESPACE='<namespace-oci>'
+```
+
+## Uso local
+
+```bash
+cd azure-devops/organizations/Tecnoform/projects/infraestructure
+terragrunt init
+terragrunt plan
+terragrunt apply
+```
+
+Execute `apply` somente após revisar o plano. O arquivo de state e arquivos com
+segredos são ignorados pelo Git.
+
+## State e automação
+
+O backend é OCI Object Storage: compartilhado, com state locking nativo e
+criptografia em repouso. A pipeline YAML em `azure-pipelines.yml` valida pull
+requests e aplica em `master` após a migração única do state e os controles do
+Environment. Siga o procedimento completo em
+[OCI e Azure Pipelines](docs/oci-azure-devops-pipeline.md); ele define o bucket,
+as credenciais técnicas, os segredos de Azure DevOps e o rollback da migração.
+
+## Evolução planejada
+
+Os próximos componentes recomendados são projeto Azure DevOps, grupos e
+permissões, políticas de branch, pipelines e service connections. Cada
+componente deve ter sua própria camada Terragrunt, mantendo módulos genéricos em
+`Terraform-Modules`.
 
 ## Contribuição
 
-Contribuições são sempre bem-vindas! Se você deseja colaborar, siga os seguintes passos:
+Crie uma branch a partir de `develop`, valide com `terragrunt plan` e abra um
+pull request. Atualmente `master` e `develop` estão sincronizadas; novas
+alterações devem passar pelo fluxo de PR.
 
-1. Envie pull requests com suas alterações ou melhorias.
-2. Caso encontre algum erro ou tenha sugestões, crie uma *issue* no repositório.
+## Licença
 
-Agradecemos pela sua colaboração e interesse!
-
-## Agradecimentos
-
-Gostaria de expressar minha sincera gratidão a todos os colegas e amigos que, ao longo da minha jornada profissional, me ensinaram, ajudaram e acreditaram no meu potencial. Graças a vocês, pude aprender e compartilhar um pouco do conhecimento que agora divido com todos que consomem este conteúdo.
-
-Um agradecimento especial à minha esposa, que sempre me apoiou e compreendeu os momentos em que estive ausente, dedicando meu tempo aos desenvolvimentos e conteúdos apresentados aqui. Sua compreensão e suporte foram essenciais para que eu pudesse seguir nesse caminho.
-
----
-
-**Desenvolvido por**  
-Edwanderson Luiz Pereira
-
-<!-- END_TF_DOCS -->
+Este projeto está licenciado sob a [MIT License](LICENSE.md).

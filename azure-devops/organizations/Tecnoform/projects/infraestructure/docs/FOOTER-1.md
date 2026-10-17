@@ -1,6 +1,8 @@
 # Considerações Finais
 
-Este repositório foi criado com o objetivo de provisionar recursos no Azure DevOps utilizando **Terraform** e **Terragrunt**, buscando proporcionar um gerenciamento mais eficiente e automatizado dos recursos dentro do ecossistema Azure DevOps.
+Esta camada administra repositórios Azure DevOps usando **Terraform** e
+**Terragrunt**. O state atual é local; antes de automatizar aplicações por
+pipeline, migre-o para um backend remoto compartilhado.
 
 ## Contribuição
 

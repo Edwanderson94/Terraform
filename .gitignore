@@ -7,6 +7,8 @@
 .terraform/
 .terraform*
 .terraform.lock.hcl
+backend.tf
+tfplan
 
 # VSCode
 .vscode/
@@ -25,6 +27,5 @@ Thumbs.db
 .pre-commit-config.yaml.lock
 .pre-commit/
 
-# Ignorar as pastas de configuração e documentação
-/docs/
+# Ignorar diretórios locais de configuração
 /config/

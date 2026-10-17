@@ -1,0 +1,3 @@
+interface:
+  display_name: "Terraform Azure DevOps"
+  short_description: "Manage this Terraform and Terragrunt live stack safely"
