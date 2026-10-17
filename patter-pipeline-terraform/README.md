@@ -38,6 +38,12 @@ namespace e bucket OCI. Cadastre a chave privada OCI como Secure File. O
 Environment usado no parâmetro deve ter aprovação e lock configurados. Restrinja
 o acesso desses recursos às pipelines autorizadas.
 
+O template exporta as variáveis do provider OCI uma única vez usando os nomes
+canônicos em maiúsculas (`OCI_TENANCY_OCID`, `OCI_USER_OCID`, `OCI_FINGERPRINT`,
+`OCI_REGION` e `OCI_PRIVATE_KEY_PATH`). Não declare aliases diferenciados
+somente por capitalização no mesmo bloco `env`, pois o Azure Pipelines os trata
+como nomes duplicados.
+
 ## Fluxo
 
 - PRs e pushes em `develop`, `homolog` e `master`: formatação e validação.

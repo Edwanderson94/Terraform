@@ -48,6 +48,11 @@ and pipeline behavior.
   key, Terraform state, `.terraform` directory, generated backend config, or
   plan contents in source control. Plan artifacts may contain sensitive values;
   restrict pipeline access and retention.
+- The shared template exports OCI provider environment variables once using
+  the canonical uppercase names (`OCI_TENANCY_OCID`, `OCI_USER_OCID`,
+  `OCI_FINGERPRINT`, `OCI_REGION`, and `OCI_PRIVATE_KEY_PATH`). Do not add
+  aliases that differ only by letter case in a single Azure Pipelines `env`
+  mapping; those names collide.
 - Keep Terraform and Terragrunt versions pinned through template parameters.
   Change them only when the consumer has been checked against the selected
   versions.
