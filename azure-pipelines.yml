@@ -1,5 +1,5 @@
-# Terraform/Terragrunt delivery for the Tecnoform Azure DevOps live stack.
-# Required Azure DevOps Library variable group: terraform-oci
+# Standard Terraform/Terragrunt delivery for the Tecnoform Azure DevOps stack.
+# Required Library variable group: terraform-oci
 # Required Secure File: oci-terraform-api-key.pem
 
 trigger:
@@ -32,6 +32,8 @@ variables:
     value: 1.0.8
   - name: TG_WORKING_DIR
     value: azure-devops/organizations/Tecnoform/projects/infraestructure
+  - name: TF_PLAN_NAME
+    value: terraform.tfplan
 
 stages:
   - stage: Validate
@@ -66,6 +68,7 @@ stages:
           - bash: |
               set -euo pipefail
               terragrunt hcl fmt --check
+              terraform fmt -check -recursive
               cd "$TG_WORKING_DIR"
               terragrunt init -backend=false -input=false
               terragrunt validate
@@ -76,8 +79,8 @@ stages:
               OCI_TF_STATE_BUCKET: $(OCI_TF_STATE_BUCKET)
               OCI_OBJECT_STORAGE_NAMESPACE: $(OCI_OBJECT_STORAGE_NAMESPACE)
 
-  - stage: Apply
-    displayName: Plan and apply master
+  - stage: Plan
+    displayName: Create reviewed Terraform plan
     dependsOn: Validate
     condition: >-
       and(
@@ -87,8 +90,72 @@ stages:
         eq(variables['OCI_TF_STATE_MIGRATED'], 'true')
       )
     jobs:
+      - job: plan
+        displayName: Plan live layer
+        pool:
+          vmImage: ubuntu-22.04
+        steps:
+          - checkout: self
+            clean: true
+
+          - task: DownloadSecureFile@1
+            name: ociApiKey
+            displayName: Download OCI API signing key
+            inputs:
+              secureFile: oci-terraform-api-key.pem
+
+          - bash: |
+              set -euo pipefail
+              install_dir="${AGENT_TOOLSDIRECTORY}/terraform-bin"
+              mkdir -p "$install_dir"
+
+              curl --fail --silent --show-error --location \
+                "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
+                --output /tmp/terraform.zip
+              unzip -q /tmp/terraform.zip -d "$install_dir"
+
+              curl --fail --silent --show-error --location \
+                "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
+                --output "$install_dir/terragrunt"
+              chmod 0755 "$install_dir/terragrunt"
+
+              echo "##vso[task.prependpath]$install_dir"
+            displayName: Install pinned Terraform and Terragrunt
+
+          - bash: |
+              set -euo pipefail
+              cd "$TG_WORKING_DIR"
+              terragrunt init -reconfigure -input=false
+              terragrunt plan -input=false -out="$BUILD_ARTIFACTSTAGINGDIRECTORY/$TF_PLAN_NAME"
+              terragrunt show -no-color "$BUILD_ARTIFACTSTAGINGDIRECTORY/$TF_PLAN_NAME"
+            displayName: Create and display plan
+            env:
+              AZDO_ORG_SERVICE_URL: $(AZDO_ORG_SERVICE_URL)
+              AZDO_PERSONAL_ACCESS_TOKEN: $(AZDO_PERSONAL_ACCESS_TOKEN)
+              OCI_TENANCY_OCID: $(OCI_TENANCY_OCID)
+              OCI_USER_OCID: $(OCI_USER_OCID)
+              OCI_FINGERPRINT: $(OCI_FINGERPRINT)
+              OCI_REGION: $(OCI_REGION)
+              OCI_OBJECT_STORAGE_NAMESPACE: $(OCI_OBJECT_STORAGE_NAMESPACE)
+              OCI_TF_STATE_BUCKET: $(OCI_TF_STATE_BUCKET)
+              OCI_PRIVATE_KEY_PATH: $(ociApiKey.secureFilePath)
+              OCI_tenancy_ocid: $(OCI_TENANCY_OCID)
+              OCI_user_ocid: $(OCI_USER_OCID)
+              OCI_fingerprint: $(OCI_FINGERPRINT)
+              OCI_region: $(OCI_REGION)
+              OCI_private_key_path: $(ociApiKey.secureFilePath)
+
+          - publish: $(Build.ArtifactStagingDirectory)/$(TF_PLAN_NAME)
+            artifact: terraform-plan
+            displayName: Publish plan for protected deployment
+
+  - stage: Apply
+    displayName: Apply approved Terraform plan
+    dependsOn: Plan
+    condition: succeeded()
+    jobs:
       - deployment: apply
-        displayName: Apply approved Terraform plan
+        displayName: Apply exact reviewed plan
         environment: terraform-oci-production
         pool:
           vmImage: ubuntu-22.04
@@ -105,50 +172,33 @@ stages:
                   inputs:
                     secureFile: oci-terraform-api-key.pem
 
+                - task: DownloadPipelineArtifact@2
+                  displayName: Download reviewed plan
+                  inputs:
+                    artifact: terraform-plan
+                    path: $(Pipeline.Workspace)/terraform-plan
+
                 - bash: |
                     set -euo pipefail
                     install_dir="${AGENT_TOOLSDIRECTORY}/terraform-bin"
                     mkdir -p "$install_dir"
-
                     curl --fail --silent --show-error --location \
                       "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
                       --output /tmp/terraform.zip
                     unzip -q /tmp/terraform.zip -d "$install_dir"
-
                     curl --fail --silent --show-error --location \
                       "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
                       --output "$install_dir/terragrunt"
                     chmod 0755 "$install_dir/terragrunt"
-
                     echo "##vso[task.prependpath]$install_dir"
                   displayName: Install pinned Terraform and Terragrunt
 
                 - bash: |
                     set -euo pipefail
-                    required_variables=(
-                      AZDO_PERSONAL_ACCESS_TOKEN
-                      OCI_TENANCY_OCID
-                      OCI_USER_OCID
-                      OCI_FINGERPRINT
-                      OCI_REGION
-                      OCI_OBJECT_STORAGE_NAMESPACE
-                      OCI_TF_STATE_BUCKET
-                      OCI_PRIVATE_KEY_PATH
-                    )
-
-                    for name in "${required_variables[@]}"; do
-                      if [ -z "${!name:-}" ]; then
-                        echo "Required pipeline variable is not set: $name" >&2
-                        exit 1
-                      fi
-                    done
-
                     cd "$TG_WORKING_DIR"
-                    trap 'rm -f tfplan' EXIT
                     terragrunt init -reconfigure -input=false
-                    terragrunt plan -input=false -out=tfplan
-                    terragrunt apply -input=false tfplan
-                  displayName: Plan and apply without publishing state or plan
+                    terragrunt apply -input=false "$(Pipeline.Workspace)/terraform-plan/$TF_PLAN_NAME"
+                  displayName: Apply reviewed plan
                   env:
                     AZDO_ORG_SERVICE_URL: $(AZDO_ORG_SERVICE_URL)
                     AZDO_PERSONAL_ACCESS_TOKEN: $(AZDO_PERSONAL_ACCESS_TOKEN)
@@ -159,8 +209,6 @@ stages:
                     OCI_OBJECT_STORAGE_NAMESPACE: $(OCI_OBJECT_STORAGE_NAMESPACE)
                     OCI_TF_STATE_BUCKET: $(OCI_TF_STATE_BUCKET)
                     OCI_PRIVATE_KEY_PATH: $(ociApiKey.secureFilePath)
-                    # The OCI backend reads optional attributes with the
-                    # OCI_<attribute> convention; attribute names are lowercase.
                     OCI_tenancy_ocid: $(OCI_TENANCY_OCID)
                     OCI_user_ocid: $(OCI_USER_OCID)
                     OCI_fingerprint: $(OCI_FINGERPRINT)

@@ -8,8 +8,8 @@ state bucket must remain private and have versioning enabled.
 ## What this pipeline does
 
 - A pull request and a push to `develop` run format and validation only.
-- A push to `master` runs validation, then creates and applies one Terraform
-  plan in the same deployment job.
+- A push to `master` runs validation, creates one Terraform plan, and publishes
+  it only to the same pipeline run for the protected deployment stage.
 - The apply stage is disabled until `OCI_TF_STATE_MIGRATED` is set to `true` in
   the protected Azure DevOps variable group.
 - The `terraform-oci-production` Environment can have an approval and an
@@ -74,6 +74,12 @@ Azure DevOps deletes secure files when the job ends.
 The YAML maps those protected uppercase variables to the lowercase
 `OCI_<backend_attribute>` names expected by the Terraform OCI backend. Do not
 rename either side without updating that mapping.
+
+The `terraform-plan` artifact is sensitive because Terraform plans can contain
+resource values. Restrict pipeline and artifact permissions to the project
+administrators and the infrastructure team, and use a short retention period.
+The Apply stage downloads that exact plan after the `terraform-oci-production`
+Environment checks; it does not recalculate a different plan.
 
 ## 3. Create and protect the pipeline
 

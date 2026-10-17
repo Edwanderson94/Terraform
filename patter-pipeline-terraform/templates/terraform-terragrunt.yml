@@ -1,0 +1,218 @@
+parameters:
+  - name: workingDirectory
+    type: string
+    default: .
+  - name: variableGroup
+    type: string
+    default: terraform-oci
+  - name: secureFile
+    type: string
+    default: oci-terraform-api-key.pem
+  - name: environment
+    type: string
+    default: terraform-oci-production
+  - name: stateMigratedVariable
+    type: string
+    default: OCI_TF_STATE_MIGRATED
+  - name: bootstrapMode
+    type: boolean
+    default: false
+  - name: apply
+    displayName: Apply the reviewed bootstrap plan
+    type: boolean
+    default: false
+  - name: terraformVersion
+    type: string
+    default: 1.15.7
+  - name: terragruntVersion
+    type: string
+    default: 1.0.8
+
+variables:
+  - group: ${{ parameters.variableGroup }}
+  - name: TG_WORKING_DIR
+    value: ${{ parameters.workingDirectory }}
+  - name: TERRAFORM_VERSION
+    value: ${{ parameters.terraformVersion }}
+  - name: TERRAGRUNT_VERSION
+    value: ${{ parameters.terragruntVersion }}
+  - name: TF_PLAN_NAME
+    value: terraform.tfplan
+
+stages:
+  - stage: Validate
+    displayName: Validate Terraform and Terragrunt
+    jobs:
+      - job: validate
+        pool:
+          vmImage: ubuntu-22.04
+        steps:
+          - checkout: self
+            clean: true
+          - bash: |
+              set -euo pipefail
+              bin_dir="${AGENT_TOOLSDIRECTORY}/terraform-bin"
+              mkdir -p "$bin_dir"
+              curl --fail --silent --show-error --location \
+                "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
+                --output /tmp/terraform.zip
+              unzip -q /tmp/terraform.zip -d "$bin_dir"
+              curl --fail --silent --show-error --location \
+                "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
+                --output "$bin_dir/terragrunt"
+              chmod 0755 "$bin_dir/terragrunt"
+              echo "##vso[task.prependpath]$bin_dir"
+            displayName: Install pinned tools
+          - bash: |
+              set -euo pipefail
+              terragrunt hcl fmt --check
+              terraform fmt -check -recursive
+              cd "$TG_WORKING_DIR"
+              terragrunt init -backend=false -input=false
+              terragrunt validate
+            displayName: Format and validate
+            env:
+              AZDO_ORG_SERVICE_URL: $(AZDO_ORG_SERVICE_URL)
+              AZDO_PERSONAL_ACCESS_TOKEN: $(AZDO_PERSONAL_ACCESS_TOKEN)
+              OCI_COMPARTMENT_ID: $(OCI_COMPARTMENT_ID)
+              OCI_TF_STATE_BUCKET: $(OCI_TF_STATE_BUCKET)
+
+  - stage: Plan
+    displayName: Create and review Terraform plan
+    dependsOn: Validate
+    condition: >-
+      and(succeeded(), or(
+      and(eq('${{ parameters.bootstrapMode }}', 'true'),
+      eq(variables['Build.Reason'], 'Manual')),
+      and(eq('${{ parameters.bootstrapMode }}', 'false'),
+      eq(variables['Build.SourceBranch'], 'refs/heads/master'),
+      ne(variables['Build.Reason'], 'PullRequest'),
+      eq(variables['${{ parameters.stateMigratedVariable }}'], 'true'))))
+    jobs:
+      - job: plan
+        pool:
+          vmImage: ubuntu-22.04
+        steps:
+          - checkout: self
+            clean: true
+          - task: DownloadSecureFile@1
+            name: ociKey
+            inputs:
+              secureFile: ${{ parameters.secureFile }}
+          - bash: |
+              set -euo pipefail
+              bin_dir="${AGENT_TOOLSDIRECTORY}/terraform-bin"
+              mkdir -p "$bin_dir"
+              curl --fail --silent --show-error --location \
+                "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
+                --output /tmp/terraform.zip
+              unzip -q /tmp/terraform.zip -d "$bin_dir"
+              curl --fail --silent --show-error --location \
+                "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
+                --output "$bin_dir/terragrunt"
+              chmod 0755 "$bin_dir/terragrunt"
+              echo "##vso[task.prependpath]$bin_dir"
+            displayName: Install pinned tools
+          - bash: |
+              set -euo pipefail
+              cd "$TG_WORKING_DIR"
+              if [ "$BOOTSTRAP_MODE" = "true" ]; then
+                terragrunt init -backend=false -input=false
+              else
+                terragrunt init -input=false
+              fi
+              terragrunt plan -input=false -out="$BUILD_ARTIFACTSTAGINGDIRECTORY/$TF_PLAN_NAME"
+              terragrunt show -no-color "$BUILD_ARTIFACTSTAGINGDIRECTORY/$TF_PLAN_NAME"
+            displayName: Create plan
+            env:
+              AZDO_ORG_SERVICE_URL: $(AZDO_ORG_SERVICE_URL)
+              AZDO_PERSONAL_ACCESS_TOKEN: $(AZDO_PERSONAL_ACCESS_TOKEN)
+              OCI_TENANCY_OCID: $(OCI_TENANCY_OCID)
+              OCI_USER_OCID: $(OCI_USER_OCID)
+              OCI_FINGERPRINT: $(OCI_FINGERPRINT)
+              OCI_REGION: $(OCI_REGION)
+              OCI_OBJECT_STORAGE_NAMESPACE: $(OCI_OBJECT_STORAGE_NAMESPACE)
+              OCI_TF_STATE_BUCKET: $(OCI_TF_STATE_BUCKET)
+              OCI_COMPARTMENT_ID: $(OCI_COMPARTMENT_ID)
+              OCI_PRIVATE_KEY_PATH: $(ociKey.secureFilePath)
+              OCI_tenancy_ocid: $(OCI_TENANCY_OCID)
+              OCI_user_ocid: $(OCI_USER_OCID)
+              OCI_fingerprint: $(OCI_FINGERPRINT)
+              OCI_region: $(OCI_REGION)
+              OCI_private_key_path: $(ociKey.secureFilePath)
+              BOOTSTRAP_MODE: ${{ parameters.bootstrapMode }}
+          - publish: $(Build.ArtifactStagingDirectory)
+            artifact: terraform-plan
+
+  - stage: Apply
+    displayName: Apply reviewed plan
+    dependsOn: Plan
+    condition: and(succeeded(), or(ne('${{ parameters.bootstrapMode }}', 'true'), eq('${{ parameters.apply }}', 'true')))
+    lockBehavior: sequential
+    jobs:
+      - deployment: apply
+        environment: ${{ parameters.environment }}
+        pool:
+          vmImage: ubuntu-22.04
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                  clean: true
+                - task: DownloadSecureFile@1
+                  name: ociKey
+                  inputs:
+                    secureFile: ${{ parameters.secureFile }}
+                - task: DownloadPipelineArtifact@2
+                  inputs:
+                    artifact: terraform-plan
+                    path: $(Pipeline.Workspace)/terraform-plan
+                - bash: |
+                    set -euo pipefail
+                    bin_dir="${AGENT_TOOLSDIRECTORY}/terraform-bin"
+                    mkdir -p "$bin_dir"
+                    curl --fail --silent --show-error --location \
+                      "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
+                      --output /tmp/terraform.zip
+                    unzip -q /tmp/terraform.zip -d "$bin_dir"
+                    curl --fail --silent --show-error --location \
+                      "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
+                      --output "$bin_dir/terragrunt"
+                    chmod 0755 "$bin_dir/terragrunt"
+                    echo "##vso[task.prependpath]$bin_dir"
+                  displayName: Install pinned tools
+                - bash: |
+                    set -euo pipefail
+                    cd "$TG_WORKING_DIR"
+                    if [ "$BOOTSTRAP_MODE" = "true" ]; then
+                      terragrunt init -backend=false -input=false
+                    else
+                      terragrunt init -input=false
+                    fi
+                    terragrunt apply -input=false "$(Pipeline.Workspace)/terraform-plan/$TF_PLAN_NAME"
+                    if [ "$BOOTSTRAP_MODE" = "true" ]; then
+                      terragrunt output -no-color
+                      # The bucket now exists. Move the state created by this
+                      # apply directly to OCI; never publish state as an artifact.
+                      terragrunt init -migrate-state -input=false -force-copy
+                      terragrunt state pull >/dev/null
+                    fi
+                  displayName: Apply reviewed plan
+                  env:
+                    AZDO_ORG_SERVICE_URL: $(AZDO_ORG_SERVICE_URL)
+                    AZDO_PERSONAL_ACCESS_TOKEN: $(AZDO_PERSONAL_ACCESS_TOKEN)
+                    OCI_TENANCY_OCID: $(OCI_TENANCY_OCID)
+                    OCI_USER_OCID: $(OCI_USER_OCID)
+                    OCI_FINGERPRINT: $(OCI_FINGERPRINT)
+                    OCI_REGION: $(OCI_REGION)
+                    OCI_OBJECT_STORAGE_NAMESPACE: $(OCI_OBJECT_STORAGE_NAMESPACE)
+                    OCI_TF_STATE_BUCKET: $(OCI_TF_STATE_BUCKET)
+                    OCI_COMPARTMENT_ID: $(OCI_COMPARTMENT_ID)
+                    OCI_PRIVATE_KEY_PATH: $(ociKey.secureFilePath)
+                    OCI_tenancy_ocid: $(OCI_TENANCY_OCID)
+                    OCI_user_ocid: $(OCI_USER_OCID)
+                    OCI_fingerprint: $(OCI_FINGERPRINT)
+                    OCI_region: $(OCI_REGION)
+                    OCI_private_key_path: $(ociKey.secureFilePath)
+                    BOOTSTRAP_MODE: ${{ parameters.bootstrapMode }}
