@@ -24,6 +24,64 @@ O template reutilizável da pipeline pertence ao projeto `Platform`, no
 repositório `patter-pipeline-terraform`. O repositório `terraform-state` apenas
 o consome por referência versionada.
 
+## Arquitetura e fluxo de execução
+
+O diagrama abaixo mostra como uma alteração percorre o repositório até chegar
+ao Azure DevOps. Ele é renderizado diretamente pelo GitHub ao abrir esta
+página.
+
+```mermaid
+flowchart LR
+    dev["Desenvolvedor"] --> gh["GitHub\nTerraform"]
+    gh -->|push ou pull request\n develop/master| pipeline["Azure Pipelines\nazure-pipelines.yml"]
+
+    pipeline --> validate["Validate\nterraform fmt\nterragrunt hcl fmt\nterragrunt validate"]
+    validate -->|master fora de PR\ne state migrado| plan["Plan\nterragrunt plan"]
+    plan --> artifact["Artefato\nterraform.tfplan"]
+    artifact --> approval["Environment\nterraform-oci-production"]
+    approval --> apply["Apply\nplano revisado"]
+
+    pipeline -. credenciais .-> secrets["Azure DevOps\nVariable Group + Secure File"]
+    secrets -.-> plan
+    secrets -.-> apply
+
+    apply --> tg["Terragrunt\ninfraestructure/terragrunt.hcl"]
+    tg --> root["root.hcl\nbackend OCI + inputs"]
+    root --> state[("OCI Object Storage\nTerraform state + lock")]
+    tg --> terraform["Terraform\nprovider Azure DevOps"]
+    terraform --> repoModule["Terraform-Modules\nazure_devops/repos\nv1.3.2"]
+    terraform --> pipelineModule["Terraform-Modules\nazure_devops/pipelines"]
+    terraform --> groupsModule["Terraform-Modules\nvariable-groups"]
+
+    repoModule --> azdo["Azure DevOps\nInfrastructure"]
+    pipelineModule --> azdo
+    groupsModule --> azdo
+    azdo --> repos["Repositórios Git\ncloud-aws / cloud-oci / cloud-azure\ncloud-gcp / terraform-state"]
+    azdo --> bootstrap["Pipeline Terraform State\nOCI Bootstrap"]
+
+    platform["Camada Platform\nstate local temporário\nantes do bootstrap"] --> azdoPlatform["Azure DevOps\nPlatform"]
+    azdoPlatform --> template["patter-pipeline-terraform\ntemplate reutilizável"]
+    bootstrap -. referencia .-> template
+```
+
+### Componentes principais
+
+- `azure-devops/organizations/Tecnoform/root.hcl`: configuração compartilhada
+  do Terragrunt e backend nativo OCI.
+- `projects/infraestructure`: administra repositórios, Variable Group e a
+  definição da pipeline de bootstrap do state OCI.
+- `projects/platform`: cria o projeto Azure DevOps `Platform`; permanece com
+  state local temporário até a migração aprovada para OCI.
+- `azure-pipelines.yml`: executa `Validate`, `Plan` e `Apply`, usando o plano
+  revisado como artefato entre os estágios.
+- `Terraform-Modules`: fornece os módulos reutilizáveis consumidos pelas
+  camadas live.
+
+O fluxo de `Apply` depende de aprovação no environment protegido e só é
+executado a partir de um plano previamente publicado. O state e as credenciais
+ficam fora do GitHub; o state usa OCI Object Storage e a chave OCI é entregue à
+pipeline como Secure File.
+
 ## Estrutura
 
 ```text
@@ -87,7 +145,7 @@ por merge da release. Tags são criadas após o merge no commit resultante da
 
 ## Documentação relacionada
 
-- [Pipeline OCI](docs/oci-azure-devops-pipeline.md)
+- [Pipeline OCI](.codex/steering/oci-azure-devops-pipeline.md)
 - [Camada Infrastructure](azure-devops/organizations/Tecnoform/projects/infraestructure/README.md)
 - [Módulos reutilizáveis](https://github.com/Edwanderson94/Terraform-Modules)
 
