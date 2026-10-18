@@ -13,7 +13,7 @@ repository.
 
 - Read `.codex/AGENTS.md` first. Read `.codex/steering/architecture.md` when the task
   affects state, backends, credentials, pipelines, or access.
-- Use [the Trello integration guide](../../../docs/trello-integration.md) when
+- Use [the Trello integration guide](../../steering/trello-integration.md) when
   planning, creating, or updating project-tracking work for the Terraform
   state migration. Keep the board aligned with the approved migration stages;
   a Trello card never authorizes a backend migration, remote change, or access
