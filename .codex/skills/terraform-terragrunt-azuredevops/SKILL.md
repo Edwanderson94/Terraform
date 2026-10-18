@@ -11,7 +11,7 @@ repository.
 
 ## Repository context
 
-- Read `AGENTS.md` first. Read `.codex/steering/architecture.md` when the task
+- Read `.codex/AGENTS.md` first. Read `.codex/steering/architecture.md` when the task
   affects state, backends, credentials, pipelines, or access.
 - Use [the Trello integration guide](../../../docs/trello-integration.md) when
   planning, creating, or updating project-tracking work for the Terraform
