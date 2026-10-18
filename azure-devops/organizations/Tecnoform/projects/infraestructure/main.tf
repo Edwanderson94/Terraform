@@ -14,7 +14,7 @@ module "azuredevops_repositories" {
   repository_branches_to_delete = local.repository_branches_to_delete
 }
 
-module "terraform_oci_bootstrap_variables" {
+module "azuredevops_variablegroup" {
   source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/variable-groups?ref=cfc19ec6bde0fc0d4840463a4b180550bc3f5883"
 
   project_id   = data.azuredevops_project.infrastructure.id
