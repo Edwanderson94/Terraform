@@ -41,3 +41,8 @@ moved {
   from = null_resource.repository_branch_standard["oci"]
   to   = module.azuredevops_repositories.null_resource.repository_branch_standard["oci"]
 }
+
+moved {
+  from = module.terraform_oci_bootstrap_variables.azuredevops_variable_group.this
+  to   = module.azuredevops_variablegroup.azuredevops_variable_group.this
+}
