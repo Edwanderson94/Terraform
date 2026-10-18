@@ -13,3 +13,28 @@ module "azuredevops_repositories" {
   repository_branch_renames     = local.repository_branch_renames
   repository_branches_to_delete = local.repository_branches_to_delete
 }
+
+module "terraform_oci_bootstrap_variables" {
+  source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/variable-groups?ref=cfc19ec6bde0fc0d4840463a4b180550bc3f5883"
+
+  project_id   = data.azuredevops_project.infrastructure.id
+  name         = "terraform-oci-bootstrap"
+  description  = "Credenciais e configuracao da pipeline de bootstrap do state OCI"
+  allow_access = true
+
+  variables = {
+    AZDO_ORG_SERVICE_URL         = var.org_service_url
+    OCI_REGION                   = var.oci_region
+    OCI_OBJECT_STORAGE_NAMESPACE = var.oci_object_storage_namespace
+    OCI_TF_STATE_BUCKET          = var.oci_tf_state_bucket
+    OCI_TF_STATE_MIGRATED        = "false"
+  }
+
+  secret_variables = {
+    AZDO_PERSONAL_ACCESS_TOKEN = var.personal_access_token
+    OCI_TENANCY_OCID           = var.oci_tenancy_ocid
+    OCI_USER_OCID              = var.oci_user_ocid
+    OCI_FINGERPRINT            = var.oci_fingerprint
+    OCI_COMPARTMENT_ID         = var.oci_compartment_id
+  }
+}
