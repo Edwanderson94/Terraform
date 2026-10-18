@@ -1,11 +1,15 @@
 # Terraform
 *.tfstate
 *.tfstate.*
+terraform.tfstate
+terraform.tfstate.*
+*.tfplan
 *.tfvars
 *.backup
 .terraform/
 .terragrunt-cache/
 .terraform.lock.hcl
+backend.tf
 
 # VSCode
 .vscode/
