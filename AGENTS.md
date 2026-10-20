@@ -11,8 +11,9 @@ organization. Reusable modules belong in `Terraform-Modules`.
   Terragrunt, Azure DevOps, pipeline, or state-management work.
 - Use `.codex/skills/gitflow-azure-devops/SKILL.md` for branches, releases, pull
   requests, and tags.
-- Use `.codex/steering/trello-integration.md` for the Terraform-specific Trello
-  workflow. It is a local specialization of the global Trello policy.
+- Synchronize all repository work with Trello according to the global policy. Use
+  `.codex/steering/trello-integration.md` for the Terraform-specific board and
+  workflow specialization.
 
 ## Boundaries
 
