@@ -26,7 +26,7 @@ module "azuredevops_variablegroup" {
     AZDO_ORG_SERVICE_URL         = var.org_service_url
     OCI_REGION                   = var.oci_region
     OCI_OBJECT_STORAGE_NAMESPACE = var.oci_object_storage_namespace
-    OCI_TF_STATE_BUCKET          = var.oci_tf_state_bucket
+    OCI_TF_STATE_BUCKET          = "az-pipeline-tf-state"
     OCI_TF_STATE_MIGRATED        = "false"
   }
 
