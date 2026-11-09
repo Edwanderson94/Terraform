@@ -35,6 +35,10 @@ Configure no GitHub, sem adicionar valores ao repositório:
 O PAT deve ter somente as permissões necessárias para a camada Azure DevOps.
 Não use PAT em texto do workflow, logs, artefatos ou arquivos Terraform.
 
+Os jobs de `validate` usam placeholders não sensíveis apenas para carregar o
+HCL e não fazem chamadas ao Azure DevOps. O job `plan` exige o PAT real e falha
+antes da inicialização se `AZDO_PERSONAL_ACCESS_TOKEN` não estiver configurado.
+
 ### Environment `terraform-azuredevops-production`
 
 Configure aprovação obrigatória pelos responsáveis de infraestrutura e acesso

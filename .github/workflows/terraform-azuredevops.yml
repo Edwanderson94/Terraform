@@ -56,6 +56,16 @@ jobs:
   validate:
     name: Terraform validate
     runs-on: ubuntu-24.04
+    env:
+      AZDO_ORG_SERVICE_URL: https://dev.azure.com/Tecnoform
+      AZDO_PERSONAL_ACCESS_TOKEN: validation-only-placeholder
+      OCI_REGION: validation-only
+      OCI_OBJECT_STORAGE_NAMESPACE: validation-only
+      OCI_TENANCY_OCID: validation-only
+      OCI_USER_OCID: validation-only
+      OCI_FINGERPRINT: validation-only
+      OCI_COMPARTMENT_ID: validation-only
+      OCI_TF_STATE_BUCKET: validation-only
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
@@ -67,6 +77,8 @@ jobs:
             "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
             --output /usr/local/bin/terragrunt
           chmod +x /usr/local/bin/terragrunt
+      - name: Confirm validation-only credentials
+        run: test "$AZDO_PERSONAL_ACCESS_TOKEN" = "validation-only-placeholder"
       - name: Initialize without backend
         working-directory: ${{ env.STACK_DIR }}
         run: terragrunt init -backend=false -input=false
@@ -121,6 +133,12 @@ jobs:
             "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
             --output /usr/local/bin/terragrunt
           chmod +x /usr/local/bin/terragrunt
+      - name: Require Azure DevOps credentials for plan
+        run: |
+          test -n "$AZDO_PERSONAL_ACCESS_TOKEN" || {
+            echo "Configure AZDO_PERSONAL_ACCESS_TOKEN in GitHub repository or Environment Secrets before running plan." >&2
+            exit 1
+          }
       - name: Initialize Terraform backend
         working-directory: ${{ env.STACK_DIR }}
         shell: bash
