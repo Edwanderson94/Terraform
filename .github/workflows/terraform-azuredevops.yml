@@ -1,0 +1,205 @@
+name: Terraform Azure DevOps
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - "azure-devops/**"
+      - ".github/workflows/terraform-azuredevops.yml"
+      - "docs/github-actions.md"
+  push:
+    branches: [master]
+    paths:
+      - "azure-devops/**"
+      - ".github/workflows/terraform-azuredevops.yml"
+      - "docs/github-actions.md"
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Solicitar apply do plan desta execução"
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: terraform-azuredevops-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  TF_IN_AUTOMATION: "true"
+  TF_INPUT: "false"
+  TERRAFORM_VERSION: "1.15.7"
+  TERRAGRUNT_VERSION: "1.0.8"
+  STACK_DIR: azure-devops/organizations/Tecnoform/projects/infraestructure
+
+jobs:
+  fmt:
+    name: Terraform format
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+      - name: Check Terraform formatting
+        run: terraform fmt -check -recursive -diff
+      - name: Check whitespace
+        run: git diff --check
+
+  validate:
+    name: Terraform validate
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+      - name: Install Terragrunt
+        run: |
+          curl --fail --silent --show-error --location \
+            "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
+            --output /usr/local/bin/terragrunt
+          chmod +x /usr/local/bin/terragrunt
+      - name: Initialize without backend
+        working-directory: ${{ env.STACK_DIR }}
+        run: terragrunt init -backend=false -input=false
+      - name: Validate Terraform configuration
+        working-directory: ${{ env.STACK_DIR }}
+        run: terragrunt validate
+      - name: Check Terragrunt formatting
+        working-directory: ${{ env.STACK_DIR }}
+        run: terragrunt hcl fmt --check
+
+  static:
+    name: Static checks
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for committed sensitive files
+        shell: bash
+        run: |
+          set -euo pipefail
+          forbidden='(^|/)(terraform\.tfstate([^.].*)?|tfplan|backend\.tf|.*\.pem)$'
+          if git ls-files | grep -E "$forbidden"; then
+            echo "Sensitive Terraform or key material is tracked by Git." >&2
+            exit 1
+          fi
+      - name: Check repository whitespace
+        run: git diff --check
+
+  plan:
+    name: Terraform plan
+    needs: [fmt, validate, static]
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    env:
+      AZDO_ORG_SERVICE_URL: ${{ secrets.AZDO_ORG_SERVICE_URL }}
+      AZDO_PERSONAL_ACCESS_TOKEN: ${{ secrets.AZDO_PERSONAL_ACCESS_TOKEN }}
+      OCI_REGION: ${{ secrets.OCI_REGION }}
+      OCI_OBJECT_STORAGE_NAMESPACE: ${{ secrets.OCI_OBJECT_STORAGE_NAMESPACE }}
+      OCI_TENANCY_OCID: ${{ secrets.OCI_TENANCY_OCID }}
+      OCI_USER_OCID: ${{ secrets.OCI_USER_OCID }}
+      OCI_FINGERPRINT: ${{ secrets.OCI_FINGERPRINT }}
+      OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
+      OCI_TF_STATE_BUCKET: ${{ secrets.OCI_TF_STATE_BUCKET }}
+      OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+      - name: Install Terragrunt
+        run: |
+          curl --fail --silent --show-error --location \
+            "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
+            --output /usr/local/bin/terragrunt
+          chmod +x /usr/local/bin/terragrunt
+      - name: Initialize Terraform backend
+        working-directory: ${{ env.STACK_DIR }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.apply }}" = "true" ]; then
+            test "$OCI_TF_STATE_MIGRATED" = "true" || {
+              echo "OCI_TF_STATE_MIGRATED must be true for an apply request." >&2
+              exit 1
+            }
+            terragrunt init -input=false
+          else
+            terragrunt init -backend=false -input=false
+          fi
+      - name: Create plan
+        working-directory: ${{ env.STACK_DIR }}
+        run: |
+          set +e
+          terragrunt plan -input=false -out=terraform.tfplan -detailed-exitcode
+          status=$?
+          if [ "$status" -gt 2 ]; then
+            exit "$status"
+          fi
+          echo "Terraform plan exit code: $status"
+      - name: Upload reviewed plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan-${{ github.run_id }}
+          path: ${{ env.STACK_DIR }}/terraform.tfplan
+          retention-days: 3
+          if-no-files-found: error
+
+  apply:
+    name: Apply reviewed plan
+    needs: [plan]
+    if: github.event_name == 'workflow_dispatch' && inputs.apply == true
+    runs-on: ubuntu-24.04
+    environment: terraform-azuredevops-production
+    env:
+      AZDO_ORG_SERVICE_URL: ${{ secrets.AZDO_ORG_SERVICE_URL }}
+      AZDO_PERSONAL_ACCESS_TOKEN: ${{ secrets.AZDO_PERSONAL_ACCESS_TOKEN }}
+      OCI_REGION: ${{ secrets.OCI_REGION }}
+      OCI_OBJECT_STORAGE_NAMESPACE: ${{ secrets.OCI_OBJECT_STORAGE_NAMESPACE }}
+      OCI_TENANCY_OCID: ${{ secrets.OCI_TENANCY_OCID }}
+      OCI_USER_OCID: ${{ secrets.OCI_USER_OCID }}
+      OCI_FINGERPRINT: ${{ secrets.OCI_FINGERPRINT }}
+      OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
+      OCI_TF_STATE_BUCKET: ${{ secrets.OCI_TF_STATE_BUCKET }}
+      OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+      - name: Install Terragrunt
+        run: |
+          curl --fail --silent --show-error --location \
+            "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
+            --output /usr/local/bin/terragrunt
+          chmod +x /usr/local/bin/terragrunt
+      - name: Require migrated OCI backend
+        working-directory: ${{ env.STACK_DIR }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$OCI_TF_STATE_MIGRATED" = "true" || {
+            echo "OCI_TF_STATE_MIGRATED must be true in the protected environment." >&2
+            exit 1
+          }
+          terragrunt init -input=false
+          test -f .terraform/terraform.tfstate || {
+            echo "Terraform backend metadata was not generated." >&2
+            exit 1
+          }
+          test "$(jq -r '.backend.type // empty' .terraform/terraform.tfstate)" = "oci" || {
+            echo "The effective Terraform backend is not OCI; apply is blocked." >&2
+            exit 1
+          }
+      - name: Download the exact plan
+        uses: actions/download-artifact@v4
+        with:
+          name: terraform-plan-${{ github.run_id }}
+          path: ${{ env.STACK_DIR }}
+      - name: Apply reviewed plan
+        working-directory: ${{ env.STACK_DIR }}
+        run: terragrunt apply -input=false terraform.tfplan
