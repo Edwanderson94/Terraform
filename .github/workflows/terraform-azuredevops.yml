@@ -8,7 +8,11 @@ on:
       - ".github/workflows/terraform-azuredevops.yml"
       - "docs/github-actions.md"
   push:
-    branches: [master]
+    branches:
+      - master
+      - "feature/**"
+      - "fix/**"
+      - "release/**"
     paths:
       - "azure-devops/**"
       - ".github/workflows/terraform-azuredevops.yml"
