@@ -3,7 +3,9 @@
 # ================================================================
 
 module "azuredevops_repositories" {
-  source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/repos?ref=c9211a78485c45b4963fdbc64ed284bba5dc0cf2"
+  source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/repos?ref=4cc38f6d384cd1ce9916ba0ef57f6a5a34a29b84"
+
+  manage_repository_branches = false
 
   org_service_url               = var.org_service_url
   personal_access_token         = var.personal_access_token
@@ -27,6 +29,7 @@ module "azuredevops_variablegroup" {
     OCI_REGION                   = var.oci_region
     OCI_OBJECT_STORAGE_NAMESPACE = var.oci_object_storage_namespace
     OCI_TF_STATE_BUCKET          = var.oci_tf_state_bucket
+    OCI_TF_STATE_KEY             = "aws/cloud-aws-infra/terraform.tfstate"
     OCI_TF_STATE_MIGRATED        = "false"
   }
 
@@ -44,7 +47,7 @@ module "azuredevops_aws_variablegroup" {
 
   project_id   = data.azuredevops_project.infrastructure.id
   name         = "terraform-aws-cloud"
-  description  = "Credenciais e configuracao do backend e das pipelines AWS"
+  description  = "Variaveis estruturais da pipeline AWS; preencher credenciais e state antes do plan"
   allow_access = true
 
   # Session tokens are optional; omit the variable for long-lived credentials.
