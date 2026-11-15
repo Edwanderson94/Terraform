@@ -3,7 +3,7 @@
 # ================================================================
 
 module "azuredevops_repositories" {
-  source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/repos?ref=v1.3.2"
+  source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/repos?ref=c9211a78485c45b4963fdbc64ed284bba5dc0cf2"
 
   org_service_url               = var.org_service_url
   personal_access_token         = var.personal_access_token
