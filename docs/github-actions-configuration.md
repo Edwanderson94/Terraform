@@ -26,5 +26,10 @@ shell credentials differ from the working identity. Never overwrite them with
 an unverified shell fingerprint or a mismatched signing key.
 
 AWS workload credentials are separate from the credentials used to administer
-Azure DevOps. Do not inject an unrelated AWS profile into the working AWS
-Variable Group. Its credential reconciliation is still pending in PR #16.
+Azure DevOps. The requested `terraform-aws-pipeline` identity is supplied through
+Secrets `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`; `AWS_SESSION_TOKEN` is
+optional for temporary credentials. Non-secret group configuration uses Variables
+`AWS_REGION`, `AWS_TF_STATE_BUCKET`, `AWS_TF_STATE_KEY` and
+`AWS_TF_STATE_MIGRATED`, initialized from existing group ID 10.
+Never upload an empty secret or substitute an unrelated AWS profile. Apply must
+remain blocked until the matching secret is available from the approved source.

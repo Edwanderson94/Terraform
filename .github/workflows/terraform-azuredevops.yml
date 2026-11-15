@@ -136,10 +136,10 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_TF_STATE_BUCKET: ${{ secrets.AWS_TF_STATE_BUCKET }}
-      AWS_TF_STATE_KEY: ${{ secrets.AWS_TF_STATE_KEY }}
-      AWS_TF_STATE_MIGRATED: ${{ secrets.AWS_TF_STATE_MIGRATED }}
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_TF_STATE_BUCKET: ${{ vars.AWS_TF_STATE_BUCKET }}
+      AWS_TF_STATE_KEY: ${{ vars.AWS_TF_STATE_KEY }}
+      AWS_TF_STATE_MIGRATED: ${{ vars.AWS_TF_STATE_MIGRATED }}
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
@@ -236,10 +236,10 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_TF_STATE_BUCKET: ${{ secrets.AWS_TF_STATE_BUCKET }}
-      AWS_TF_STATE_KEY: ${{ secrets.AWS_TF_STATE_KEY }}
-      AWS_TF_STATE_MIGRATED: ${{ secrets.AWS_TF_STATE_MIGRATED }}
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_TF_STATE_BUCKET: ${{ vars.AWS_TF_STATE_BUCKET }}
+      AWS_TF_STATE_KEY: ${{ vars.AWS_TF_STATE_KEY }}
+      AWS_TF_STATE_MIGRATED: ${{ vars.AWS_TF_STATE_MIGRATED }}
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
