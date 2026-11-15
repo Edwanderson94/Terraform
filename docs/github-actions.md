@@ -8,14 +8,20 @@ Azure Pipelines deixa de ser o executor desse repositório.
 ## Fluxo
 
 - Pull requests para `master` executam `fmt`, `validate` e verificações estáticas.
-- Pushes em `master` executam o `plan` com o backend OCI e publicam o plano por
-  três dias como artefato da mesma execução.
+- Pushes em `master` executam o `plan` somente quando o backend efetivo é OCI e
+  publicam o plano por três dias como artefato da mesma execução. Se o stack
+  ainda estiver com backend local, o workflow falha explicitamente antes do
+  plano.
 - `workflow_dispatch` com `apply=true` executa novo `plan` e, após aprovação do
   Environment `terraform-azuredevops-production`, aplica exatamente esse plano.
 - `concurrency` serializa execuções por referência GitHub; o locking do backend
   OCI continua sendo obrigatório.
 - O apply fica bloqueado até `OCI_TF_STATE_MIGRATED=true` e até o backend efetivo
   ser confirmado como `oci`.
+
+O workflow não cria o bucket, migra state nem altera o backend. A configuração,
+backup, migração aprovada e teste de locking do backend OCI são pré-requisitos
+operacionais para habilitar o `plan` e permanecem fora deste card.
 
 ## Secrets e Environment
 

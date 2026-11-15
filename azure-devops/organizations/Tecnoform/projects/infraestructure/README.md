@@ -53,8 +53,10 @@ terragrunt plan
 terragrunt apply
 ```
 
-O backend atual é local. Não use `apply` em um runner efêmero de pipeline sem
-persistir o state ou migrá-lo antes para um backend remoto compartilhado.
+O backend atual desta camada ainda é local. Não use `apply` em um runner efêmero
+de pipeline. Antes de habilitar o `plan`/`apply` do GitHub Actions, configure o
+backend OCI, faça backup e migração aprovados, valide o locking e confirme que o
+backend efetivo é `oci`. Este fluxo não executa essa migração automaticamente.
 
 ## Variable Group AWS
 
