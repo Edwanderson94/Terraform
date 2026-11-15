@@ -33,6 +33,13 @@ Configure no GitHub, sem adicionar valores ao repositório:
 - `OCI_COMPARTMENT_ID`
 - `OCI_TF_STATE_BUCKET`
 - `OCI_TF_STATE_MIGRATED`
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_SESSION_TOKEN` (opcional)
+- `AWS_REGION`
+- `AWS_TF_STATE_BUCKET`
+- `AWS_TF_STATE_KEY`
+- `AWS_TF_STATE_MIGRATED`
 
 O PAT deve ter somente as permissões necessárias para a camada Azure DevOps. A
 chave privada OCI não é armazenada no GitHub: o runner deve recebê-la por um

@@ -62,6 +62,13 @@ jobs:
       OCI_FINGERPRINT: validation-only
       OCI_COMPARTMENT_ID: validation-only
       OCI_TF_STATE_BUCKET: validation-only
+      AWS_ACCESS_KEY_ID: validation-only
+      AWS_SECRET_ACCESS_KEY: validation-only
+      AWS_SESSION_TOKEN: ""
+      AWS_REGION: validation-only
+      AWS_TF_STATE_BUCKET: validation-only
+      AWS_TF_STATE_KEY: validation-only
+      AWS_TF_STATE_MIGRATED: "false"
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
@@ -118,6 +125,13 @@ jobs:
       OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
       OCI_TF_STATE_BUCKET: ${{ secrets.OCI_TF_STATE_BUCKET }}
       OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_TF_STATE_BUCKET: ${{ secrets.AWS_TF_STATE_BUCKET }}
+      AWS_TF_STATE_KEY: ${{ secrets.AWS_TF_STATE_KEY }}
+      AWS_TF_STATE_MIGRATED: ${{ secrets.AWS_TF_STATE_MIGRATED }}
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
@@ -177,6 +191,13 @@ jobs:
       OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
       OCI_TF_STATE_BUCKET: ${{ secrets.OCI_TF_STATE_BUCKET }}
       OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_TF_STATE_BUCKET: ${{ secrets.AWS_TF_STATE_BUCKET }}
+      AWS_TF_STATE_KEY: ${{ secrets.AWS_TF_STATE_KEY }}
+      AWS_TF_STATE_MIGRATED: ${{ secrets.AWS_TF_STATE_MIGRATED }}
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
