@@ -59,6 +59,20 @@ O backend desta camada é o OCI Object Storage. Antes de habilitar o
 locking e confirme que o backend efetivo é `oci`. O fluxo não executa essa
 migração automaticamente.
 
+## Reconciliation of existing resources
+
+Repository initialization is preserved and destruction is blocked by the pinned
+module. This stack disables branch provisioners with
+`manage_repository_branches = false`; existing branches remain owned by their
+repository teams.
+
+`imports.tf` associates the existing `terraform-aws-cloud` group (ID 10) with
+Terraform. Declarative import requires Terraform >= 1.5. Importing retrieves
+blank secret values: obtain the original credentials through the approved secret
+store before reviewing a plan. Never apply empty credentials over the working
+group. Acceptance requires no remote repository or Variable Group changes;
+state adoption must be reviewed separately from resource updates.
+
 ## Variable Group AWS
 
 O grupo `terraform-aws-cloud` é gerenciado exclusivamente por Terraform. Os
