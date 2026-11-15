@@ -188,11 +188,13 @@ jobs:
         working-directory: ${{ env.STACK_DIR }}
         run: |
           set -euo pipefail
-          test "$(jq -r '.backend.type // empty' .terraform/terraform.tfstate)" = "oci" || {
+          backend_file="$(find .terragrunt-cache -type f -name backend.tf -print -quit)"
+          test -n "$backend_file" && grep -q 'backend "oci"' "$backend_file" || {
             echo "The effective Terraform backend is not OCI; plan is blocked." >&2
             echo "Configure and validate the remote OCI backend before enabling this workflow." >&2
             exit 1
           }
+          terragrunt state pull >/dev/null
       - name: Create plan
         working-directory: ${{ env.STACK_DIR }}
         run: |
@@ -268,10 +270,12 @@ jobs:
           set -euo pipefail
           test "$OCI_TF_STATE_MIGRATED" = "true"
           terragrunt init -reconfigure -input=false
-          test "$(jq -r '.backend.type // empty' .terraform/terraform.tfstate)" = "oci" || {
+          backend_file="$(find .terragrunt-cache -type f -name backend.tf -print -quit)"
+          test -n "$backend_file" && grep -q 'backend "oci"' "$backend_file" || {
             echo "The effective Terraform backend is not OCI; apply is blocked." >&2
             exit 1
           }
+          terragrunt state pull >/dev/null
       - uses: actions/download-artifact@v4
         with:
           name: terraform-plan-${{ github.run_id }}
