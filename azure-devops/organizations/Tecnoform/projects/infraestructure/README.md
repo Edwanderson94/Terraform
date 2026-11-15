@@ -25,7 +25,8 @@ Azure DevOps existente `Infrastructure`, dentro da organização `Tecnoform`.
 | `gcp` | `cloud-gcp-infra` | `master` |
 | `terraform_state` | `terraform-state` | `master` |
 
-O padrão de branches é `develop`, `homolog` e `master`. Alterações de nomes,
+A única branch obrigatória é `master`. Branches adicionais existentes são preservadas.
+Alterações de nomes,
 branches ou exclusões devem ser feitas em `locals.tf` e revisadas no plano antes
 do apply.
 
