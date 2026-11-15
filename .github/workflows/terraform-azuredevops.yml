@@ -288,4 +288,19 @@ jobs:
           path: ${{ env.STACK_DIR }}
       - name: Apply exact reviewed plan
         working-directory: ${{ env.STACK_DIR }}
-        run: terragrunt apply -input=false terraform.tfplan
+        run: |
+          set -euo pipefail
+          if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
+            # Imported secret values cannot be recovered through the Azure API.
+            # Reject writes to the working AWS group until the original secret
+            # source has been supplied. Inspect JSON through a pipe, never logs.
+            if terragrunt show -json "$GITHUB_WORKSPACE/$STACK_DIR/terraform.tfplan" | jq -e '
+              any(.resource_changes[]?;
+                .address == "module.azuredevops_aws_variablegroup.azuredevops_variable_group.this"
+                and .change.actions != ["no-op"])
+            ' >/dev/null; then
+              echo "AWS Variable Group changes require its original credentials; apply blocked." >&2
+              exit 1
+            fi
+          fi
+          terragrunt apply -input=false terraform.tfplan
