@@ -294,11 +294,12 @@ jobs:
             # Imported secret values cannot be recovered through the Azure API.
             # Reject writes to the working AWS group until the original secret
             # source has been supplied. Inspect JSON through a pipe, never logs.
-            if terragrunt show -json "$GITHUB_WORKSPACE/$STACK_DIR/terraform.tfplan" | jq -e '
+            aws_group_changes="$(terragrunt show -json "$GITHUB_WORKSPACE/$STACK_DIR/terraform.tfplan" | jq -r '
               any(.resource_changes[]?;
                 .address == "module.azuredevops_aws_variablegroup.azuredevops_variable_group.this"
                 and .change.actions != ["no-op"])
-            ' >/dev/null; then
+            ')"
+            if [ "$aws_group_changes" != "false" ]; then
               echo "AWS Variable Group changes require its original credentials; apply blocked." >&2
               exit 1
             fi
