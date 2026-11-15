@@ -38,3 +38,33 @@ module "azuredevops_variablegroup" {
     OCI_COMPARTMENT_ID         = var.oci_compartment_id
   }
 }
+
+module "azuredevops_aws_variablegroup" {
+  source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/variable-groups?ref=cfc19ec6bde0fc0d4840463a4b180550bc3f5883"
+
+  project_id   = data.azuredevops_project.infrastructure.id
+  name         = "terraform-aws-cloud"
+  description  = "Credenciais e configuracao do backend e das pipelines AWS"
+  allow_access = true
+
+  # Session tokens are optional; omit the variable for long-lived credentials.
+  # Temporary credentials must provide all three values from the same session.
+  variables = merge(
+    {
+      AWS_ACCESS_KEY_ID     = var.aws_access_key_id
+      AWS_REGION            = var.aws_region
+      AWS_TF_STATE_BUCKET   = var.aws_tf_state_bucket
+      AWS_TF_STATE_KEY      = var.aws_tf_state_key
+      AWS_TF_STATE_MIGRATED = var.aws_tf_state_migrated
+    }
+  )
+
+  secret_variables = merge(
+    {
+      AWS_SECRET_ACCESS_KEY = var.aws_secret_access_key
+    },
+    trimspace(coalesce(var.aws_session_token, "")) == "" ? {} : {
+      AWS_SESSION_TOKEN = var.aws_session_token
+    }
+  )
+}
