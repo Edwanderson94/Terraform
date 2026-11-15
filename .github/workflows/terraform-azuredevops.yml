@@ -202,6 +202,12 @@ jobs:
           terragrunt plan -input=false -out=terraform.tfplan -detailed-exitcode
           status=$?
           if [ "$status" -gt 2 ]; then exit "$status"; fi
+          plan_file="$(find .terragrunt-cache -type f -name terraform.tfplan -print -quit)"
+          test -n "$plan_file" || {
+            echo "Terragrunt did not produce a plan file." >&2
+            exit 1
+          }
+          cp "$plan_file" terraform.tfplan
           echo "Terraform plan exit code: $status"
       - name: Upload reviewed plan
         uses: actions/upload-artifact@v4
