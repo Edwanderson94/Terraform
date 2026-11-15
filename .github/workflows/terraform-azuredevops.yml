@@ -55,13 +55,17 @@ jobs:
     env:
       AZDO_ORG_SERVICE_URL: https://dev.azure.com/Tecnoform
       AZDO_PERSONAL_ACCESS_TOKEN: validation-only-placeholder
-      OCI_REGION: validation-only
+      OCI_REGION: us-ashburn-1
       OCI_OBJECT_STORAGE_NAMESPACE: validation-only
-      OCI_TENANCY_OCID: validation-only
-      OCI_USER_OCID: validation-only
-      OCI_FINGERPRINT: validation-only
-      OCI_COMPARTMENT_ID: validation-only
+      OCI_TENANCY_OCID: ocid1.tenancy.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      OCI_USER_OCID: ocid1.user.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      OCI_FINGERPRINT: 00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff
+      OCI_COMPARTMENT_ID: ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
       OCI_TF_STATE_BUCKET: validation-only
+      OCI_tenancy_ocid: ocid1.tenancy.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      OCI_user_ocid: ocid1.user.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      OCI_fingerprint: 00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff
+      OCI_region: us-ashburn-1
       AWS_ACCESS_KEY_ID: validation-only
       AWS_SECRET_ACCESS_KEY: validation-only
       AWS_SESSION_TOKEN: ""
@@ -81,6 +85,13 @@ jobs:
             "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
             --output /usr/local/bin/terragrunt
           chmod 0755 /usr/local/bin/terragrunt
+      - name: Configure validation-only OCI key
+        run: |
+          set -euo pipefail
+          key_path="$RUNNER_TEMP/oci-validation-key.pem"
+          umask 077
+          openssl genrsa -out "$key_path" 2048 2>/dev/null
+          echo "OCI_private_key_path=$key_path" >> "$GITHUB_ENV"
       - name: Initialize without backend
         working-directory: ${{ env.STACK_DIR }}
         run: terragrunt init -backend=false -input=false
@@ -125,6 +136,10 @@ jobs:
       OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
       OCI_TF_STATE_BUCKET: ${{ secrets.OCI_TF_STATE_BUCKET }}
       OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
+      OCI_tenancy_ocid: ${{ secrets.OCI_TENANCY_OCID }}
+      OCI_user_ocid: ${{ secrets.OCI_USER_OCID }}
+      OCI_fingerprint: ${{ secrets.OCI_FINGERPRINT }}
+      OCI_region: ${{ secrets.OCI_REGION }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
@@ -155,6 +170,20 @@ jobs:
             echo "OCI_TF_STATE_MIGRATED must be true before plan/apply." >&2
             exit 1
           }
+      - name: Configure OCI API key
+        env:
+          OCI_PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$OCI_PRIVATE_KEY" || {
+            echo "Configure OCI_PRIVATE_KEY in GitHub Secrets." >&2
+            exit 1
+          }
+          key_path="$RUNNER_TEMP/oci-api-key.pem"
+          umask 077
+          printf '%s\n' "$OCI_PRIVATE_KEY" > "$key_path"
+          echo "OCI_PRIVATE_KEY_PATH=$key_path" >> "$GITHUB_ENV"
+          echo "OCI_private_key_path=$key_path" >> "$GITHUB_ENV"
       - name: Initialize configured backend
         working-directory: ${{ env.STACK_DIR }}
         run: terragrunt init -reconfigure -input=false
@@ -200,6 +229,10 @@ jobs:
       OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
       OCI_TF_STATE_BUCKET: ${{ secrets.OCI_TF_STATE_BUCKET }}
       OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
+      OCI_tenancy_ocid: ${{ secrets.OCI_TENANCY_OCID }}
+      OCI_user_ocid: ${{ secrets.OCI_USER_OCID }}
+      OCI_fingerprint: ${{ secrets.OCI_FINGERPRINT }}
+      OCI_region: ${{ secrets.OCI_REGION }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
@@ -219,6 +252,20 @@ jobs:
             "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
             --output /usr/local/bin/terragrunt
           chmod 0755 /usr/local/bin/terragrunt
+      - name: Configure OCI API key
+        env:
+          OCI_PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$OCI_PRIVATE_KEY" || {
+            echo "Configure OCI_PRIVATE_KEY in GitHub Secrets." >&2
+            exit 1
+          }
+          key_path="$RUNNER_TEMP/oci-api-key.pem"
+          umask 077
+          printf '%s\n' "$OCI_PRIVATE_KEY" > "$key_path"
+          echo "OCI_PRIVATE_KEY_PATH=$key_path" >> "$GITHUB_ENV"
+          echo "OCI_private_key_path=$key_path" >> "$GITHUB_ENV"
       - name: Require OCI backend
         working-directory: ${{ env.STACK_DIR }}
         run: |

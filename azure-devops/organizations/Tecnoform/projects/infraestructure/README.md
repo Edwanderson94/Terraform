@@ -7,7 +7,7 @@ Azure DevOps existente `Infrastructure`, dentro da organização `Tecnoform`.
 
 - `terragrunt.hcl` inclui `../../root.hcl` e define `project_name = "Infrastructure"`.
 - `root.hcl` recebe a URL da organização e o PAT por variáveis de ambiente, além
-  de configurar o backend local atual.
+  de gerar a configuração do backend OCI para esta camada.
 - `main.tf` chama o módulo reutilizável `azure_devops/repos` do repositório
   `Terraform-Modules`, fixado na tag `v1.3.2`.
 - `main.tf` também declara os Variable Groups `terraform-oci-bootstrap` e
@@ -53,10 +53,10 @@ terragrunt plan
 terragrunt apply
 ```
 
-O backend atual desta camada ainda é local. Não use `apply` em um runner efêmero
-de pipeline. Antes de habilitar o `plan`/`apply` do GitHub Actions, configure o
-backend OCI, faça backup e migração aprovados, valide o locking e confirme que o
-backend efetivo é `oci`. Este fluxo não executa essa migração automaticamente.
+O backend desta camada é o OCI Object Storage. Antes de habilitar o
+`plan`/`apply` do GitHub Actions, faça backup e migração aprovados, valide o
+locking e confirme que o backend efetivo é `oci`. O fluxo não executa essa
+migração automaticamente.
 
 ## Variable Group AWS
 

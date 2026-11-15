@@ -19,9 +19,12 @@ Azure Pipelines deixa de ser o executor desse repositório.
 - O apply fica bloqueado até `OCI_TF_STATE_MIGRATED=true` e até o backend efetivo
   ser confirmado como `oci`.
 
-O workflow não cria o bucket, migra state nem altera o backend. A configuração,
-backup, migração aprovada e teste de locking do backend OCI são pré-requisitos
-operacionais para habilitar o `plan` e permanecem fora deste card.
+O workflow não cria o bucket nem migra state automaticamente. A configuração do
+backend OCI é gerada pelo Terragrunt com o bucket, namespace e chave da camada;
+a chave privada é escrita somente no diretório temporário do runner. Backup,
+migração aprovada, teste de locking e ativação de
+`OCI_TF_STATE_MIGRATED=true` continuam sendo pré-requisitos operacionais para
+habilitar o `plan`.
 
 ## Secrets e Environment
 
@@ -39,6 +42,8 @@ Configure no GitHub, sem adicionar valores ao repositório:
 - `OCI_COMPARTMENT_ID`
 - `OCI_TF_STATE_BUCKET`
 - `OCI_TF_STATE_MIGRATED`
+- `OCI_PRIVATE_KEY` (conteúdo PEM da chave de assinatura OCI, usado apenas no
+  diretório temporário do runner)
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_SESSION_TOKEN` (opcional)
@@ -48,9 +53,9 @@ Configure no GitHub, sem adicionar valores ao repositório:
 - `AWS_TF_STATE_MIGRATED`
 
 O PAT deve ter somente as permissões necessárias para a camada Azure DevOps. A
-chave privada OCI não é armazenada no GitHub: o runner deve recebê-la por um
-mecanismo protegido de credenciais da organização quando o backend exigir essa
-autenticação.
+chave privada OCI deve ser armazenada como Secret protegido; o workflow a
+materializa apenas no diretório temporário do runner e não a publica como
+artefato.
 
 ### Environment `terraform-azuredevops-production`
 
