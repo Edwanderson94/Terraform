@@ -63,7 +63,7 @@ module "azuredevops_aws_variablegroup" {
     {
       AWS_SECRET_ACCESS_KEY = var.aws_secret_access_key
     },
-    trimspace(coalesce(var.aws_session_token, "")) == "" ? {} : {
+    try(trimspace(var.aws_session_token), "") == "" ? {} : {
       AWS_SESSION_TOKEN = var.aws_session_token
     }
   )
