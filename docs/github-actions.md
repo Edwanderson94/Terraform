@@ -40,7 +40,6 @@ Configure no GitHub, sem adicionar valores ao repositório:
 - `OCI_USER_OCID`
 - `OCI_FINGERPRINT`
 - `OCI_COMPARTMENT_ID`
-- `OCI_TF_STATE_BUCKET`
 - `OCI_TF_STATE_MIGRATED`
 - `OCI_PRIVATE_KEY` (conteúdo PEM da chave de assinatura OCI, usado apenas no
   diretório temporário do runner)
@@ -55,7 +54,9 @@ Configure no GitHub, sem adicionar valores ao repositório:
 O PAT deve ter somente as permissões necessárias para a camada Azure DevOps. A
 chave privada OCI deve ser armazenada como Secret protegido; o workflow a
 materializa apenas no diretório temporário do runner e não a publica como
-artefato.
+artefato. O nome `gh-pipeline-tf-state` é definido no workflow e não deve ser
+substituído por um Secret ou compartilhado com a pipeline Azure DevOps, que usa
+o bucket `az-pipeline-tf-state`.
 
 ### Environment `terraform-azuredevops-production`
 

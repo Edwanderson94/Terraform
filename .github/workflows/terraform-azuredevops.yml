@@ -34,6 +34,8 @@ env:
   TERRAFORM_VERSION: "1.15.7"
   TERRAGRUNT_VERSION: "1.0.8"
   STACK_DIR: azure-devops/organizations/Tecnoform/projects/infraestructure
+  # Keep GitHub Actions state isolated from the Azure DevOps bootstrap state.
+  OCI_TF_STATE_BUCKET: gh-pipeline-tf-state
 
 jobs:
   fmt:
@@ -134,7 +136,6 @@ jobs:
       OCI_USER_OCID: ${{ secrets.OCI_USER_OCID }}
       OCI_FINGERPRINT: ${{ secrets.OCI_FINGERPRINT }}
       OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
-      OCI_TF_STATE_BUCKET: ${{ secrets.OCI_TF_STATE_BUCKET }}
       OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
       OCI_tenancy_ocid: ${{ secrets.OCI_TENANCY_OCID }}
       OCI_user_ocid: ${{ secrets.OCI_USER_OCID }}
@@ -227,7 +228,6 @@ jobs:
       OCI_USER_OCID: ${{ secrets.OCI_USER_OCID }}
       OCI_FINGERPRINT: ${{ secrets.OCI_FINGERPRINT }}
       OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
-      OCI_TF_STATE_BUCKET: ${{ secrets.OCI_TF_STATE_BUCKET }}
       OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
       OCI_tenancy_ocid: ${{ secrets.OCI_TENANCY_OCID }}
       OCI_user_ocid: ${{ secrets.OCI_USER_OCID }}
