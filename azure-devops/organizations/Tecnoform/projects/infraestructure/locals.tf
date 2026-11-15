@@ -4,7 +4,7 @@
 
 locals {
   repository_default_branch = "master"
-  repository_branches       = ["develop", "homolog", "master"]
+  repository_branches       = ["master"]
 
   repositories = {
     aws = {
