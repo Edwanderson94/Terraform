@@ -34,6 +34,8 @@ env:
   TERRAFORM_VERSION: "1.15.7"
   TERRAGRUNT_VERSION: "1.0.8"
   STACK_DIR: azure-devops/organizations/Tecnoform/projects/infraestructure
+  # Keep GitHub Actions state isolated from the Azure DevOps bootstrap state.
+  OCI_TF_STATE_BUCKET: gh-pipeline-tf-state
 
 jobs:
   fmt:
@@ -62,10 +64,6 @@ jobs:
       OCI_FINGERPRINT: 00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff
       OCI_COMPARTMENT_ID: ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
       OCI_TF_STATE_BUCKET: validation-only
-      OCI_tenancy_ocid: ocid1.tenancy.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-      OCI_user_ocid: ocid1.user.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-      OCI_fingerprint: 00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff
-      OCI_region: us-ashburn-1
       AWS_ACCESS_KEY_ID: validation-only
       AWS_SECRET_ACCESS_KEY: validation-only
       AWS_SESSION_TOKEN: ""
@@ -134,12 +132,7 @@ jobs:
       OCI_USER_OCID: ${{ secrets.OCI_USER_OCID }}
       OCI_FINGERPRINT: ${{ secrets.OCI_FINGERPRINT }}
       OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
-      OCI_TF_STATE_BUCKET: ${{ secrets.OCI_TF_STATE_BUCKET }}
       OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
-      OCI_tenancy_ocid: ${{ secrets.OCI_TENANCY_OCID }}
-      OCI_user_ocid: ${{ secrets.OCI_USER_OCID }}
-      OCI_fingerprint: ${{ secrets.OCI_FINGERPRINT }}
-      OCI_region: ${{ secrets.OCI_REGION }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
@@ -184,6 +177,10 @@ jobs:
           printf '%s\n' "$OCI_PRIVATE_KEY" > "$key_path"
           echo "OCI_PRIVATE_KEY_PATH=$key_path" >> "$GITHUB_ENV"
           echo "OCI_private_key_path=$key_path" >> "$GITHUB_ENV"
+          echo "OCI_tenancy_ocid=$OCI_TENANCY_OCID" >> "$GITHUB_ENV"
+          echo "OCI_user_ocid=$OCI_USER_OCID" >> "$GITHUB_ENV"
+          echo "OCI_fingerprint=$OCI_FINGERPRINT" >> "$GITHUB_ENV"
+          echo "OCI_region=$OCI_REGION" >> "$GITHUB_ENV"
       - name: Initialize configured backend
         working-directory: ${{ env.STACK_DIR }}
         run: terragrunt init -reconfigure -input=false
@@ -191,11 +188,13 @@ jobs:
         working-directory: ${{ env.STACK_DIR }}
         run: |
           set -euo pipefail
-          test "$(jq -r '.backend.type // empty' .terraform/terraform.tfstate)" = "oci" || {
+          backend_file="$(find .terragrunt-cache -type f -name backend.tf -print -quit)"
+          test -n "$backend_file" && grep -q 'backend "oci"' "$backend_file" || {
             echo "The effective Terraform backend is not OCI; plan is blocked." >&2
             echo "Configure and validate the remote OCI backend before enabling this workflow." >&2
             exit 1
           }
+          terragrunt state pull >/dev/null
       - name: Create plan
         working-directory: ${{ env.STACK_DIR }}
         run: |
@@ -203,6 +202,12 @@ jobs:
           terragrunt plan -input=false -out=terraform.tfplan -detailed-exitcode
           status=$?
           if [ "$status" -gt 2 ]; then exit "$status"; fi
+          plan_file="$(find .terragrunt-cache -type f -name terraform.tfplan -print -quit)"
+          test -n "$plan_file" || {
+            echo "Terragrunt did not produce a plan file." >&2
+            exit 1
+          }
+          cp "$plan_file" terraform.tfplan
           echo "Terraform plan exit code: $status"
       - name: Upload reviewed plan
         uses: actions/upload-artifact@v4
@@ -227,12 +232,7 @@ jobs:
       OCI_USER_OCID: ${{ secrets.OCI_USER_OCID }}
       OCI_FINGERPRINT: ${{ secrets.OCI_FINGERPRINT }}
       OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
-      OCI_TF_STATE_BUCKET: ${{ secrets.OCI_TF_STATE_BUCKET }}
       OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
-      OCI_tenancy_ocid: ${{ secrets.OCI_TENANCY_OCID }}
-      OCI_user_ocid: ${{ secrets.OCI_USER_OCID }}
-      OCI_fingerprint: ${{ secrets.OCI_FINGERPRINT }}
-      OCI_region: ${{ secrets.OCI_REGION }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
@@ -266,16 +266,22 @@ jobs:
           printf '%s\n' "$OCI_PRIVATE_KEY" > "$key_path"
           echo "OCI_PRIVATE_KEY_PATH=$key_path" >> "$GITHUB_ENV"
           echo "OCI_private_key_path=$key_path" >> "$GITHUB_ENV"
+          echo "OCI_tenancy_ocid=$OCI_TENANCY_OCID" >> "$GITHUB_ENV"
+          echo "OCI_user_ocid=$OCI_USER_OCID" >> "$GITHUB_ENV"
+          echo "OCI_fingerprint=$OCI_FINGERPRINT" >> "$GITHUB_ENV"
+          echo "OCI_region=$OCI_REGION" >> "$GITHUB_ENV"
       - name: Require OCI backend
         working-directory: ${{ env.STACK_DIR }}
         run: |
           set -euo pipefail
           test "$OCI_TF_STATE_MIGRATED" = "true"
           terragrunt init -reconfigure -input=false
-          test "$(jq -r '.backend.type // empty' .terraform/terraform.tfstate)" = "oci" || {
+          backend_file="$(find .terragrunt-cache -type f -name backend.tf -print -quit)"
+          test -n "$backend_file" && grep -q 'backend "oci"' "$backend_file" || {
             echo "The effective Terraform backend is not OCI; apply is blocked." >&2
             exit 1
           }
+          terragrunt state pull >/dev/null
       - uses: actions/download-artifact@v4
         with:
           name: terraform-plan-${{ github.run_id }}

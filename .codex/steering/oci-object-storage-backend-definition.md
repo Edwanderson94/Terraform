@@ -15,7 +15,7 @@ credentials in Git.
 | Concern | Decision |
 | --- | --- |
 | Backend | Terraform native `oci` backend. |
-| Bucket | One dedicated, private OCI Object Storage Standard bucket for Terraform state. The bucket name is provided by `OCI_TF_STATE_BUCKET`. |
+| Bucket | Each execution platform uses a dedicated, private OCI Object Storage Standard bucket. GitHub Actions uses `gh-pipeline-tf-state`; Azure DevOps uses `az-pipeline-tf-state`. |
 | Namespace | Provided by `OCI_OBJECT_STORAGE_NAMESPACE`. |
 | State key | `${path_relative_to_include()}/terraform.tfstate`; for the current `infraestructure` layer this resolves beneath `projects/infraestructure/`. |
 | Workspaces | Non-default workspaces use the `workspaces/<workspace>/<key>` prefix. The default workspace uses the key directly. |
@@ -24,6 +24,8 @@ credentials in Git.
 
 The bucket and namespace are required backend attributes. Terragrunt resolves
 them from environment variables before generating the backend configuration;
+the GitHub workflow supplies `OCI_TF_STATE_BUCKET=gh-pipeline-tf-state` at the
+workflow level so it cannot accidentally target the Azure DevOps bucket;
 the credentials themselves stay in OCI-compatible environment variables and
 Azure DevOps protected storage.
 

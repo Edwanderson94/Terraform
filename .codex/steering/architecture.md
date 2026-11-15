@@ -21,6 +21,9 @@
 - The chosen remote backend is OCI Object Storage, using Terraform's native
   `oci` backend. It provides state locking; the bucket must be private and
   versioned. OCI Object Storage provides encryption at rest by default.
+- GitHub Actions uses the isolated `gh-pipeline-tf-state` bucket. The Azure
+  DevOps bootstrap remains isolated in `az-pipeline-tf-state`; one workflow must
+  never read or write the other workflow's state.
 - Azure Pipelines authenticates with a dedicated OCI IAM user's API signing
   key kept as an Azure DevOps Secure File. OCI/Azure DevOps credentials belong
   only in protected pipeline storage, never in this repository.
