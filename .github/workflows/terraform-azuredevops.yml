@@ -64,10 +64,6 @@ jobs:
       OCI_FINGERPRINT: 00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff
       OCI_COMPARTMENT_ID: ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
       OCI_TF_STATE_BUCKET: validation-only
-      OCI_tenancy_ocid: ocid1.tenancy.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-      OCI_user_ocid: ocid1.user.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-      OCI_fingerprint: 00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff
-      OCI_region: us-ashburn-1
       AWS_ACCESS_KEY_ID: validation-only
       AWS_SECRET_ACCESS_KEY: validation-only
       AWS_SESSION_TOKEN: ""
@@ -137,10 +133,6 @@ jobs:
       OCI_FINGERPRINT: ${{ secrets.OCI_FINGERPRINT }}
       OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
       OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
-      OCI_tenancy_ocid: ${{ secrets.OCI_TENANCY_OCID }}
-      OCI_user_ocid: ${{ secrets.OCI_USER_OCID }}
-      OCI_fingerprint: ${{ secrets.OCI_FINGERPRINT }}
-      OCI_region: ${{ secrets.OCI_REGION }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
@@ -185,6 +177,10 @@ jobs:
           printf '%s\n' "$OCI_PRIVATE_KEY" > "$key_path"
           echo "OCI_PRIVATE_KEY_PATH=$key_path" >> "$GITHUB_ENV"
           echo "OCI_private_key_path=$key_path" >> "$GITHUB_ENV"
+          echo "OCI_tenancy_ocid=$OCI_TENANCY_OCID" >> "$GITHUB_ENV"
+          echo "OCI_user_ocid=$OCI_USER_OCID" >> "$GITHUB_ENV"
+          echo "OCI_fingerprint=$OCI_FINGERPRINT" >> "$GITHUB_ENV"
+          echo "OCI_region=$OCI_REGION" >> "$GITHUB_ENV"
       - name: Initialize configured backend
         working-directory: ${{ env.STACK_DIR }}
         run: terragrunt init -reconfigure -input=false
@@ -229,10 +225,6 @@ jobs:
       OCI_FINGERPRINT: ${{ secrets.OCI_FINGERPRINT }}
       OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
       OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
-      OCI_tenancy_ocid: ${{ secrets.OCI_TENANCY_OCID }}
-      OCI_user_ocid: ${{ secrets.OCI_USER_OCID }}
-      OCI_fingerprint: ${{ secrets.OCI_FINGERPRINT }}
-      OCI_region: ${{ secrets.OCI_REGION }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
@@ -266,6 +258,10 @@ jobs:
           printf '%s\n' "$OCI_PRIVATE_KEY" > "$key_path"
           echo "OCI_PRIVATE_KEY_PATH=$key_path" >> "$GITHUB_ENV"
           echo "OCI_private_key_path=$key_path" >> "$GITHUB_ENV"
+          echo "OCI_tenancy_ocid=$OCI_TENANCY_OCID" >> "$GITHUB_ENV"
+          echo "OCI_user_ocid=$OCI_USER_OCID" >> "$GITHUB_ENV"
+          echo "OCI_fingerprint=$OCI_FINGERPRINT" >> "$GITHUB_ENV"
+          echo "OCI_region=$OCI_REGION" >> "$GITHUB_ENV"
       - name: Require OCI backend
         working-directory: ${{ env.STACK_DIR }}
         run: |
