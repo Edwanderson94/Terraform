@@ -57,3 +57,43 @@ variable "oci_compartment_id" {
   sensitive   = true
 }
 
+variable "aws_access_key_id" {
+  description = "Access key ID da identidade AWS usada pelas pipelines."
+  type        = string
+}
+
+variable "aws_secret_access_key" {
+  description = "Secret access key da identidade AWS usada pelas pipelines."
+  type        = string
+  sensitive   = true
+}
+
+variable "aws_session_token" {
+  description = "Session token temporario da identidade AWS, quando aplicavel."
+  type        = string
+  default     = null
+  nullable    = true
+  sensitive   = true
+}
+
+variable "aws_region" {
+  description = "Regiao AWS usada pelas pipelines."
+  type        = string
+}
+
+variable "aws_tf_state_bucket" {
+  description = "Bucket S3 usado pelo state Terraform AWS."
+  type        = string
+}
+
+variable "aws_tf_state_key" {
+  description = "Chave S3 usada pelo state Terraform AWS."
+  type        = string
+}
+
+variable "aws_tf_state_migrated" {
+  description = "Indica se o backend remoto AWS foi migrado e validado."
+  type        = string
+  default     = "false"
+}
+

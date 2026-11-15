@@ -10,6 +10,8 @@ Azure DevOps existente `Infrastructure`, dentro da organização `Tecnoform`.
   de configurar o backend local atual.
 - `main.tf` chama o módulo reutilizável `azure_devops/repos` do repositório
   `Terraform-Modules`, fixado na tag `v1.3.2`.
+- `main.tf` também declara os Variable Groups `terraform-oci-bootstrap` e
+  `terraform-aws-cloud` pelo módulo reutilizável de Variable Groups.
 - `locals.tf` declara os repositórios e o padrão de branches.
 - `moved.tf` preserva endereços de recursos no state após a extração para o módulo.
 
@@ -53,3 +55,19 @@ terragrunt apply
 
 O backend atual é local. Não use `apply` em um runner efêmero de pipeline sem
 persistir o state ou migrá-lo antes para um backend remoto compartilhado.
+
+## Variable Group AWS
+
+O grupo `terraform-aws-cloud` é gerenciado exclusivamente por Terraform. Os
+valores são recebidos por variáveis de ambiente no Terragrunt e não ficam
+versionados:
+
+- não secretas: `AWS_ACCESS_KEY_ID`, `AWS_REGION`, `AWS_TF_STATE_BUCKET`,
+  `AWS_TF_STATE_KEY` e `AWS_TF_STATE_MIGRATED`;
+- secretas: `AWS_SECRET_ACCESS_KEY` e `AWS_SESSION_TOKEN` quando forem usadas
+  credenciais temporárias.
+
+O `AWS_SESSION_TOKEN` é opcional para credenciais de longa duração, mas, quando
+presente, deve pertencer à mesma sessão que o access key ID e o secret access
+key. A identidade da pipeline deve ser dedicada e de menor privilégio; não use
+credenciais da conta root.
