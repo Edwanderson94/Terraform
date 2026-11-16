@@ -16,6 +16,8 @@ Repository Actions Secrets:
 - `OCI_TENANCY_OCID`
 - `OCI_USER_OCID`
 - `OCI_FINGERPRINT`
+- `OCI_BOOTSTRAP_FINGERPRINT` (fingerprint of the Azure DevOps Secure File;
+  distinct from the signing key used by the GitHub backend)
 - `OCI_COMPARTMENT_ID`
 - `OCI_PRIVATE_KEY`
 
