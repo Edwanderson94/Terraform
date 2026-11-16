@@ -35,7 +35,7 @@ env:
   TERRAGRUNT_VERSION: "1.0.8"
   STACK_DIR: azure-devops/organizations/Tecnoform/projects/infraestructure
   # Keep GitHub Actions state isolated from the Azure DevOps bootstrap state.
-  OCI_TF_STATE_BUCKET: gh-pipeline-tf-state
+  OCI_TF_STATE_BUCKET: ${{ vars.OCI_TF_STATE_BUCKET }}
 
 jobs:
   fmt:
@@ -124,22 +124,22 @@ jobs:
       github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
     env:
-      AZDO_ORG_SERVICE_URL: ${{ secrets.AZDO_ORG_SERVICE_URL }}
+      AZDO_ORG_SERVICE_URL: ${{ vars.AZDO_ORG_SERVICE_URL }}
       AZDO_PERSONAL_ACCESS_TOKEN: ${{ secrets.AZDO_PERSONAL_ACCESS_TOKEN }}
-      OCI_REGION: ${{ secrets.OCI_REGION }}
-      OCI_OBJECT_STORAGE_NAMESPACE: ${{ secrets.OCI_OBJECT_STORAGE_NAMESPACE }}
+      OCI_REGION: ${{ vars.OCI_REGION }}
+      OCI_OBJECT_STORAGE_NAMESPACE: ${{ vars.OCI_OBJECT_STORAGE_NAMESPACE }}
       OCI_TENANCY_OCID: ${{ secrets.OCI_TENANCY_OCID }}
       OCI_USER_OCID: ${{ secrets.OCI_USER_OCID }}
       OCI_FINGERPRINT: ${{ secrets.OCI_FINGERPRINT }}
       OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
-      OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
+      OCI_TF_STATE_MIGRATED: ${{ vars.OCI_TF_STATE_MIGRATED }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_TF_STATE_BUCKET: ${{ secrets.AWS_TF_STATE_BUCKET }}
-      AWS_TF_STATE_KEY: ${{ secrets.AWS_TF_STATE_KEY }}
-      AWS_TF_STATE_MIGRATED: ${{ secrets.AWS_TF_STATE_MIGRATED }}
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_TF_STATE_BUCKET: ${{ vars.AWS_TF_STATE_BUCKET }}
+      AWS_TF_STATE_KEY: ${{ vars.AWS_TF_STATE_KEY }}
+      AWS_TF_STATE_MIGRATED: ${{ vars.AWS_TF_STATE_MIGRATED }}
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
@@ -224,22 +224,22 @@ jobs:
     runs-on: ubuntu-24.04
     environment: terraform-azuredevops-production
     env:
-      AZDO_ORG_SERVICE_URL: ${{ secrets.AZDO_ORG_SERVICE_URL }}
+      AZDO_ORG_SERVICE_URL: ${{ vars.AZDO_ORG_SERVICE_URL }}
       AZDO_PERSONAL_ACCESS_TOKEN: ${{ secrets.AZDO_PERSONAL_ACCESS_TOKEN }}
-      OCI_REGION: ${{ secrets.OCI_REGION }}
-      OCI_OBJECT_STORAGE_NAMESPACE: ${{ secrets.OCI_OBJECT_STORAGE_NAMESPACE }}
+      OCI_REGION: ${{ vars.OCI_REGION }}
+      OCI_OBJECT_STORAGE_NAMESPACE: ${{ vars.OCI_OBJECT_STORAGE_NAMESPACE }}
       OCI_TENANCY_OCID: ${{ secrets.OCI_TENANCY_OCID }}
       OCI_USER_OCID: ${{ secrets.OCI_USER_OCID }}
       OCI_FINGERPRINT: ${{ secrets.OCI_FINGERPRINT }}
       OCI_COMPARTMENT_ID: ${{ secrets.OCI_COMPARTMENT_ID }}
-      OCI_TF_STATE_MIGRATED: ${{ secrets.OCI_TF_STATE_MIGRATED }}
+      OCI_TF_STATE_MIGRATED: ${{ vars.OCI_TF_STATE_MIGRATED }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_TF_STATE_BUCKET: ${{ secrets.AWS_TF_STATE_BUCKET }}
-      AWS_TF_STATE_KEY: ${{ secrets.AWS_TF_STATE_KEY }}
-      AWS_TF_STATE_MIGRATED: ${{ secrets.AWS_TF_STATE_MIGRATED }}
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_TF_STATE_BUCKET: ${{ vars.AWS_TF_STATE_BUCKET }}
+      AWS_TF_STATE_KEY: ${{ vars.AWS_TF_STATE_KEY }}
+      AWS_TF_STATE_MIGRATED: ${{ vars.AWS_TF_STATE_MIGRATED }}
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
@@ -288,4 +288,20 @@ jobs:
           path: ${{ env.STACK_DIR }}
       - name: Apply exact reviewed plan
         working-directory: ${{ env.STACK_DIR }}
-        run: terragrunt apply -input=false terraform.tfplan
+        run: |
+          set -euo pipefail
+          if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
+            # Imported secret values cannot be recovered through the Azure API.
+            # Reject writes to the working AWS group until the original secret
+            # source has been supplied. Inspect JSON through a pipe, never logs.
+            aws_group_changes="$(terragrunt show -json "$GITHUB_WORKSPACE/$STACK_DIR/terraform.tfplan" | jq -r '
+              any(.resource_changes[]?;
+                .address == "module.azuredevops_aws_variablegroup.azuredevops_variable_group.this"
+                and .change.actions != ["no-op"])
+            ')"
+            if [ "$aws_group_changes" != "false" ]; then
+              echo "AWS Variable Group changes require its original credentials; apply blocked." >&2
+              exit 1
+            fi
+          fi
+          terragrunt apply -input=false terraform.tfplan
