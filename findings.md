@@ -265,3 +265,10 @@ gerenciado pelo módulo.
 - Official stable releases inspected with `gh`: `actions/upload-artifact@v7.0.2` and `actions/download-artifact@v8.0.2`, both published 2026-10-07. Their tagged `action.yml` files declare `using: node24`; release notes update the shared `@actions/artifact` client to `6.3.1` and retain artifact-service behavior.
 - Local implementation is limited to those two action references. No Terraform command, plan format, permissions, secrets, backend, job dependency or apply gate changed.
 - Static evidence: YAML parse, `actionlint v1.7.12`, `terraform fmt -check` and `git diff --check` passed. Pending: authorized remote execution with `apply=false`. The current apply job is intentionally skipped in that mode, so direct `download-artifact` execution still requires a safe validation path; no apply will be run.
+
+### Checkpoint — remote artifact validation
+- Commit `3bc7748d10100d6c696e63ce556741221828b7c3` was pushed to `feature/azure-devops-environments-adoption` after authorization.
+- GitHub Actions run `44926431941` (`workflow_dispatch`, `apply=false`) completed successfully for that commit. `fmt`, `validate`, `static` and `plan` passed; `Apply reviewed plan` was skipped.
+- The plan reported `No changes`. `actions/upload-artifact@v7.0.2` uploaded `terraform-plan-44926431941` successfully with one file and the configured 3-day retention input; artifact size was 20,689 bytes and the GitHub artifact API reported it as unexpired.
+- Targeted logs contain no `DEP0040`, `DEP0005` or `DEP0169`. The remaining annotation is the unrelated `actions/checkout@v4` Node 20 notice.
+- The exact published artifact was downloaded through the GitHub Actions artifact API and contained a non-empty `terraform.tfplan` (26,324 bytes). This validates artifact service download/content without apply, but does not execute `actions/download-artifact@v8.0.2`; the protected apply job remains intentionally skipped and no apply was run.

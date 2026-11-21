@@ -89,7 +89,7 @@ Phase 4
 - [x] Confirmar o contrato do artifact Terraform plan e compatibilidade das versões alvo
 - [x] Atualizar somente `actions/upload-artifact` e `actions/download-artifact`
 - [x] Executar validações estáticas locais
-- [ ] Obter autorização para commit/push e validação remota sem apply
+- [x] Obter autorização para commit/push e validação remota sem apply
 - [ ] Validar upload e download reais e registrar evidências no Trello
 - **Status:** in_progress
 
