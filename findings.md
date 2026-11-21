@@ -272,3 +272,9 @@ gerenciado pelo módulo.
 - The plan reported `No changes`. `actions/upload-artifact@v7.0.2` uploaded `terraform-plan-44926431941` successfully with one file and the configured 3-day retention input; artifact size was 20,689 bytes and the GitHub artifact API reported it as unexpired.
 - Targeted logs contain no `DEP0040`, `DEP0005` or `DEP0169`. The remaining annotation is the unrelated `actions/checkout@v4` Node 20 notice.
 - The exact published artifact was downloaded through the GitHub Actions artifact API and contained a non-empty `terraform.tfplan` (26,324 bytes). To validate the Action itself without apply, the workflow now has a `verify-plan-artifact` job that runs only for `workflow_dispatch` with `apply=false`, downloads the same artifact using `actions/download-artifact@v8.0.2`, and checks the plan file is non-empty. The protected apply job and its condition remain unchanged. This new job is locally linted but awaits its remote run.
+
+### Checkpoint — direct download validation result
+- Run `44926654447` for commit `a04aaf94b578ec1bdb7b5a714ee60dd2d784a436` passed `fmt`, `validate`, `static`, `plan` and the new `Verify reviewed plan artifact` job; apply was skipped.
+- The direct `actions/download-artifact@v8.0.2` step successfully downloaded `terraform-plan-44926654447`, and `test -s terraform.tfplan` passed.
+- The same step emitted `DEP0005 Buffer() is deprecated`. The warning is therefore still present in the current official `v8.0.2` release, despite the Node 24 runtime. `actions/upload-artifact@v7.0.2` emitted no target deprecation warning.
+- Official release inventory shows `v8.0.2` is the latest stable `download-artifact` release; there is no later official version to adopt. Do not suppress the warning or mark the remediation complete without a supported upstream fix or an explicitly approved alternative.
