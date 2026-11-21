@@ -195,3 +195,16 @@
 - Run `44926654447` passed all Terraform/static jobs and the no-apply artifact verification job. The exact artifact downloaded successfully and the plan file check passed.
 - `download-artifact@v8.0.2` still emitted `DEP0005 Buffer()`; `v8.0.2` is the latest stable upstream release. Upload warnings targeted by this remediation are gone, but the download warning remains an upstream limitation.
 - The real-validation milestone remains open. No warning suppression or apply execution was introduced.
+
+## Session: 2026-11-21 — checkout Node 24 remediation
+
+### Checkpoint — branch and implementation
+- Created `release/1.0.7` from `origin/master` (tag `v1.0.6`) and `feature/update-checkout-node24` from that release.
+- Updated the five workflow references from `actions/checkout@v4` to `actions/checkout@v7.0.1`.
+- No `download-artifact` workaround, Terraform, backend, permission, credential, Environment or apply change was made.
+
+### Checkpoint — checkout validation
+- Commit `b4e17e1` was pushed and PR #23 was opened for `release/1.0.7`.
+- Local YAML, actionlint, Terraform format and whitespace checks passed.
+- Manual run `44940283201` completed successfully with format, validate, static checks, plan and artifact verification; apply was skipped.
+- The run used `actions/checkout@v7.0.1` and no Node 20 checkout annotation appeared. The unrelated `git init` hint and the upstream download `DEP0005` remain outside this goal.

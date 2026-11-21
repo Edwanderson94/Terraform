@@ -277,3 +277,11 @@ gerenciado pelo módulo.
 - The direct `actions/download-artifact@v8.0.2` step successfully downloaded `terraform-plan-44926654447`, and `test -s terraform.tfplan` passed.
 - The same step emitted `DEP0005 Buffer() is deprecated`. The warning is therefore still present in the current official `v8.0.2` release, despite the Node 24 runtime. `actions/upload-artifact@v7.0.2` emitted no target deprecation warning.
 - Official release inventory shows `v8.0.2` is the latest stable `download-artifact` release; there is no later official version to adopt. Do not suppress the warning or mark the remediation complete without a supported upstream fix or an explicitly approved alternative.
+
+### Checkpoint — checkout Node 24 remediation
+- The current workflow had five `actions/checkout@v4` references, covering fmt, validate, static, plan and apply jobs.
+- Official `actions/checkout@v7.0.1` was verified to declare `using: node24`.
+- A new Gitflow release branch `release/1.0.7` was created from `origin/master` at `v1.0.6`, followed by `feature/update-checkout-node24`.
+- The implementation changes only those five checkout references; artifact actions, Terraform, permissions, credentials, Environment and apply conditions remain untouched.
+- Local validation passed: YAML parse, `actionlint v1.7.12`, `terraform fmt -check` and `git diff --check`.
+- Remote run `44940283201` on commit `b4e17e19d7dfc67c932a0bd84aba38485a74578d` passed static checks, validate, format, plan and no-apply artifact verification. It used `actions/checkout@v7.0.1` and emitted no Node 20 checkout annotation. The existing checkout `git init` informational hint remains, and `download-artifact@v8.0.2` still emits the separately tracked upstream `DEP0005`.

@@ -42,7 +42,7 @@ jobs:
     name: Terraform format
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - uses: hashicorp/setup-terraform@v4.0.1
         with:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
@@ -72,7 +72,7 @@ jobs:
       AWS_TF_STATE_KEY: validation-only
       AWS_TF_STATE_MIGRATED: "false"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - uses: hashicorp/setup-terraform@v4.0.1
         with:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
@@ -104,7 +104,7 @@ jobs:
     name: Static checks
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - name: Reject committed Terraform state, plans, and keys
         shell: bash
         run: |
@@ -142,7 +142,7 @@ jobs:
       AWS_TF_STATE_KEY: ${{ vars.AWS_TF_STATE_KEY }}
       AWS_TF_STATE_MIGRATED: ${{ vars.AWS_TF_STATE_MIGRATED }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - uses: hashicorp/setup-terraform@v4.0.1
         with:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
@@ -258,7 +258,7 @@ jobs:
       AWS_TF_STATE_KEY: ${{ vars.AWS_TF_STATE_KEY }}
       AWS_TF_STATE_MIGRATED: ${{ vars.AWS_TF_STATE_MIGRATED }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - uses: hashicorp/setup-terraform@v4.0.1
         with:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
