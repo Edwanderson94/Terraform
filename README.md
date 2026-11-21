@@ -138,13 +138,15 @@ explícita de recuperação.
 
 ## Fluxo de mudanças
 
-As alterações são feitas em `release/<versão>`, validadas com Terraform e
-Terragrunt e depois mergeadas na `master`. A `master` recebe mudanças somente
-por merge da release. Tags são criadas após o merge no commit resultante da
-`master`.
+O fluxo Gitflow é `feature/*`, `fix/*` ou `docs/*` → `release/X.Y.Z` → `master` →
+`vX.Y.Z`. As branches de trabalho entram somente em uma release; a `master`
+recebe mudanças somente por merge de uma release (ou hotfix versionado). O
+workflow de guardrails valida essas transições e cria a tag anotada após o merge
+da release no commit resultante da `master`.
 
 ## Documentação relacionada
 
+- [Pipeline GitHub Actions e Gitflow](docs/github-actions.md)
 - [Pipeline OCI](.codex/steering/oci-azure-devops-pipeline.md)
 - [Camada Infrastructure](azure-devops/organizations/Tecnoform/projects/infraestructure/README.md)
 - [Módulos reutilizáveis](https://github.com/Edwanderson94/Terraform-Modules)
