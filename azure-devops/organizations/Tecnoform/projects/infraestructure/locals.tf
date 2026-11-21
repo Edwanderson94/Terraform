@@ -35,6 +35,20 @@ locals {
 
   repository_branch_renames = {}
 
+  # Existing Environments are adopted by import; preserve names and IDs.
+  environments = {
+    oci_bootstrap = {
+      name        = "terraform-oci-bootstrap"
+      description = "Automatically created environment"
+      id          = 12
+    }
+    aws_cloud = {
+      name        = "terraform-aws-cloud"
+      description = "Environment de aprovacao da pipeline AWS"
+      id          = 13
+    }
+  }
+
   repository_branches_to_delete = {
     aws   = ["main"]
     azure = ["uat"]

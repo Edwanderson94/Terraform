@@ -12,6 +12,9 @@ Azure DevOps existente `Infrastructure`, dentro da organização `Tecnoform`.
   `Terraform-Modules`, fixado na tag `v1.3.2`.
 - `main.tf` também declara os Variable Groups `terraform-oci-bootstrap` e
   `terraform-aws-cloud` pelo módulo reutilizável de Variable Groups.
+- `main.tf` declara os Environments existentes `terraform-oci-bootstrap` e
+  `terraform-aws-cloud` pelo módulo reutilizável `azure_devops/environment`;
+  `imports.tf` prepara a adoção sem recriação.
 - `locals.tf` declara os repositórios e o padrão de branches.
 - `moved.tf` preserva endereços de recursos no state após a extração para o módulo.
 
@@ -83,6 +86,14 @@ versionados:
   `AWS_TF_STATE_KEY` e `AWS_TF_STATE_MIGRATED`;
 - secretas: `AWS_SECRET_ACCESS_KEY` e `AWS_SESSION_TOKEN` quando forem usadas
   credenciais temporárias.
+
+## Azure DevOps Environments
+
+Os Environments existentes são adotados por import declarativo usando o ID do
+projeto e o ID remoto. Os imports não são executados automaticamente e devem ser
+revisados em um plano somente leitura antes de qualquer apply. Approvals & Checks,
+recursos vinculados, permissões e autorizações de pipeline permanecem fora do
+escopo deste módulo e não devem ser alterados por esta camada.
 
 O `AWS_SESSION_TOKEN` é opcional para credenciais de longa duração, mas, quando
 presente, deve pertencer à mesma sessão que o access key ID e o secret access
