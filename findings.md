@@ -142,3 +142,119 @@ gerenciado pelo módulo.
 - The only local YAML that explicitly uses the discovered Environment 12 is `/home/edwanderson/wsl-repo/terraform-state/azure-pipelines.yml`.
 - The main Terraform repository YAML and the shared pipeline template use `terraform-oci-production`, which is not present in the live `Infrastructure` Environment inventory. This is a genuine unresolved ownership/configuration mismatch, not evidence that Environment 12 should be renamed or replaced.
 - The AWS pipeline references were corroborated by live deployment records for Environment 13; no change was made to pipeline YAML.
+
+## Terraform CI/CD Warning Analysis — 2026-11-21
+
+### Evidence scope and limitation
+- Trello card: `https://trello.com/c/S8XDqvcU/16-ajustar-warning-workflow-terraform-com-gitflow` on board `Pipelines`, list `Backlog`.
+- The card's current API response contains no screenshot attachment, comments, checklist or warning text; it only links to GitHub Actions run `44916605840`. The screenshot requirement could not be independently fulfilled and is explicitly treated as a limitation.
+- Primary evidence was obtained from the actual workflow logs and metadata with `gh` read-only. The run was successful, and the checkout/setup/plan jobs completed successfully.
+
+### Workflow inventory
+- Workflow: `.github/workflows/terraform-azuredevops.yml` (`Terraform Azure DevOps`).
+- Triggers: pull requests and pushes to `master` for `azure-devops/**`, the workflow itself and `docs/github-actions.md`; manual `workflow_dispatch` with boolean `apply`.
+- Jobs: `fmt`, `validate`, `static`, `plan`, and `apply`.
+- `plan` runs only on `push` or manual dispatch and uses the configured OCI backend; `apply` runs only on manual dispatch with `apply=true` and the protected GitHub Environment `terraform-azuredevops-production`.
+- Actions observed: `actions/checkout@v4`, `hashicorp/setup-terraform@v3`, `actions/upload-artifact@v4`, `actions/download-artifact@v4`.
+- Workflow permission: `contents: read`. Secrets and variables are referenced by name only; no values were exposed or changed.
+- GitFlow references in README describe `release/<version>` as the release path and `master` as the protected publication branch. This study does not alter that process.
+
+### Real execution evidence
+- Run `44916605840`: push, branch `master`, SHA `c046c5e9d3fe0b95bbed9ac3efdc8386d88f6f1c`, 2026-11-21, conclusion `success`; `fmt`, `validate`, `static`, and `plan` succeeded; `apply` was skipped by its condition.
+- Comparison runs inspected: `44916512633` (feature manual validation), `44916862120` (master manual apply), `44917001291` (master post-apply plan), and `44004401287` (earlier master dispatch). Warning patterns recur across the runs.
+- Attempted read-only annotations query for run `44916605840` returned HTTP 404 through `gh`; therefore annotations are not treated as fully inventoried. Job logs are the authoritative evidence used below.
+
+### Warning inventory and root-cause matrix
+
+| Warning | Root cause | Severity | Recommended correction | Risk of change |
+|---|---|---:|---|---:|
+| Git hint: temporary checkout `git init` defaults the initial branch to `master`, with a future Git 3.0 default change | `actions/checkout` initializes a temporary local repository without an explicit `init.defaultBranch`; this is runner/tooling advice, not repository branch behavior | Low | Leave unchanged unless log cleanliness is a priority; alternatively set a scoped init default in a dedicated checkout-compatible step only after testing | Low, but unnecessary config could affect later local Git commands |
+| Node `DEP0169`: ``url.parse()`` is deprecated, emitted while running `hashicorp/setup-terraform@v3` | The action or one of its bundled Node dependencies invokes the legacy Node URL API under the runner runtime | Medium | Upgrade to a release whose bundled runtime/dependencies support the current runner; validate Terraform setup and version pin behavior | Medium; action upgrade can change installer/runtime behavior |
+| Runner annotation: Node.js 20 action runtimes are deprecated and forced onto Node.js 24 for `checkout`, `setup-terraform`, and `upload-artifact` | Those action revisions declare Node 20 while GitHub-hosted runners now execute them under Node 24 compatibility behavior | Medium / future-high | Review and update each action to a Node-24-compatible release, ideally pinned consistently and checked against release notes; avoid suppressing the annotation | Medium; action major revisions can alter inputs, permissions or artifact semantics |
+| Node `DEP0040`: `punycode` deprecated during `upload-artifact@v4` | Bundled artifact action dependency still imports the deprecated Node core module | Medium | Upgrade `upload-artifact` when a compatible runtime release is available; verify artifact upload/download and retention | Medium |
+| Node `DEP0005`: `Buffer()` deprecated during `download-artifact@v4` in apply run `44916862120` | Bundled download action dependency uses deprecated Buffer constructor under the runner runtime | Medium | Upgrade `download-artifact` to a Node-24-compatible release and validate exact plan artifact retrieval | Medium |
+
+### Classification and impact
+- Informational: the checkout `git init` hint.
+- Deprecation/runtime compatibility: `DEP0169`, `DEP0040`, `DEP0005`, and the Node 20 forced-runtime annotation.
+- Not observed: Terraform CLI warning, Azure DevOps provider warning, OCI/AWS provider warning, GitFlow failure, security failure, failed plan, or incorrect apply behavior.
+- Current functional impact is none in the observed successful runs. Future risk is increased runner/action incompatibility when GitHub removes compatibility shims or an upstream dependency becomes an error.
+- No evidence supports changing Terraform code, provider versions, backend configuration, credentials, GitFlow triggers, branch protection, or permissions as part of this warning remediation.
+
+### Alternatives and recommendation
+1. **Preferred — dependency update:** update the affected official/first-party actions to Node-24-compatible releases in a small, isolated PR. This addresses the source of the warnings and is reversible by reverting the action-version diff.
+2. **Configuration adjustment:** only if the warning persists after action updates, use supported action inputs or a narrowly scoped runtime configuration. Do not globally suppress Node warnings.
+3. **Point correction:** do not patch the runner's Node dependencies inside the workflow; that would be fragile and obscure ownership.
+4. **Refactor:** not justified by the evidence. Keep job topology, Terraform commands, backend gates, protected apply, GitFlow and artifact handoff unchanged.
+
+### Validation and rollback plan
+- Before/after compare the same workflow on a feature branch and `master` push/manual dispatch: fmt, validate, static, plan, artifact upload, protected apply approval path, artifact download and post-apply plan.
+- Confirm logs no longer contain the targeted action-runtime warnings, while retaining successful Terraform output and no new warnings/errors.
+- Check that `contents: read`, secrets/variables, `terraform.tfplan` artifact naming/retention, `terraform-azuredevops-production`, and the GitFlow branch/release behavior remain unchanged.
+- Roll back by reverting only the action-version changes if any job, artifact, approval gate or Terraform result changes unexpectedly. Do not rerun apply automatically during validation.
+
+### Scope boundary
+- This execution is discovery, analysis and documentation only. No workflow was modified; no commit, push, merge, release, tag, deployment, apply/destroy, state, secret or permission mutation was performed.
+
+## Remediation Planning Continuation — 2026-11-21
+
+### Current state reconciliation
+- The warning study is complete, but remediation is pending. The Trello card is open in `Pipelines / Andamento`; its completed checklist represents the analysis, not implementation.
+- The current repository workflow still uses `actions/checkout@v4`, `hashicorp/setup-terraform@v3`, `actions/upload-artifact@v4` and `actions/download-artifact@v4`. No action-version update has been made.
+- Recent Git history confirms the repository's active work is still the Environment adoption feature branch; the warning-analysis documentation is local and uncommitted. No workflow change is present.
+- Working behavior that must remain invariant: PR checks to `master`; plan only from push/manual dispatch; manual apply guarded by `terraform-azuredevops-production`; least-privilege `contents: read`; protected credential/backend gates; exact `terraform.tfplan` artifact handoff; release/tag behavior described by the repository's GitFlow documentation.
+
+### Planned remediation activities
+
+#### Activity A — update `hashicorp/setup-terraform` runtime compatibility
+- **Problem:** `DEP0169` (`url.parse`) and runner warning that `hashicorp/setup-terraform@v3` targets Node 20 and is forced onto Node 24.
+- **Root cause:** the action's declared/bundled Node runtime or dependency tree is not aligned with the current GitHub-hosted runner runtime.
+- **Proposed change:** update only the `hashicorp/setup-terraform` action reference to a verified release compatible with Node 24; retain the existing Terraform version input and all job steps.
+- **Files:** `.github/workflows/terraform-azuredevops.yml` only, plus any workflow documentation if behavior changes.
+- **Risk:** Medium — action updates can change installation behavior or supported inputs.
+- **Dependencies:** verify upstream release notes and compatibility before editing; no Terraform/provider change is required.
+- **Validation:** run fmt, validate, static and plan jobs; confirm the requested Terraform version is installed; exercise manual plan and inspect logs for the targeted warning.
+- **Rollback:** revert only the action reference to the previously verified revision.
+- **Acceptance:** setup succeeds in every job that uses it; Terraform version remains `1.15.7`; all existing gates/checks remain intact; `DEP0169` and the Node-20 annotation from this action no longer appear.
+
+#### Activity B — update artifact action runtime compatibility
+- **Problem:** `DEP0040` (`punycode`) during `upload-artifact@v4` and `DEP0005` (`Buffer()`) during `download-artifact@v4` in the apply path.
+- **Root cause:** bundled dependencies in the artifact actions use deprecated Node APIs under the runner runtime.
+- **Proposed change:** update `actions/upload-artifact` and `actions/download-artifact` to verified Node-24-compatible releases as one artifact-contract change; preserve artifact name `terraform-plan-${{ github.run_id }}`, path, retention and download destination.
+- **Files:** `.github/workflows/terraform-azuredevops.yml` only, plus documentation if the artifact contract changes (it should not).
+- **Risk:** Medium — artifact action revisions can affect upload/download semantics, retention or hidden-file handling.
+- **Dependencies:** verify release notes and test the exact plan artifact before any apply authorization.
+- **Validation:** run plan and confirm artifact creation; run the manual apply-path job only after review/approval and confirm exact artifact download plus post-apply plan; inspect logs for targeted warnings.
+- **Rollback:** revert both artifact action references together; do not alter the Terraform plan format or apply command.
+- **Acceptance:** artifact upload/download succeeds with the same name and contents; no targeted artifact deprecation warnings remain; protected apply behavior is unchanged.
+
+#### Activity C — decide on the checkout `git init` hint
+- **Problem:** `actions/checkout@v4` emits Git's informational hint that the temporary repository defaults its initial branch to `master` and that Git 3.0 may change the default.
+- **Root cause:** checkout initializes a temporary local repository without an explicit `init.defaultBranch`.
+- **Proposed change:** default decision is no change because the hint does not affect the checked-out ref, repository default branch, GitFlow, or Terraform behavior. Revisit only if log cleanliness becomes an explicit requirement.
+- **Files:** none under the default decision.
+- **Risk:** Low; any unnecessary global Git configuration could create side effects in later steps.
+- **Dependencies:** none.
+- **Validation:** not applicable unless a scoped configuration is proposed; if proposed, verify checked-out refs and all Git commands.
+- **Rollback:** remove the scoped configuration.
+- **Acceptance:** record the decision and do not introduce unrelated Git configuration while remediating the Node warnings.
+
+### Prioritization
+1. Activity A — setup-terraform runtime compatibility: highest priority because it affects every Terraform job and combines a direct deprecation with the runner annotation.
+2. Activity B — artifact runtime compatibility: second priority because it affects plan evidence and the protected apply handoff.
+3. Activity C — checkout hint: defer; informational and low value compared with the runtime warnings.
+
+### Cross-cutting risks and invariants
+- Do not change job conditions, `needs`, `permissions`, environment protection, secrets/variables, backend initialization, plan gates, concurrency, branch triggers or GitFlow release/tag rules.
+- Do not suppress stderr or set global Node warning flags; the objective is to remove the dependency source, not hide evidence.
+- Initial validation should avoid apply; any apply-path test requires separate explicit authorization and a reviewed plan.
+- If an action upgrade changes artifact or Terraform behavior, rollback the isolated action diff before considering broader refactoring.
+
+### Checkpoint — setup-terraform Node 24 remediation
+- Official GitHub release evidence: `hashicorp/setup-terraform v4.0.1`, published 2026-05-12, explicitly fixes the Node 24 `DEP0169 url.parse()` warning by updating `@hashicorp/js-releases` to `v1.7.7`.
+- Local change: `.github/workflows/terraform-azuredevops.yml`, four references changed from `hashicorp/setup-terraform@v3` to `hashicorp/setup-terraform@v4.0.1`.
+- Preserved invariants: `TERRAFORM_VERSION=1.15.7`, triggers, jobs, permissions, Environment, backend, artifact contract and apply conditions.
+- Pending: remote publication/execution and evidence that the warning is absent from a run using the updated commit.
+- Static validation update: actionlint v1.7.12 installed outside the repository at `/home/edwanderson/.local/bin/actionlint`; workflow lint passed with exit 0. YAML parse, `terraform fmt -check` and `git diff --check` also passed.
+- Real validation run: GitHub Actions run `44922171924`, commit `601f2ea164c8aff5d37f4575024bf1b65d24a381`, workflow dispatch with `apply=false`, completed `success`. `fmt`, `validate`, `static` and `plan` passed; `Apply reviewed plan` was skipped; plan reported `No changes` and artifact upload succeeded.
+- The updated `hashicorp/setup-terraform@v4.0.1` executed successfully in all four uses with Terraform `1.15.7`; no `DEP0169` was emitted in the setup step. Remaining `DEP0169` and `DEP0040` came from `actions/upload-artifact@v4`, and the remaining Node 20 annotation named `actions/checkout@v4` and `actions/upload-artifact@v4`. Those belong to separate remediation activities and are not evidence of a setup-terraform regression.

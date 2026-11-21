@@ -53,6 +53,35 @@ Phase 4
 - [x] Run safe formatting/validation checks and document risks; state-backed plan remains pending
 - [x] Synchronize the Trello card with discovery, implementation and validation evidence
 - [ ] Obtain approved backend/state context and review a read-only state-backed plan before any import/apply
+- **Status:** complete
+
+### Phase 8: Terraform CI/CD Warning Analysis
+- [x] Read the warning-analysis objective and applicable repository guidance
+- [x] Validate the exact Trello card and record attachment limitations
+- [x] Inspect the workflow, triggers, permissions, actions, secrets/variables and GitFlow references
+- [x] Inspect real GitHub Actions runs and logs, including an earlier comparison run
+- [x] Document root causes, severity, remediation alternatives, validation and rollback
+- [x] Synchronize the diagnosis and plan to the Trello card
+- [ ] Obtain approval for a future implementation PR (out of scope for this study)
+- **Status:** complete
+
+### Phase 9: Warning Remediation Planning
+- [x] Recover the current Trello, repository, workflow and prior-analysis context
+- [x] Reconcile the prior diagnosis with the current workflow and GitFlow documentation
+- [x] Define independent remediation activities with risks, dependencies, validation and rollback
+- [x] Prioritize the activities and identify the first implementation step
+- [x] Synchronize the plan, checklist and derived Trello activities without implementing changes
+- [ ] Receive user approval before modifying the workflow
+- **Status:** complete
+
+### Phase 10: setup-terraform Node 24 Remediation
+- [x] Revalidar o card e o estado atual do workflow
+- [x] Confirmar no release oficial a correção do DEP0169 para Node 24
+- [x] Atualizar somente as referências de `hashicorp/setup-terraform`
+- [x] Executar validações estáticas locais
+- [x] Registrar o marco de correção implementada no Trello
+- [x] Obter autorização para push/execução remota e validar no GitHub Actions
+- [ ] Registrar o marco de validação real no Trello
 - **Status:** in_progress
 
 ## Decisions Made
