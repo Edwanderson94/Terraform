@@ -175,3 +175,12 @@
 
 ### Scope and authorization boundary
 - This continuation only updated planning documentation and Trello planning metadata. No workflow, Terraform, state, secret, permission, branch, tag, release, deployment, commit, push or merge was modified.
+
+## Session: 2026-11-21 — artifact actions Node 24 remediation
+
+### Checkpoint — discovery and implementation
+- **Status:** correction implemented locally; static and remote validation pending.
+- Reconfirmed the exact open Trello card 18 and the repository workflow inventory. Only `.github/workflows/terraform-azuredevops.yml` uses artifact actions.
+- Verified official stable targets: `actions/upload-artifact@v7.0.2` and `actions/download-artifact@v8.0.2`; both tagged manifests use `node24` and release notes document the shared artifact client `6.3.1`.
+- Changed only the upload and download action references. The Terraform plan artifact name, path, retention, job conditions, permissions and protected apply gate are unchanged.
+- No commit, push, merge, tag, release, remote dispatch, apply, deployment, state, secret or permission mutation was performed.
