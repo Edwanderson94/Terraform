@@ -167,5 +167,11 @@
 - Tentativa adicional de `actionlint` não foi executada porque `go` não está disponível no ambiente; a limitação permanece registrada no comentário do Trello.
 - A limitação foi resolvida instalando `/home/edwanderson/.local/bin/actionlint` v1.7.12; `actionlint .github/workflows/terraform-azuredevops.yml` passou com exit 0.
 
+### Checkpoint — remote validation
+- **Status:** setup-terraform remediation validated; artifact/checkout warnings remain outside this card's implementation scope.
+- Commit `601f2ea164c8aff5d37f4575024bf1b65d24a381` was pushed to `feature/azure-devops-environments-adoption`.
+- Run `44922171924` was dispatched with `apply=false` and completed successfully. Format, validate, static and plan passed; apply was skipped; the plan reported no changes and the reviewed artifact uploaded successfully.
+- The `setup-terraform@v4.0.1` steps completed with Terraform `1.15.7` and did not emit `DEP0169`. The remaining `DEP0169`/`DEP0040` warnings are from `upload-artifact@v4`, while the Node 20 annotation names checkout/upload actions; these remain tracked separately.
+
 ### Scope and authorization boundary
 - This continuation only updated planning documentation and Trello planning metadata. No workflow, Terraform, state, secret, permission, branch, tag, release, deployment, commit, push or merge was modified.
