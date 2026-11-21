@@ -84,6 +84,15 @@ Phase 4
 - [ ] Registrar o marco de validação real no Trello
 - **Status:** in_progress
 
+### Phase 11: Artifact Actions Node 24 Remediation
+- [x] Inventariar todos os workflows, jobs e referências de upload/download
+- [x] Confirmar o contrato do artifact Terraform plan e compatibilidade das versões alvo
+- [x] Atualizar somente `actions/upload-artifact` e `actions/download-artifact`
+- [x] Executar validações estáticas locais
+- [x] Obter autorização para commit/push e validação remota sem apply
+- [ ] Validar upload e download reais e registrar evidências no Trello
+- **Status:** in_progress
+
 ## Decisions Made
 | Decision | Rationale |
 |----------|-----------|

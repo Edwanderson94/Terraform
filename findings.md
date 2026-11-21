@@ -258,3 +258,22 @@ gerenciado pelo módulo.
 - Static validation update: actionlint v1.7.12 installed outside the repository at `/home/edwanderson/.local/bin/actionlint`; workflow lint passed with exit 0. YAML parse, `terraform fmt -check` and `git diff --check` also passed.
 - Real validation run: GitHub Actions run `44922171924`, commit `601f2ea164c8aff5d37f4575024bf1b65d24a381`, workflow dispatch with `apply=false`, completed `success`. `fmt`, `validate`, `static` and `plan` passed; `Apply reviewed plan` was skipped; plan reported `No changes` and artifact upload succeeded.
 - The updated `hashicorp/setup-terraform@v4.0.1` executed successfully in all four uses with Terraform `1.15.7`; no `DEP0169` was emitted in the setup step. Remaining `DEP0169` and `DEP0040` came from `actions/upload-artifact@v4`, and the remaining Node 20 annotation named `actions/checkout@v4` and `actions/upload-artifact@v4`. Those belong to separate remediation activities and are not evidence of a setup-terraform regression.
+### Checkpoint — artifact action compatibility and local implementation
+- Inventory found one workflow, `.github/workflows/terraform-azuredevops.yml`, with one upload and one download reference. No other artifact action usage exists under `.github/workflows`.
+- Preserved contract: upload name `terraform-plan-${{ github.run_id }}`, source `${{ env.STACK_DIR }}/terraform.tfplan`, retention `3`, `if-no-files-found: error`, download destination `${{ env.STACK_DIR }}`, and the existing `plan`/protected `apply` conditions.
+- Official stable releases inspected with `gh`: `actions/upload-artifact@v7.0.2` and `actions/download-artifact@v8.0.2`, both published 2026-10-07. Their tagged `action.yml` files declare `using: node24`; release notes update the shared `@actions/artifact` client to `6.3.1` and retain artifact-service behavior.
+- Local implementation is limited to those two action references. No Terraform command, plan format, permissions, secrets, backend, job dependency or apply gate changed.
+- Static evidence: YAML parse, `actionlint v1.7.12`, `terraform fmt -check` and `git diff --check` passed. Pending: authorized remote execution with `apply=false`. The current apply job is intentionally skipped in that mode, so direct `download-artifact` execution still requires a safe validation path; no apply will be run.
+
+### Checkpoint — remote artifact validation
+- Commit `3bc7748d10100d6c696e63ce556741221828b7c3` was pushed to `feature/azure-devops-environments-adoption` after authorization.
+- GitHub Actions run `44926431941` (`workflow_dispatch`, `apply=false`) completed successfully for that commit. `fmt`, `validate`, `static` and `plan` passed; `Apply reviewed plan` was skipped.
+- The plan reported `No changes`. `actions/upload-artifact@v7.0.2` uploaded `terraform-plan-44926431941` successfully with one file and the configured 3-day retention input; artifact size was 20,689 bytes and the GitHub artifact API reported it as unexpired.
+- Targeted logs contain no `DEP0040`, `DEP0005` or `DEP0169`. The remaining annotation is the unrelated `actions/checkout@v4` Node 20 notice.
+- The exact published artifact was downloaded through the GitHub Actions artifact API and contained a non-empty `terraform.tfplan` (26,324 bytes). To validate the Action itself without apply, the workflow now has a `verify-plan-artifact` job that runs only for `workflow_dispatch` with `apply=false`, downloads the same artifact using `actions/download-artifact@v8.0.2`, and checks the plan file is non-empty. The protected apply job and its condition remain unchanged. This new job is locally linted but awaits its remote run.
+
+### Checkpoint — direct download validation result
+- Run `44926654447` for commit `a04aaf94b578ec1bdb7b5a714ee60dd2d784a436` passed `fmt`, `validate`, `static`, `plan` and the new `Verify reviewed plan artifact` job; apply was skipped.
+- The direct `actions/download-artifact@v8.0.2` step successfully downloaded `terraform-plan-44926654447`, and `test -s terraform.tfplan` passed.
+- The same step emitted `DEP0005 Buffer() is deprecated`. The warning is therefore still present in the current official `v8.0.2` release, despite the Node 24 runtime. `actions/upload-artifact@v7.0.2` emitted no target deprecation warning.
+- Official release inventory shows `v8.0.2` is the latest stable `download-artifact` release; there is no later official version to adopt. Do not suppress the warning or mark the remediation complete without a supported upstream fix or an explicitly approved alternative.
