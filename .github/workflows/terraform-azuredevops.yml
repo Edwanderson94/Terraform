@@ -2,11 +2,9 @@ name: Terraform Azure DevOps
 
 on:
   pull_request:
-    branches: [master]
-    paths:
-      - "azure-devops/**"
-      - ".github/workflows/terraform-azuredevops.yml"
-      - "docs/github-actions.md"
+    branches:
+      - master
+      - "release/**"
   push:
     branches: [master]
     paths:

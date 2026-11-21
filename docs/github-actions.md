@@ -7,7 +7,10 @@ Azure Pipelines deixa de ser o executor desse repositório.
 
 ## Fluxo
 
-- Pull requests para `master` executam `fmt`, `validate` e verificações estáticas.
+- Pull requests de `feature/*`, `fix/*` ou `docs/*` para `release/<major>.<minor>.<patch>` executam `fmt`, `validate`, verificações estáticas e o guardrail de transição.
+- Pull requests de `release/<major>.<minor>.<patch>` (ou `hotfix/<version>`) para `master` executam novamente os guardrails e as validações Terraform.
+- O workflow `gitflow-guardrails.yml` rejeita origens, destinos e versões fora desse fluxo. Pull requests vindos de forks não são aceitos para as transições protegidas.
+- Após o merge de uma `release/<version>` ou `hotfix/<version>` em `master`, o guardrail cria uma única tag anotada `v<version>` no commit de merge. Tags existentes nunca são sobrescritas.
 - Pushes em `master` executam o `plan` somente quando o backend efetivo é OCI e
   publicam o plano por três dias como artefato da mesma execução. Se o stack
   ainda estiver com backend local, o workflow falha explicitamente antes do
@@ -18,6 +21,16 @@ Azure Pipelines deixa de ser o executor desse repositório.
   OCI continua sendo obrigatório.
 - O apply fica bloqueado até `OCI_TF_STATE_MIGRATED=true` e até o backend efetivo
   ser confirmado como `oci`.
+
+O fluxo oficial é:
+
+```text
+feature/* | fix/* | docs/* -> release/X.Y.Z -> master -> vX.Y.Z
+```
+
+Branches `release/*` devem usar exatamente três componentes numéricos. A proteção
+de branch do GitHub deve exigir PR, checks verdes e revisão antes do merge; o
+workflow não substitui essa configuração administrativa.
 
 O workflow não cria o bucket nem migra state automaticamente. A configuração do
 backend OCI é gerada pelo Terragrunt com o bucket, namespace e chave da camada;
