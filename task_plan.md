@@ -108,3 +108,11 @@ Phase 4
 |-------|------------|
 | O primeiro comando do inicializador expandiu `PWF_SKILL_DIR` antes do `export` | Reexecutado com a variável exportada; os arquivos de planejamento foram criados. |
 | Branch Control falhou nas execuções 1994 e 1995 ao avaliar o template cross-project fixado por SHA | O check específico foi removido; a proteção de `master` e os demais controles permanecem ativos. |
+
+### Phase 12: Checkout Node 24 Remediation
+- [x] Criar `release/1.0.7` a partir de `master` e a branch de trabalho
+- [x] Atualizar somente as referências de `actions/checkout`
+- [ ] Executar validações locais
+- [ ] Abrir PR para `release/1.0.7` e validar a pipeline sem apply
+- [ ] Atualizar o card 16 com a evidência final
+- **Status:** in_progress
