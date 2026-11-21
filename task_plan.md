@@ -112,7 +112,7 @@ Phase 4
 ### Phase 12: Checkout Node 24 Remediation
 - [x] Criar `release/1.0.7` a partir de `master` e a branch de trabalho
 - [x] Atualizar somente as referências de `actions/checkout`
-- [ ] Executar validações locais
-- [ ] Abrir PR para `release/1.0.7` e validar a pipeline sem apply
-- [ ] Atualizar o card 16 com a evidência final
-- **Status:** in_progress
+- [x] Executar validações locais
+- [x] Abrir PR para `release/1.0.7` e validar a pipeline sem apply
+- [x] Atualizar o card 16 com a evidência final
+- **Status:** complete

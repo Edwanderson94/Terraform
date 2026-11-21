@@ -283,3 +283,5 @@ gerenciado pelo módulo.
 - Official `actions/checkout@v7.0.1` was verified to declare `using: node24`.
 - A new Gitflow release branch `release/1.0.7` was created from `origin/master` at `v1.0.6`, followed by `feature/update-checkout-node24`.
 - The implementation changes only those five checkout references; artifact actions, Terraform, permissions, credentials, Environment and apply conditions remain untouched.
+- Local validation passed: YAML parse, `actionlint v1.7.12`, `terraform fmt -check` and `git diff --check`.
+- Remote run `44940283201` on commit `b4e17e19d7dfc67c932a0bd84aba38485a74578d` passed static checks, validate, format, plan and no-apply artifact verification. It used `actions/checkout@v7.0.1` and emitted no Node 20 checkout annotation. The existing checkout `git init` informational hint remains, and `download-artifact@v8.0.2` still emits the separately tracked upstream `DEP0005`.
