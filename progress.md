@@ -175,3 +175,23 @@
 
 ### Scope and authorization boundary
 - This continuation only updated planning documentation and Trello planning metadata. No workflow, Terraform, state, secret, permission, branch, tag, release, deployment, commit, push or merge was modified.
+## Session: 2026-11-21 — artifact actions Node 24 remediation
+
+### Checkpoint — discovery and implementation
+- **Status:** correction implemented locally; static and remote validation pending.
+- Reconfirmed the exact open Trello card 18 and the repository workflow inventory. Only `.github/workflows/terraform-azuredevops.yml` uses artifact actions.
+- Verified official stable targets: `actions/upload-artifact@v7.0.2` and `actions/download-artifact@v8.0.2`; both tagged manifests use `node24` and release notes document the shared artifact client `6.3.1`.
+- Changed only the upload and download action references. The Terraform plan artifact name, path, retention, job conditions, permissions and protected apply gate are unchanged.
+- No commit, push, merge, tag, release, remote dispatch, apply, deployment, state, secret or permission mutation was performed.
+
+### Checkpoint — authorized remote validation
+- Authorization was received for commit, push and a safe workflow run with `apply=false`.
+- Commit `3bc7748` was pushed successfully. Run `44926431941` completed successfully: format, validate, static checks and plan passed; apply was skipped.
+- The exact artifact `terraform-plan-44926431941` was uploaded successfully and downloaded via the GitHub artifact API; the downloaded package contained a non-empty `terraform.tfplan`.
+- Logs no longer contain the target `DEP0040`, `DEP0005` or `DEP0169` warnings. Only the existing checkout Node 20 annotation remains.
+- To validate `actions/download-artifact@v8.0.2` without apply, a `verify-plan-artifact` job was added. It runs only for manual dispatch with `apply=false`, downloads the exact plan artifact, and checks `terraform.tfplan` is non-empty. The protected apply job and its condition were not changed. The new job is locally validated and awaits a remote run.
+
+### Checkpoint — direct download result
+- Run `44926654447` passed all Terraform/static jobs and the no-apply artifact verification job. The exact artifact downloaded successfully and the plan file check passed.
+- `download-artifact@v8.0.2` still emitted `DEP0005 Buffer()`; `v8.0.2` is the latest stable upstream release. Upload warnings targeted by this remediation are gone, but the download warning remains an upstream limitation.
+- The real-validation milestone remains open. No warning suppression or apply execution was introduced.

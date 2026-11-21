@@ -211,12 +211,27 @@ jobs:
           cp "$plan_file" terraform.tfplan
           echo "Terraform plan exit code: $status"
       - name: Upload reviewed plan
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: terraform-plan-${{ github.run_id }}
           path: ${{ env.STACK_DIR }}/terraform.tfplan
           retention-days: 3
           if-no-files-found: error
+
+  verify-plan-artifact:
+    name: Verify reviewed plan artifact
+    needs: [plan]
+    if: github.event_name == 'workflow_dispatch' && inputs.apply == false
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Download reviewed plan
+        uses: actions/download-artifact@v8.0.2
+        with:
+          name: terraform-plan-${{ github.run_id }}
+          path: ${{ env.STACK_DIR }}
+      - name: Verify reviewed plan file
+        working-directory: ${{ env.STACK_DIR }}
+        run: test -s terraform.tfplan
 
   apply:
     name: Apply reviewed plan
@@ -284,7 +299,7 @@ jobs:
             exit 1
           }
           terragrunt state pull >/dev/null
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8.0.2
         with:
           name: terraform-plan-${{ github.run_id }}
           path: ${{ env.STACK_DIR }}
