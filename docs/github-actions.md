@@ -10,7 +10,7 @@ Azure Pipelines deixa de ser o executor desse repositório.
 - Pull requests de `feature/*`, `fix/*` ou `docs/*` para `release/<major>.<minor>.<patch>` executam `fmt`, `validate`, verificações estáticas e o guardrail de transição.
 - Pull requests de `release/<major>.<minor>.<patch>` (ou `hotfix/<version>`) para `master` executam novamente os guardrails e as validações Terraform.
 - O workflow `gitflow-guardrails.yml` rejeita origens, destinos e versões fora desse fluxo. Pull requests vindos de forks não são aceitos para as transições protegidas.
-- Após o merge de uma `release/<version>` em `master`, o guardrail cria uma única tag anotada `v<version>` no commit de merge. Tags existentes nunca são sobrescritas.
+- Após o merge de uma `release/<version>` ou `hotfix/<version>` em `master`, o guardrail cria uma única tag anotada `v<version>` no commit de merge. Tags existentes nunca são sobrescritas.
 - Pushes em `master` executam o `plan` somente quando o backend efetivo é OCI e
   publicam o plano por três dias como artefato da mesma execução. Se o stack
   ainda estiver com backend local, o workflow falha explicitamente antes do

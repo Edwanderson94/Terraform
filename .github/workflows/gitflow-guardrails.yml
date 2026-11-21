@@ -37,7 +37,7 @@ jobs:
                 echo "Release targets must use release/<major>.<minor>.<patch>." >&2
                 exit 1
               }
-              [[ "$HEAD_BRANCH" =~ ^(feature|fix|docs)/[^/]+$ ]] || {
+              [[ "$HEAD_BRANCH" =~ ^(feature|fix|docs)/.+$ ]] || {
                 echo "Only feature/*, fix/*, or docs/* branches may target a release." >&2
                 exit 1
               }
@@ -62,7 +62,7 @@ jobs:
       github.event.action == 'closed' &&
       github.event.pull_request.merged == true &&
       github.event.pull_request.base.ref == 'master' &&
-      startsWith(github.event.pull_request.head.ref, 'release/') &&
+      (startsWith(github.event.pull_request.head.ref, 'release/') || startsWith(github.event.pull_request.head.ref, 'hotfix/')) &&
       github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-24.04
     permissions:
@@ -74,14 +74,14 @@ jobs:
           fetch-depth: 0
       - name: Create immutable release tag
         env:
-          RELEASE_BRANCH: ${{ github.event.pull_request.head.ref }}
+          SOURCE_BRANCH: ${{ github.event.pull_request.head.ref }}
           MERGE_SHA: ${{ github.event.pull_request.merge_commit_sha }}
         shell: bash
         run: |
           set -euo pipefail
-          version="${RELEASE_BRANCH#release/}"
+          version="${SOURCE_BRANCH#*/}"
           [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
-            echo "Release branch does not contain a semantic version: $RELEASE_BRANCH" >&2
+            echo "Release branch does not contain a semantic version: $SOURCE_BRANCH" >&2
             exit 1
           }
           tag="v$version"
