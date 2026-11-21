@@ -16,3 +16,8 @@ output "repository_urls" {
   description = "URLs dos repositorios gerenciados"
   value       = module.azuredevops_repositories.repository_urls
 }
+
+output "environment_ids" {
+  description = "IDs dos Environments existentes adotados por import declarativo."
+  value       = { for key, environment in module.azuredevops_environments : key => environment.id }
+}

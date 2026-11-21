@@ -42,6 +42,16 @@ module "azuredevops_variablegroup" {
   }
 }
 
+module "azuredevops_environments" {
+  for_each = local.environments
+
+  source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/environment?ref=a20519ff4a2562800930dcb121bdd150beaae05f"
+
+  project_id  = data.azuredevops_project.infrastructure.id
+  name        = each.value.name
+  description = each.value.description
+}
+
 module "azuredevops_aws_variablegroup" {
   source = "git::https://github.com/Edwanderson94/Terraform-Modules.git//azure_devops/variable-groups?ref=cfc19ec6bde0fc0d4840463a4b180550bc3f5883"
 
